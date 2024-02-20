@@ -1,7 +1,26 @@
-[gd_scene load_steps=2 format=3 uid="uid://cgw6rfirr30ks"]
+[gd_scene load_steps=3 format=3 uid="uid://cgw6rfirr30ks"]
 
 [ext_resource type="PackedScene" uid="uid://cubitxapsm3h1" path="res://scenes/char.tscn" id="1_4kh5w"]
+[ext_resource type="PackedScene" uid="uid://frgnvj4jyvnk" path="res://scenes/platform.tscn" id="2_jx1ty"]
 
 [node name="Level" type="Node2D"]
 
 [node name="Char" parent="." instance=ExtResource("1_4kh5w")]
+position = Vector2(144, 521)
+scale = Vector2(0.7, 0.7)
+
+[node name="Platform" parent="." instance=ExtResource("2_jx1ty")]
+position = Vector2(575, 627)
+scale = Vector2(7.88, 0.2)
+
+[node name="Platform2" parent="." instance=ExtResource("2_jx1ty")]
+position = Vector2(385, 429)
+scale = Vector2(2.36, 0.2)
+
+[node name="Platform3" parent="." instance=ExtResource("2_jx1ty")]
+position = Vector2(804, 428)
+scale = Vector2(2.36, 0.2)
+
+[node name="Platform4" parent="." instance=ExtResource("2_jx1ty")]
+position = Vector2(609, 197)
+scale = Vector2(2.36, 0.2)
