@@ -6,7 +6,6 @@ var double_jump_speed: int = -700
 var jumps_left: int = 2
 var gravity = 2000
 var vel: Vector2 = Vector2.ZERO
-var accel: Vector2 = Vector2.ZERO
 
 func get_input():
 	vel.x = 0
@@ -26,10 +25,11 @@ func _physics_process(delta):
 	
 	if Input.is_action_just_pressed("up"):
 		if is_on_floor():
-			jumps_left-=1
+			jumps_left -= 1
 			vel.y = jump_speed
 		elif jumps_left > 0:
-			jumps_left-=1
+			jumps_left -= 1
+			
 			if vel.y < double_jump_speed:
 				vel.y -= abs(double_jump_speed) / (abs(vel.y)+1000) * abs(double_jump_speed)
 			elif vel.y < 0:
