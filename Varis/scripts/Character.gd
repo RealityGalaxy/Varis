@@ -31,11 +31,10 @@ func _physics_process(delta):
 			jumps_left -= 1
 			
 			if vel.y < double_jump_speed:
-				vel.y -= abs(double_jump_speed) / (abs(vel.y)+1000) * abs(double_jump_speed)
-			elif vel.y < 0:
-				vel.y += double_jump_speed
+				vel.y -= abs(double_jump_speed) / (abs(vel.y)+4000) * abs(double_jump_speed)
 			else:
-				vel.y = double_jump_speed
+				vel.y += double_jump_speed
+				vel.y = clamp(vel.y, jump_speed, double_jump_speed)
 			
 	velocity = vel
 	move_and_slide()
