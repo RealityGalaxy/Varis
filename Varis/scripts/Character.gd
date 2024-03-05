@@ -17,12 +17,7 @@ func get_input():
 		vel.x += speed
 	if Input.is_action_pressed("left"):
 		vel.x -= speed
-	# FOR TESTING PURPOSES DELETE
-	if Input.is_action_just_pressed("down"):
-		stats.take_damage(10)
-		if stats.max_health <= 0:
-			get_tree().paused = true # pauses game
-	# FOR TESTING PURPOSES DELETE
+
 
 
 
