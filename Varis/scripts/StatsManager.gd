@@ -12,9 +12,9 @@ func take_damage(damage):
 	# so that damage reduction would go from 1 to 2 :shrug:
 	var actual_damage = damage * (2 - damage_reduction) 
 	if actual_damage > 0:
-		max_health -= actual_damage
-		if max_health < 0:
-			max_health = 0
+		current_health -= actual_damage
+		if current_health < 0:
+			current_health = 0
 			
 
 func increase_damage(amount):

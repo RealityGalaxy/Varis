@@ -19,8 +19,6 @@ func get_input():
 		vel.x -= speed
 
 
-
-
 func _physics_process(delta):
 	get_input()
 	
