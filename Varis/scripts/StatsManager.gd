@@ -2,6 +2,7 @@ extends Resource
 class_name StatsManager
 
 var max_health : int = 100
+var current_health : int = 100
 var damage_multiplier : float = 1
 var damage_reduction : float = 1
 var speed_multiplier : float = 1
