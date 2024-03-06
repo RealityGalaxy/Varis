@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://be6txqjmunieg"]
 
-[ext_resource type="Script" path="res://scripts/multiplayerScreen.gd" id="1_raoo1"]
+[ext_resource type="Script" path="res://scripts/multiplayerLogic.gd" id="1_raoo1"]
 [ext_resource type="Texture2D" uid="uid://crdip2y5gklpt" path="res://graphics/placeholder/tile_0014.png" id="2_brpcw"]
 [ext_resource type="Script" path="res://scripts/Steam.gd" id="3_7ujq4"]
 
