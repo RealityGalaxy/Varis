@@ -75,7 +75,7 @@ text = "BACK"
 script = ExtResource("3_7ujq4")
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
-spawn_path = NodePath("..")
+spawn_path = NodePath(".")
 
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/Host" to="." method="_on_host_pressed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/Join" to="." method="_on_join_pressed"]
