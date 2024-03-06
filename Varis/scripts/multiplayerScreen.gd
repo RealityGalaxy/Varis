@@ -34,7 +34,7 @@ func _on_lobby_created(connect, id):
 
 func _on_join_pressed():
 	get_tree().change_scene_to_file("res://scenes/lobbiesScreen.tscn")
-	$MarginContainer.hide()
+	
 	
 func _on_back_pressed():
 	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")

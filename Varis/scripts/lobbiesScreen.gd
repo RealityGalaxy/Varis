@@ -6,7 +6,7 @@ var lobby_id = 0
 
 
 func _ready():
-	multiplayerSpawner.spawn_function = spawn_level
+	
 	Steam.lobby_match_list.connect(_on_lobby_match_list)
 	open_lobby_list()
 
