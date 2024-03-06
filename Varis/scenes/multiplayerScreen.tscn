@@ -1,0 +1,92 @@
+[gd_scene load_steps=4 format=3 uid="uid://be6txqjmunieg"]
+
+[ext_resource type="Script" path="res://scripts/multiplayerScreen.gd" id="1_raoo1"]
+[ext_resource type="Texture2D" uid="uid://crdip2y5gklpt" path="res://graphics/placeholder/tile_0014.png" id="2_brpcw"]
+[ext_resource type="Script" path="res://scripts/Steam.gd" id="3_7ujq4"]
+
+[node name="multiplayerScreen" type="Node2D"]
+script = ExtResource("1_raoo1")
+
+[node name="Background" type="TextureRect" parent="."]
+offset_right = 1915.0
+offset_bottom = 1079.0
+texture = ExtResource("2_brpcw")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 678.0
+offset_top = 262.0
+offset_right = 1249.0
+offset_bottom = 837.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 180
+
+[node name="Separator" type="Control" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "GAME TITLE"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 39
+alignment = 1
+
+[node name="Separator2" type="Control" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Host" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(200, 70)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "HOST"
+
+[node name="Join" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(200, 70)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "JOIN"
+
+[node name="Back" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(200, 70)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "BACK"
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+spawn_path = NodePath("..")
+
+[node name="Steam" type="Node" parent="."]
+script = ExtResource("3_7ujq4")
+
+[node name="LobbyScrollContainer" type="ScrollContainer" parent="."]
+custom_minimum_size = Vector2(100, 100)
+offset_left = 74.0
+offset_top = -7.0
+offset_right = 523.0
+offset_bottom = 1073.0
+
+[node name="Lobbies" type="VBoxContainer" parent="LobbyScrollContainer"]
+layout_mode = 2
+
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/Host" to="." method="_on_host_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/Join" to="." method="_on_join_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/Back" to="." method="_on_back_pressed"]

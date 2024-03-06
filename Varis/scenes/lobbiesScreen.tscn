@@ -1,25 +1,25 @@
-[gd_scene load_steps=4 format=3 uid="uid://be6txqjmunieg"]
+[gd_scene load_steps=4 format=3 uid="uid://d4d6sxgqjboo0"]
 
-[ext_resource type="Script" path="res://scripts/scene_multiplayer.gd" id="1_u4gho"]
-[ext_resource type="Texture2D" uid="uid://crdip2y5gklpt" path="res://graphics/placeholder/tile_0014.png" id="2_wtpjw"]
-[ext_resource type="Script" path="res://scripts/Steam.gd" id="3_uhsae"]
+[ext_resource type="Script" path="res://scripts/lobbiesScreen.gd" id="1_isynn"]
+[ext_resource type="Texture2D" uid="uid://crdip2y5gklpt" path="res://graphics/placeholder/tile_0014.png" id="2_tn8hm"]
+[ext_resource type="Script" path="res://scripts/Steam.gd" id="3_8esrk"]
 
-[node name="scene_multiplayer" type="Node2D"]
-script = ExtResource("1_u4gho")
+[node name="lobbiesScreem" type="Node2D"]
+script = ExtResource("1_isynn")
 
 [node name="Background" type="TextureRect" parent="."]
 offset_right = 1915.0
 offset_bottom = 1079.0
-texture = ExtResource("2_wtpjw")
+texture = ExtResource("2_tn8hm")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 678.0
-offset_top = 262.0
-offset_right = 1249.0
-offset_bottom = 837.0
+offset_left = 537.0
+offset_top = 266.0
+offset_right = 1349.0
+offset_bottom = 841.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 12
@@ -53,40 +53,23 @@ alignment = 1
 [node name="Separator2" type="Control" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Host" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
-custom_minimum_size = Vector2(200, 70)
-layout_mode = 2
-theme_override_font_sizes/font_size = 32
-text = "HOST"
-
-[node name="Join" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
-custom_minimum_size = Vector2(200, 70)
-layout_mode = 2
-theme_override_font_sizes/font_size = 32
-text = "JOIN"
-
 [node name="Back" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(200, 70)
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "BACK"
 
+[node name="LobbyScrollContainer" type="ScrollContainer" parent="MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+
+[node name="Lobbies" type="VBoxContainer" parent="MarginContainer/HBoxContainer/LobbyScrollContainer"]
+layout_mode = 2
+
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
 spawn_path = NodePath("..")
 
 [node name="Steam" type="Node" parent="."]
-script = ExtResource("3_uhsae")
+script = ExtResource("3_8esrk")
 
-[node name="LobbyScrollContainer" type="ScrollContainer" parent="."]
-custom_minimum_size = Vector2(100, 100)
-offset_left = 74.0
-offset_top = -7.0
-offset_right = 523.0
-offset_bottom = 1073.0
-
-[node name="Lobbies" type="VBoxContainer" parent="LobbyScrollContainer"]
-layout_mode = 2
-
-[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/Host" to="." method="_on_host_pressed"]
-[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/Join" to="." method="_on_join_pressed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/Back" to="." method="_on_back_pressed"]
