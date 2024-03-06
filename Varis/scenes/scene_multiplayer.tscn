@@ -79,11 +79,10 @@ script = ExtResource("3_uhsae")
 
 [node name="LobbyScrollContainer" type="ScrollContainer" parent="."]
 custom_minimum_size = Vector2(100, 100)
-offset_left = 748.0
-offset_top = -1.0
-offset_right = 1197.0
-offset_bottom = 1079.0
-mouse_filter = 2
+offset_left = 74.0
+offset_top = -7.0
+offset_right = 523.0
+offset_bottom = 1073.0
 
 [node name="Lobbies" type="VBoxContainer" parent="LobbyScrollContainer"]
 layout_mode = 2

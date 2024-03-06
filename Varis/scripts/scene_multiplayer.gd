@@ -6,7 +6,9 @@ var peer = SteamMultiplayerPeer.new()
 @onready var multiplayerSpawner = $MultiplayerSpawner
 
 func _ready():
-	pass
+	multiplayerSpawner.spawn_function = spawn_level
+	peer.lobby_created.connect(_on_lobby_created)
+	Steam.lobby_match_list.connect(_on_lobby_match_list)
 	
 func spawn_level(data):
 	var a = (load(data) as PackedScene).instantiate()
@@ -56,9 +58,6 @@ func _on_lobby_match_list(lobbies):
 		$LobbyScrollContainer/Lobbies.add_child(button)
 		
 func _on_join_pressed():
-	multiplayerSpawner.spawn_function = spawn_level
-	peer.lobby_created.connect(_on_lobby_created)
-	Steam.lobby_match_list.connect(_on_lobby_match_list)
 	open_lobby_list()
 	$MarginContainer.hide()
 	
