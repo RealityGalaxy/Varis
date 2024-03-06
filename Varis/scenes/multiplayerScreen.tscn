@@ -77,16 +77,6 @@ spawn_path = NodePath("..")
 [node name="Steam" type="Node" parent="."]
 script = ExtResource("3_7ujq4")
 
-[node name="LobbyScrollContainer" type="ScrollContainer" parent="."]
-custom_minimum_size = Vector2(100, 100)
-offset_left = 74.0
-offset_top = -7.0
-offset_right = 523.0
-offset_bottom = 1073.0
-
-[node name="Lobbies" type="VBoxContainer" parent="LobbyScrollContainer"]
-layout_mode = 2
-
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/Host" to="." method="_on_host_pressed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/Join" to="." method="_on_join_pressed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/Back" to="." method="_on_back_pressed"]

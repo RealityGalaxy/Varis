@@ -21,7 +21,7 @@ func _on_host_pressed():
 	multiplayerSpawner.spawn("res://scenes/level.tscn")
 	$Background.hide()
 	$MarginContainer.hide()
-	$LobbyScrollContainer/Lobbies.hide()
+	
 	
 	
 func _on_lobby_created(connect, id):

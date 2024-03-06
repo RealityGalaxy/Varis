@@ -4,10 +4,16 @@ extends Node2D
 var peer = SteamMultiplayerPeer.new()
 var lobby_id = 0
 
+
 func _ready():
+	multiplayerSpawner.spawn_function = spawn_level
 	Steam.lobby_match_list.connect(_on_lobby_match_list)
 	open_lobby_list()
 
+func spawn_level(data):
+	var a = (load(data) as PackedScene).instantiate()
+	return a
+	
 func _on_back_pressed():
 	get_tree().change_scene_to_file("res://scenes/multiplayerScreen.tscn")
 
@@ -18,7 +24,7 @@ func join_lobby(id):
 	lobby_id = id
 	$Background.hide()
 	$MarginContainer.hide()
-	$LobbyScrollContainer/Lobbies.hide()
+	
 
 func open_lobby_list():
 	Steam.addRequestLobbyListDistanceFilter(Steam.LOBBY_DISTANCE_FILTER_CLOSE)
@@ -36,9 +42,9 @@ func _on_lobby_match_list(lobbies):
 			button.set_size(Vector2(100, 5))
 			button.connect("pressed", Callable(self, "join_lobby").bind(lobby))
 			$MarginContainer/HBoxContainer/LobbyScrollContainer/Lobbies.add_child(button)
-		else:
-			var button = Button.new()
-			button.set_text("no lobbies :(")
-			button.set_size(Vector2(100, 5))		
-			$MarginContainer/HBoxContainer/LobbyScrollContainer/Lobbies.add_child(button)
-			return
+		#else:
+		#	var button = Button.new()
+		#	button.set_text("no lobbies :(")
+		#	button.set_size(Vector2(100, 5))		
+		#	$MarginContainer/HBoxContainer/LobbyScrollContainer/Lobbies.add_child(button)
+		#	return
