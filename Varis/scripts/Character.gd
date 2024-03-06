@@ -15,6 +15,9 @@ func get_input():
 		vel.x -= speed
 
 func _physics_process(delta):
+	if !is_multiplayer_authority():
+		return
+	
 	get_input()
 	
 	if is_on_floor() or is_on_ceiling():

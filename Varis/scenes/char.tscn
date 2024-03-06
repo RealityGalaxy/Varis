@@ -1,10 +1,18 @@
-[gd_scene load_steps=4 format=3 uid="uid://cubitxapsm3h1"]
+[gd_scene load_steps=5 format=3 uid="uid://cubitxapsm3h1"]
 
 [ext_resource type="Texture2D" uid="uid://c380wvdmmtcf2" path="res://icon.svg" id="2_fjpeu"]
 [ext_resource type="Script" path="res://scripts/Character.gd" id="2_iyq3v"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uou4y"]
 size = Vector2(127, 128)
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_eqrt6"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
 script = ExtResource("2_iyq3v")
@@ -15,3 +23,6 @@ texture = ExtResource("2_fjpeu")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.5, 0)
 shape = SubResource("RectangleShape2D_uou4y")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_eqrt6")

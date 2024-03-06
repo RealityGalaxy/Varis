@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://crdel4dbytuuo"]
 
+[ext_resource type="Script" path="res://scripts/main_menu.gd" id="1_0fplc"]
 [ext_resource type="Texture2D" uid="uid://crdip2y5gklpt" path="res://graphics/placeholder/tile_0014.png" id="1_55mwp"]
-[ext_resource type="Script" path="res://scenes/main_menu.gd" id="1_hm7jm"]
 
 [node name="Main_Menu" type="Control"]
 layout_mode = 3
@@ -10,7 +10,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_hm7jm")
+script = ExtResource("1_0fplc")
 
 [node name="Background" type="TextureRect" parent="."]
 layout_mode = 1
@@ -59,11 +59,17 @@ alignment = 1
 [node name="Separator2" type="Control" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Start" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+[node name="Singleplayer" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(230, 70)
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
-text = "START GAME"
+text = "SINGLEPLAYER"
+
+[node name="Multiplayer" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(230, 70)
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "MULTIPLAYER"
 
 [node name="Settings" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(200, 70)
@@ -77,6 +83,7 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 32
 text = "EXIT"
 
-[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/Singleplayer" to="." method="_on_singleplayer_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/Multiplayer" to="." method="_on_multiplayer_pressed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/Settings" to="." method="_on_settings_pressed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/Exit" to="." method="_on_exit_pressed"]
