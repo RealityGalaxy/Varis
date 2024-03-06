@@ -6,6 +6,10 @@ var double_jump_speed: int = -700
 var jumps_left: int = 2
 var gravity = 2000
 var vel: Vector2 = Vector2.ZERO
+var stats : StatsManager
+
+func _ready():
+	stats = StatsManager.new()
 
 func get_input():
 	vel.x = 0
@@ -13,6 +17,7 @@ func get_input():
 		vel.x += speed
 	if Input.is_action_pressed("left"):
 		vel.x -= speed
+
 
 func _physics_process(delta):
 	if !is_multiplayer_authority():
@@ -25,7 +30,6 @@ func _physics_process(delta):
 		vel.y = 0
 		
 	vel.y += gravity * delta
-	
 	if Input.is_action_just_pressed("up"):
 		if is_on_floor():
 			jumps_left -= 1
