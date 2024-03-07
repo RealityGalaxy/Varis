@@ -6,7 +6,8 @@ var peer = SteamMultiplayerPeer.new()
 @onready var multiplayerSpawner = $MultiplayerSpawner
 
 func _ready():
-	
+	multiplayerSpawner.spawn_function = spawn_level
+	peer.lobby_created.connect(_on_lobby_created)
 	Steam.lobby_match_list.connect(_on_lobby_match_list)
 	
 func spawn_level(data):
@@ -15,10 +16,6 @@ func spawn_level(data):
 
 
 func _on_host_pressed():
-	multiplayerSpawner.spawn_function = spawn_level
-	peer.lobby_created.connect(_on_lobby_created)
-	
-	
 	peer.create_lobby(SteamMultiplayerPeer.LOBBY_TYPE_PUBLIC)
 	multiplayer.multiplayer_peer = peer
 	multiplayerSpawner.spawn("res://scenes/level.tscn")
@@ -41,7 +38,7 @@ func join_lobby(id):
 	lobby_id = id
 	$Background.hide()
 	$MarginContainer.hide()
-	$MarginContainer/HBoxContainer/LobbyScrollContainer/Lobbies.hide()
+	$MarginContainer/PopupPanel.hide()
 	
 func open_lobby_list():
 	Steam.addRequestLobbyListDistanceFilter(Steam.LOBBY_DISTANCE_FILTER_CLOSE)
@@ -53,27 +50,24 @@ func _on_lobby_match_list(lobbies):
 		var lobby_name = Steam.getLobbyData(lobby, "name")
 		var player_count = Steam.getNumLobbyMembers(lobby)
 		
-		if lobby_name == "godlobby":
+		if lobbies.has("godlobby"):
 			var button = Button.new()
 			button.set_text(str(lobby_name, "| Player Count: ", player_count))
 			button.set_size(Vector2(100, 5))
 			button.connect("pressed", Callable(self, "join_lobby").bind(lobby))
-			$MarginContainer/HBoxContainer/LobbyScrollContainer/Lobbies.add_child(button)
-		#else:
-		#	var button = Button.new()
-		#	button.set_text("no lobbies :(")
-		#	button.set_size(Vector2(100, 5))
-		#	$MarginContainer/HBoxContainer/LobbyScrollContainer/Lobbies.add_child(button)
-		#	return
+			$MarginContainer/PopupPanel/LobbyScrollContainer/Lobbies.add_child(button)
+		else:
+			var button = Button.new()
+			button.set_text("no lobbies :(")
+			button.set_size(Vector2(100, 5))
+			$MarginContainer/PopupPanel/LobbyScrollContainer/Lobbies.add_child(button)
+			return
+			
 
 
 func _on_join_pressed():
-	
-	get_tree().change_scene_to_file("res://scenes/lobbiesScreen.tscn")
-	multiplayerSpawner.spawn_function = spawn_level
-	
 	open_lobby_list()
-	#$MarginContainer.hide()
+	$MarginContainer/PopupPanel.popup()
 	
 func _on_back_pressed():
 	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")

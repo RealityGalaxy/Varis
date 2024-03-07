@@ -13,3 +13,7 @@ func _ready():
 func _process(delta):
 	Steam.run_callbacks()
 	
+
+func _input(event):
+		if Input.is_action_just_pressed("esc"):
+			get_tree().quit()
