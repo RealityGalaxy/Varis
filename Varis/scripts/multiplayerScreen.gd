@@ -21,16 +21,15 @@ func _on_host_pressed():
 	multiplayerSpawner.spawn("res://scenes/level.tscn")
 	$Background.hide()
 	$MarginContainer.hide()
-	
-	
-	
+
+
 func _on_lobby_created(connect, id):
 	if connect:
 		lobby_id = id
 		Steam.setLobbyData(lobby_id, "name", str("godlobby"))
 		Steam.setLobbyJoinable(lobby_id, true)
 		print(lobby_id)
-		
+
 
 func join_lobby(id):
 	peer.connect_lobby(id)
@@ -39,11 +38,13 @@ func join_lobby(id):
 	$Background.hide()
 	$MarginContainer.hide()
 	$MarginContainer/PopupPanel.hide()
-	
+
+
 func open_lobby_list():
 	Steam.addRequestLobbyListDistanceFilter(Steam.LOBBY_DISTANCE_FILTER_CLOSE)
 	Steam.requestLobbyList()
-		
+
+
 func _on_lobby_match_list(lobbies):
 	
 	for lobby in lobbies:
