@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://cgw6rfirr30ks"]
+[gd_scene load_steps=6 format=3 uid="uid://cgw6rfirr30ks"]
 
 [ext_resource type="Texture2D" uid="uid://hb5qw0s3eac2" path="res://graphics/terrain/tilemaps/GrassTilemap.png" id="1_jefxm"]
 [ext_resource type="PackedScene" uid="uid://cubitxapsm3h1" path="res://scenes/char.tscn" id="2_7accs"]
+[ext_resource type="PackedScene" uid="uid://4r48f8lttmp" path="res://scenes/deathzone.tscn" id="3_ulx4w"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rfgjm"]
 texture = ExtResource("1_jefxm")
@@ -50,3 +51,15 @@ layer_0/tile_data = PackedInt32Array(524296, 131072, 1, 589832, 131072, 1, 52429
 [node name="CharacterBody2D" parent="." instance=ExtResource("2_7accs")]
 position = Vector2(301, 673)
 scale = Vector2(0.8, 0.8)
+
+[node name="Deathzone" parent="." instance=ExtResource("3_ulx4w")]
+position = Vector2(921, 1286)
+scale = Vector2(130, 4)
+
+[node name="Deathzone2" parent="." instance=ExtResource("3_ulx4w")]
+position = Vector2(-477, 225)
+scale = Vector2(10, 110)
+
+[node name="Deathzone3" parent="." instance=ExtResource("3_ulx4w")]
+position = Vector2(2326, 225)
+scale = Vector2(10, 110)
