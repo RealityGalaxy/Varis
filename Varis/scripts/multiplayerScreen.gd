@@ -56,14 +56,6 @@ func _on_lobby_match_list(lobbies):
 			button.set_size(Vector2(100, 5))
 			button.connect("pressed", Callable(self, "join_lobby").bind(lobby))
 			$MarginContainer/PopupPanel/LobbyScrollContainer/Lobbies.add_child(button)
-		#else:
-		#	var button = Button.new()
-		#	button.set_text("no lobbies :(")
-		#	button.set_size(Vector2(100, 5))
-		#	$MarginContainer/PopupPanel/LobbyScrollContainer/Lobbies.add_child(button)
-		#	return
-			
-
 
 func _on_join_pressed():
 	open_lobby_list()
