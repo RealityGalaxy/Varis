@@ -6,6 +6,12 @@ var double_jump_speed: int = -700
 var jumps_left: int = 2
 var gravity = 2000
 var vel: Vector2 = Vector2.ZERO
+var health = 0
+@onready var healthbar = $HealthBar
+
+func _ready():
+	health = 100
+	healthbar.init_health(health)
 
 func get_input():
 	vel.x = 0
@@ -13,6 +19,12 @@ func get_input():
 		vel.x += speed
 	if Input.is_action_pressed("left"):
 		vel.x -= speed
+	if Input.is_action_just_pressed("damage"): # Testing damage for health bar
+		health -= 10
+		_set_health(health)
+
+func _set_health(value):
+	healthbar.health = value
 
 func _physics_process(delta):
 	get_input()
@@ -38,3 +50,7 @@ func _physics_process(delta):
 			
 	velocity = vel
 	move_and_slide()
+
+
+func _on_health_bar_character_died():
+	queue_free()
