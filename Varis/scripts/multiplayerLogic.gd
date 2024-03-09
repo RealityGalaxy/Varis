@@ -50,18 +50,18 @@ func _on_lobby_match_list(lobbies):
 		var lobby_name = Steam.getLobbyData(lobby, "name")
 		var player_count = Steam.getNumLobbyMembers(lobby)
 		
-		if lobbies.has("godlobby"):
+		if lobby_name == "godlobby":
 			var button = Button.new()
 			button.set_text(str(lobby_name, "| Player Count: ", player_count))
 			button.set_size(Vector2(100, 5))
 			button.connect("pressed", Callable(self, "join_lobby").bind(lobby))
 			$MarginContainer/PopupPanel/LobbyScrollContainer/Lobbies.add_child(button)
-		else:
-			var button = Button.new()
-			button.set_text("no lobbies :(")
-			button.set_size(Vector2(100, 5))
-			$MarginContainer/PopupPanel/LobbyScrollContainer/Lobbies.add_child(button)
-			return
+		#else:
+		#	var button = Button.new()
+		#	button.set_text("no lobbies :(")
+		#	button.set_size(Vector2(100, 5))
+		#	$MarginContainer/PopupPanel/LobbyScrollContainer/Lobbies.add_child(button)
+		#	return
 			
 
 
