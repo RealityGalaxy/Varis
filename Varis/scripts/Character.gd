@@ -7,9 +7,15 @@ var jumps_left: int = 2
 var gravity = 2000
 var vel: Vector2 = Vector2.ZERO
 var stats : StatsManager
+@onready var healthbar = $Healthbar
+
+var damage: int = 15 # TESTING PURPOSES
 
 func _ready():
 	stats = StatsManager.new()
+	healthbar._init_healthbar(stats.current_health, stats.max_health)
+	stats.health_changed.connect(healthbar._set_health, stats.current_health)
+	stats.max_health_changed.connect(healthbar._set_health, stats.max_health)
 
 func get_input():
 	vel.x = 0
@@ -17,6 +23,8 @@ func get_input():
 		vel.x += speed
 	if Input.is_action_pressed("left"):
 		vel.x -= speed
+	if Input.is_action_just_pressed("take_damage"): # TESTING PURPOSES
+		stats.take_damage(damage)
 
 
 func _physics_process(delta):
