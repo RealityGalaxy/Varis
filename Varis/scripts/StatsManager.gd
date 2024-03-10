@@ -16,10 +16,9 @@ func take_damage(damage):
 	var actual_damage = damage * (2 - damage_reduction)
 	if actual_damage > 0:
 		current_health -= actual_damage
-		health_changed.emit(current_health)
+		emit_signal("health_changed", current_health)
 		if current_health < 0:
 			current_health = 0
-			
 
 func increase_damage(amount):
 	damage_multiplier += amount

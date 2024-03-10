@@ -11,10 +11,10 @@ size = Vector2(127, 128)
 script = ExtResource("2_iyq3v")
 
 [node name="Healthbar" parent="." instance=ExtResource("2_vik5t")]
-offset_left = -163.0
-offset_top = -182.0
-offset_right = 162.0
-offset_bottom = -116.0
+offset_left = -122.0
+offset_top = -110.0
+offset_right = 123.0
+offset_bottom = -89.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_fjpeu")

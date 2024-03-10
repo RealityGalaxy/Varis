@@ -28,7 +28,8 @@ show_percentage = false
 script = ExtResource("1_1vlpt")
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 0.3
+wait_time = 0.4
+one_shot = true
 
 [node name="Damagebar" type="ProgressBar" parent="."]
 z_index = -1
@@ -42,3 +43,5 @@ theme_override_styles/background = SubResource("StyleBoxFlat_jnm3p")
 theme_override_styles/fill = SubResource("StyleBoxFlat_t6imc")
 value = 85.0
 show_percentage = false
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
