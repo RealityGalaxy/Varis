@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://cubitxapsm3h1"]
 
 [ext_resource type="Texture2D" uid="uid://c380wvdmmtcf2" path="res://icon.svg" id="2_fjpeu"]
-[ext_resource type="Script" path="res://scripts/Character.gd" id="2_iyq3v"]
-[ext_resource type="PackedScene" uid="uid://17oana8owvic" path="res://scenes/healthbar.tscn" id="2_vik5t"]
+[ext_resource type="Script" path="res://scenes/character/Character.gd" id="2_iyq3v"]
+[ext_resource type="PackedScene" uid="uid://17oana8owvic" path="res://scenes/character/healthbar.tscn" id="2_vik5t"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uou4y"]
 size = Vector2(127, 128)
@@ -32,3 +32,23 @@ shape = SubResource("RectangleShape2D_uou4y")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_eqrt6")
+
+[node name="Cooldowns" type="Node2D" parent="."]
+
+[node name="CD1" type="Timer" parent="Cooldowns"]
+one_shot = true
+
+[node name="CD2" type="Timer" parent="Cooldowns"]
+one_shot = true
+
+[node name="CD3" type="Timer" parent="Cooldowns"]
+one_shot = true
+
+[node name="CD4" type="Timer" parent="Cooldowns"]
+one_shot = true
+
+[node name="CD5" type="Timer" parent="Cooldowns"]
+one_shot = true
+
+[connection signal="health_changed" from="." to="Healthbar" method="_set_health"]
+[connection signal="max_health_changed" from="." to="Healthbar" method="_set_max_health"]

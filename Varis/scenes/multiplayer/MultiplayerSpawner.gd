@@ -18,12 +18,16 @@ func spawnPlayer(data):
 	var player = playerScene.instantiate()
 
 	player.set_multiplayer_authority(data)
+	StatManager.add_player(player.player_num)
+	player.use_spell.connect(get_node("../SpellManager").on_spell_fire)
 	players[data] = player
 
 	for spawnpoint in get_tree().get_nodes_in_group("PlayerSpawnPoint"):
 		if spawnpoint.name == str(index):
 			player.position = spawnpoint.position
 	index += 1;
+
+	player.player_num = index;
 
 	return player
 

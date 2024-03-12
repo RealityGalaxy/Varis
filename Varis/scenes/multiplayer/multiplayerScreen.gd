@@ -19,7 +19,7 @@ func spawn_level(data):
 func _on_host_pressed():
 	peer.create_lobby(SteamMultiplayerPeer.LOBBY_TYPE_PUBLIC)
 	multiplayer.multiplayer_peer = peer
-	multiplayerSpawner.spawn("res://scenes/level.tscn")
+	multiplayerSpawner.spawn("res://scenes/level/level.tscn")
 	$Background.queue_free()
 	$MarginContainer.queue_free()
 
@@ -71,7 +71,7 @@ func _on_join_pressed():
 func _input(event):
 		if Input.is_action_just_pressed("esc"):
 			Steam.deleteLobbyData(lobby_id, "name")
-			get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
+			get_tree().change_scene_to_file("res://scenes/menus/main_menu.tscn")
 
 func _on_back_pressed():
-	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
+	get_tree().change_scene_to_file("res://scenes/menus/main_menu.tscn")
