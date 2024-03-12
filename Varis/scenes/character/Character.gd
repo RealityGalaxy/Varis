@@ -1,5 +1,10 @@
 extends CharacterBody2D
 
+class_name PlayerChar
+
+signal use_spell(spell: String, player: int, position: Vector2, mouse_position: Vector2)
+
+@export var player_num: int = 1
 var speed: int = 400
 var jump_speed: int = -1000
 var double_jump_speed: int = -700
@@ -13,12 +18,14 @@ func get_input():
 		vel.x += speed
 	if Input.is_action_pressed("left"):
 		vel.x -= speed
+	if Input.is_action_pressed("primary skill"):
+		use_spell.emit('basic', player_num, position, get_global_mouse_position())
 
 func _physics_process(delta):
 	get_input()
 	
 	if is_on_floor() or is_on_ceiling():
-		jumps_left = 2 if is_on_floor() else 0
+		jumps_left = 2 if is_on_floor() else jumps_left
 		vel.y = 0
 		
 	vel.y += gravity * delta
@@ -28,7 +35,7 @@ func _physics_process(delta):
 			jumps_left -= 1
 			vel.y = jump_speed
 		elif jumps_left > 0:
-			jumps_left -= 1
+			jumps_left -= 2
 			
 			if vel.y < double_jump_speed:
 				vel.y -= abs(double_jump_speed) / (abs(vel.y)+4000) * abs(double_jump_speed)
