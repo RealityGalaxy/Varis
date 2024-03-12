@@ -1,8 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://be6txqjmunieg"]
+[gd_scene load_steps=3 format=3 uid="uid://be6txqjmunieg"]
 
 [ext_resource type="Script" path="res://scripts/multiplayerScreen.gd" id="1_raoo1"]
 [ext_resource type="Texture2D" uid="uid://crdip2y5gklpt" path="res://graphics/placeholder/tile_0014.png" id="2_brpcw"]
-[ext_resource type="Script" path="res://scripts/Steam.gd" id="3_7ujq4"]
 
 [node name="multiplayerScreen" type="Node2D"]
 script = ExtResource("1_raoo1")
@@ -33,13 +32,6 @@ theme_override_constants/separation = 180
 
 [node name="Separator" type="Control" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
-
-[node name="Title" type="Label" parent="MarginContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 64
-text = "GAME TITLE"
-horizontal_alignment = 1
-vertical_alignment = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
 layout_mode = 2
@@ -84,9 +76,6 @@ offset_bottom = 496.0
 
 [node name="Lobbies" type="VBoxContainer" parent="MarginContainer/PopupPanel/LobbyScrollContainer"]
 layout_mode = 2
-
-[node name="Steam" type="Node" parent="."]
-script = ExtResource("3_7ujq4")
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
 spawn_path = NodePath("..")

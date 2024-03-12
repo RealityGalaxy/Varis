@@ -61,6 +61,14 @@ scale = Vector2(10, 110)
 position = Vector2(2326, 225)
 scale = Vector2(10, 110)
 
+[node name="SpawnPoints" type="Node2D" parent="."]
+
+[node name="0" type="Node2D" parent="SpawnPoints" groups=["PlayerSpawnPoint"]]
+position = Vector2(249, 744)
+
+[node name="1" type="Node2D" parent="SpawnPoints" groups=["PlayerSpawnPoint"]]
+position = Vector2(1763, 637)
+
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
 spawn_path = NodePath(".")
 script = ExtResource("3_lyedi")

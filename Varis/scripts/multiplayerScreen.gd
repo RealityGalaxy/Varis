@@ -19,8 +19,8 @@ func _on_host_pressed():
 	peer.create_lobby(SteamMultiplayerPeer.LOBBY_TYPE_PUBLIC)
 	multiplayer.multiplayer_peer = peer
 	multiplayerSpawner.spawn("res://scenes/level.tscn")
-	$Background.hide()
-	$MarginContainer.hide()
+	$Background.queue_free()
+	$MarginContainer.queue_free()
 
 
 func _on_lobby_created(connect, id):
@@ -35,9 +35,9 @@ func join_lobby(id):
 	peer.connect_lobby(id)
 	multiplayer.multiplayer_peer = peer
 	lobby_id = id
-	$Background.hide()
-	$MarginContainer.hide()
-	$MarginContainer/PopupPanel.hide()
+	$Background.queue_free()
+	$MarginContainer.queue_free()
+	$MarginContainer/PopupPanel.queue_free()
 
 
 func open_lobby_list():
@@ -53,7 +53,7 @@ func _on_lobby_match_list(lobbies):
 		
 		if lobby_name == "godlobby":
 			var button = Button.new()
-			button.set_text(str(lobby_name, "| Player Count: ", player_count))
+			button.set_text(str(lobby_name, "| Players: ", player_count))
 			button.set_size(Vector2(100, 5))
 			button.connect("pressed", Callable(self, "join_lobby").bind(lobby))
 			$MarginContainer/PopupPanel/LobbyScrollContainer/Lobbies.add_child(button)
