@@ -6,6 +6,7 @@ var peer = SteamMultiplayerPeer.new()
 @onready var multiplayerSpawner = $MultiplayerSpawner
 
 func _ready():
+	
 	multiplayerSpawner.spawn_function = spawn_level
 	peer.lobby_created.connect(_on_lobby_created)
 	Steam.lobby_match_list.connect(_on_lobby_match_list)
@@ -30,7 +31,6 @@ func _on_lobby_created(connect, id):
 		Steam.setLobbyJoinable(lobby_id, true)
 		print(lobby_id)
 
-
 func join_lobby(id):
 	peer.connect_lobby(id)
 	multiplayer.multiplayer_peer = peer
@@ -38,6 +38,7 @@ func join_lobby(id):
 	$Background.queue_free()
 	$MarginContainer.queue_free()
 	$MarginContainer/PopupPanel.queue_free()
+	
 
 
 func open_lobby_list():
@@ -59,8 +60,18 @@ func _on_lobby_match_list(lobbies):
 			$MarginContainer/PopupPanel/LobbyScrollContainer/Lobbies.add_child(button)
 
 func _on_join_pressed():
+
+	for button in $MarginContainer/PopupPanel/LobbyScrollContainer/Lobbies.get_children():
+		button.queue_free()
+		
 	open_lobby_list()
 	$MarginContainer/PopupPanel.popup()
 	
+
+func _input(event):
+		if Input.is_action_just_pressed("esc"):
+			Steam.deleteLobbyData(lobby_id, "name")
+			get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
+
 func _on_back_pressed():
 	get_tree().change_scene_to_file("res://scenes/main_menu.tscn")

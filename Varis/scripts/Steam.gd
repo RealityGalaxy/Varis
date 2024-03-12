@@ -11,6 +11,5 @@ func _ready():
 func _process(delta):
 	Steam.run_callbacks()
 
-func _input(event):
-		if Input.is_action_just_pressed("esc"):
-			get_tree().change_scene_to_file("res://scenes/main_menu.tscn")
+
+

@@ -69,6 +69,12 @@ position = Vector2(249, 744)
 [node name="1" type="Node2D" parent="SpawnPoints" groups=["PlayerSpawnPoint"]]
 position = Vector2(1763, 637)
 
+[node name="2" type="Node2D" parent="SpawnPoints" groups=["PlayerSpawnPoint"]]
+position = Vector2(1373, 501)
+
+[node name="3" type="Node2D" parent="SpawnPoints" groups=["PlayerSpawnPoint"]]
+position = Vector2(824, 60)
+
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
 spawn_path = NodePath(".")
 script = ExtResource("3_lyedi")

@@ -15,23 +15,20 @@ var players = {}
 
 func spawnPlayer(data):
 	
-	
 	var player = playerScene.instantiate()
-	
-	for spawnpoint in get_tree().get_nodes_in_group("PlayerSpawnPoint"):
-		if spawnpoint.name == str(index):
-			player.global_position = spawnpoint.global_position
-	index += 1;
-	
+
 	player.set_multiplayer_authority(data)
 	players[data] = player
-	
-	
-	
-	
-	
+
+	for spawnpoint in get_tree().get_nodes_in_group("PlayerSpawnPoint"):
+		if spawnpoint.name == str(index):
+			player.position = spawnpoint.position
+	index += 1;
+
 	return player
 
 func removePlayer(data):
 	players[data].queue_free()
 	players.erase(data)
+
+
