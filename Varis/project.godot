@@ -11,7 +11,11 @@ config_version=5
 [application]
 
 config/name="Varis"
+<<<<<<< HEAD
 run/main_scene="res://scenes/levels/level.tscn"
+=======
+run/main_scene="res://scenes/main_menu.tscn"
+>>>>>>> main
 config/features=PackedStringArray("4.2", "Mobile")
 config/icon="res://icon.svg"
 
