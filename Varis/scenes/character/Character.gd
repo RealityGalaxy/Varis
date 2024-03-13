@@ -22,30 +22,55 @@ func _ready():
 	
 
 func get_input():
-	var spells = StatManager.get_player_stats(player_num).spells
+	
 	vel.x = 0
 	if Input.is_action_pressed("right"):
 		vel.x += speed
 	if Input.is_action_pressed("left"):
 		vel.x -= speed
 	if Input.is_action_pressed("spell1"):
-		if($Cooldowns/CD1.is_stopped() && spells[0]):
+		rpc("UseProjectile1")
+	if Input.is_action_pressed("spell2"):
+		rpc("UseProjectile2")
+	if Input.is_action_pressed("spell3"):
+		rpc("UseProjectile3")
+	if Input.is_action_pressed("spell4"):
+		rpc("UseProjectile4")
+	if Input.is_action_pressed("spell5"):
+		rpc("UseProjectile5")
+
+@rpc("any_peer", "call_local")
+func UseProjectile1():
+	var spells = StatManager.get_player_stats(player_num).spells
+	if($Cooldowns/CD1.is_stopped() && spells[0]):
 			$Cooldowns/CD1.start(SpellData.Spells[spells[0]].cooldown)
 			use_spell.emit(spells[0], player_num, position, get_global_mouse_position())
-	if Input.is_action_pressed("spell2"):
-		if($Cooldowns/CD1.is_stopped() && spells[1]):
+
+@rpc("any_peer", "call_local")
+func UseProjectile2():
+	var spells = StatManager.get_player_stats(player_num).spells
+	if($Cooldowns/CD1.is_stopped() && spells[1]):
 			$Cooldowns/CD1.start(SpellData.Spells[spells[1]].cooldown)
 			use_spell.emit(spells[1], player_num, position, get_global_mouse_position())
-	if Input.is_action_pressed("spell3"):
-		if($Cooldowns/CD1.is_stopped() && spells[2]):
+
+@rpc("any_peer", "call_local")
+func UseProjectile3():
+	var spells = StatManager.get_player_stats(player_num).spells
+	if($Cooldowns/CD1.is_stopped() && spells[2]):
 			$Cooldowns/CD1.start(SpellData.Spells[spells[2]].cooldown)
 			use_spell.emit(spells[2], player_num, position, get_global_mouse_position())
-	if Input.is_action_pressed("spell4"):
-		if($Cooldowns/CD1.is_stopped() && spells[3]):
+
+@rpc("any_peer", "call_local")
+func UseProjectile4():
+	var spells = StatManager.get_player_stats(player_num).spells
+	if($Cooldowns/CD1.is_stopped() && spells[3]):
 			$Cooldowns/CD1.start(SpellData.Spells[spells[3]].cooldown)
 			use_spell.emit(spells[3], player_num, position, get_global_mouse_position())
-	if Input.is_action_pressed("spell5"):
-		if($Cooldowns/CD1.is_stopped() && spells[4]):
+
+@rpc("any_peer", "call_local")
+func UseProjectile5():
+	var spells = StatManager.get_player_stats(player_num).spells
+	if($Cooldowns/CD1.is_stopped() && spells[4]):
 			$Cooldowns/CD1.start(SpellData.Spells[spells[4]].cooldown)
 			use_spell.emit(spells[4], player_num, position, get_global_mouse_position())
 
