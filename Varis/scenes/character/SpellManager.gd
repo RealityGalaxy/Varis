@@ -14,4 +14,4 @@ func fire_basic(pos: Vector2, mouse_position: Vector2, player_num: int):
 	basic.position = pos
 	basic.player = player_num
 	basic.look_at(mouse_position)
-	$Projectiles.add_child(basic)
+	#$Projectiles.add_child(basic)
