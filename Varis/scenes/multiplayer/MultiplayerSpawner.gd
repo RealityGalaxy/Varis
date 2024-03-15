@@ -16,12 +16,8 @@ var players = {}
 func spawnPlayer(data):
 	
 	var player = playerScene.instantiate()
-<<<<<<< HEAD
-
 	$"../SpellManager/Spawners".get_children()[index].set_multiplayer_authority(data)
-=======
 	#$"../SpellManager".set_multiplayer_authority(data)
->>>>>>> 193c927830afd170cdbe6d182e356278f8bcd828
 	player.set_multiplayer_authority(data)
 	StatManager.add_player(player.player_num)
 	player.use_spell.connect(get_node("../SpellManager").on_spell_fire)
