@@ -1,10 +1,18 @@
-[gd_scene load_steps=4 format=3 uid="uid://dywddbq0vxwmx"]
+[gd_scene load_steps=5 format=3 uid="uid://dywddbq0vxwmx"]
 
 [ext_resource type="Script" path="res://scenes/projectiles/Projectile.gd" id="1_13q56"]
 [ext_resource type="Texture2D" uid="uid://c380wvdmmtcf2" path="res://icon.svg" id="2_f0vah"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h0u77"]
 size = Vector2(78, 22)
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_j6u0s"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
 
 [node name="Projectile" type="Area2D"]
 script = ExtResource("1_13q56")
@@ -15,5 +23,8 @@ texture = ExtResource("2_f0vah")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_h0u77")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_j6u0s")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
