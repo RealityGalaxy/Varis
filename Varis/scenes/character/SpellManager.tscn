@@ -8,6 +8,12 @@ script = ExtResource("1_iaqmx")
 
 [node name="Projectiles" type="Node2D" parent="."]
 
-[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
-spawn_path = NodePath("../Projectiles")
+[node name="Spawners" type="Node2D" parent="."]
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="Spawners"]
+spawn_path = NodePath("../../Projectiles")
+script = ExtResource("2_jilii")
+
+[node name="MultiplayerSpawner2" type="MultiplayerSpawner" parent="Spawners"]
+spawn_path = NodePath("../../Projectiles")
 script = ExtResource("2_jilii")

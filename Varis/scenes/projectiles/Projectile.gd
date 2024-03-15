@@ -10,4 +10,6 @@ func _physics_process(delta):
 
 func _on_body_entered(body):
 	if (body is PlayerChar and body.player_num != player) or not body is PlayerChar:
+		if body is PlayerChar:
+			body.take_damage(damage)
 		queue_free()
