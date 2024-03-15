@@ -1,19 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://ynsikejtex8b"]
+[gd_scene load_steps=2 format=3 uid="uid://ynsikejtex8b"]
 
 [ext_resource type="Script" path="res://scenes/character/SpellManager.gd" id="1_iaqmx"]
-[ext_resource type="Script" path="res://scenes/character/ProjectileSpawner.gd" id="2_jilii"]
 
 [node name="SpellManager" type="Node2D"]
 script = ExtResource("1_iaqmx")
 
 [node name="Projectiles" type="Node2D" parent="."]
-
-[node name="Spawners" type="Node2D" parent="."]
-
-[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="Spawners"]
-spawn_path = NodePath("../../Projectiles")
-script = ExtResource("2_jilii")
-
-[node name="MultiplayerSpawner2" type="MultiplayerSpawner" parent="Spawners"]
-spawn_path = NodePath("../../Projectiles")
-script = ExtResource("2_jilii")
