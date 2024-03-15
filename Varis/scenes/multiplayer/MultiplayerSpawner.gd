@@ -16,7 +16,7 @@ var players = {}
 func spawnPlayer(data):
 	
 	var player = playerScene.instantiate()
-	$"../SpellManager/Spawners".get_children()[index].set_multiplayer_authority(data)
+	#$"../SpellManager/Spawners".get_children()[index].set_multiplayer_authority(data)
 	#$"../SpellManager".set_multiplayer_authority(data)
 	player.set_multiplayer_authority(data)
 	StatManager.add_player(player.player_num)
