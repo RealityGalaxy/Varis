@@ -28,7 +28,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uou4y"]
-size = Vector2(190, 276.25)
+size = Vector2(109.688, 161.25)
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_eqrt6"]
 properties/0/path = NodePath(".:position")
@@ -41,15 +41,15 @@ scale = Vector2(0.8, 0.8)
 script = ExtResource("2_iyq3v")
 
 [node name="Healthbar" parent="." instance=ExtResource("2_vik5t")]
-offset_left = -122.0
+offset_left = -106.25
 offset_top = -110.0
-offset_right = 123.0
+offset_right = 35.75
 offset_bottom = -89.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-position = Vector2(6.25, 63.75)
-scale = Vector2(0.360294, 0.360294)
+position = Vector2(-34.7151, 5.1211)
+scale = Vector2(0.209964, 0.209963)
 sprite_frames = SubResource("SpriteFrames_vghoy")
 frame_progress = 0.762902
 
@@ -58,8 +58,8 @@ visible = false
 texture = ExtResource("2_fjpeu")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(6.25, 64.375)
-scale = Vector2(0.999999, 0.999999)
+position = Vector2(-34.8437, 4.375)
+scale = Vector2(0.999998, 0.999998)
 shape = SubResource("RectangleShape2D_uou4y")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
