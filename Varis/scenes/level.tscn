@@ -45,7 +45,7 @@ sources/0 = SubResource("TileSetAtlasSource_rfgjm")
 
 [node name="Level" type="Node2D"]
 
-[node name="UntitledArtwork(1)" type="Sprite2D" parent="."]
+[node name="Sky" type="Sprite2D" parent="."]
 position = Vector2(959.778, 539)
 scale = Vector2(1.00185, 1.00185)
 texture = ExtResource("1_4nckw")

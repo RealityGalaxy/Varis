@@ -1,12 +1,34 @@
-[gd_scene load_steps=7 format=3 uid="uid://cubitxapsm3h1"]
+[gd_scene load_steps=10 format=3 uid="uid://cubitxapsm3h1"]
 
 [ext_resource type="Texture2D" uid="uid://c380wvdmmtcf2" path="res://icon.svg" id="2_fjpeu"]
 [ext_resource type="Script" path="res://scripts/Character.gd" id="2_iyq3v"]
 [ext_resource type="PackedScene" uid="uid://17oana8owvic" path="res://scenes/healthbar.tscn" id="2_vik5t"]
-[ext_resource type="Texture2D" uid="uid://8na25rofy8a4" path="res://graphics/placeholder/Player-Static.png" id="3_34nqf"]
+[ext_resource type="Texture2D" uid="uid://gxjpjhp53d4j" path="res://graphics/placeholder/Player_Anim_Paper.png" id="3_6l83j"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ui26g"]
+atlas = ExtResource("3_6l83j")
+region = Rect2(10, 3, 545, 780)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lf3oe"]
+atlas = ExtResource("3_6l83j")
+region = Rect2(565, 3, 545, 780)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_vghoy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ui26g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lf3oe")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uou4y"]
-size = Vector2(191.25, 276.25)
+size = Vector2(190, 276.25)
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_eqrt6"]
 properties/0/path = NodePath(".:position")
@@ -24,17 +46,19 @@ offset_top = -110.0
 offset_right = 123.0
 offset_bottom = -89.0
 
-[node name="Player (holder)" type="Sprite2D" parent="."]
-position = Vector2(-180, 61.25)
-scale = Vector2(0.359918, 0.359918)
-texture = ExtResource("3_34nqf")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(6.25, 63.75)
+scale = Vector2(0.360294, 0.360294)
+sprite_frames = SubResource("SpriteFrames_vghoy")
+frame_progress = 0.762902
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 visible = false
 texture = ExtResource("2_fjpeu")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(3.125, 60.625)
+position = Vector2(6.25, 64.375)
 scale = Vector2(0.999999, 0.999999)
 shape = SubResource("RectangleShape2D_uou4y")
 
