@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cgw6rfirr30ks"]
+[gd_scene load_steps=9 format=3 uid="uid://cgw6rfirr30ks"]
 
 [ext_resource type="Texture2D" uid="uid://hb5qw0s3eac2" path="res://graphics/terrain/tilemaps/GrassTilemap.png" id="1_qesyg"]
 [ext_resource type="PackedScene" uid="uid://ynsikejtex8b" path="res://scenes/character/SpellManager.tscn" id="1_xxy83"]
@@ -6,7 +6,6 @@
 [ext_resource type="Script" path="res://scenes/multiplayer/MultiplayerSpawner.gd" id="3_bo8on"]
 [ext_resource type="PackedScene" uid="uid://cubitxapsm3h1" path="res://scenes/character/char.tscn" id="4_hlpcm"]
 [ext_resource type="Script" path="res://scenes/level/GameManager.gd" id="6_rr77g"]
-[ext_resource type="PackedScene" uid="uid://dayfxbmtsuqrd" path="res://scenes/Rain/Rain.tscn" id="7_mcp78"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rfgjm"]
 texture = ExtResource("1_qesyg")
@@ -87,6 +86,3 @@ playerScene = ExtResource("4_hlpcm")
 
 [node name="GameManager" type="Node2D" parent="."]
 script = ExtResource("6_rr77g")
-
-[node name="Rain" parent="." instance=ExtResource("7_mcp78")]
-position = Vector2(844, 0)
