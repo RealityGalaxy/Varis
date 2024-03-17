@@ -14,7 +14,6 @@ func _ready():
 var players = {}
 
 func spawnPlayer(data):
-	
 	var player = playerScene.instantiate()
 	player.set_multiplayer_authority(data)
 	StatManager.add_player(player.player_num)

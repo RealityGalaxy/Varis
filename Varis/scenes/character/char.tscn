@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://cubitxapsm3h1"]
+[gd_scene load_steps=7 format=3 uid="uid://cubitxapsm3h1"]
 
 [ext_resource type="Texture2D" uid="uid://c380wvdmmtcf2" path="res://icon.svg" id="2_fjpeu"]
 [ext_resource type="Script" path="res://scenes/character/Character.gd" id="2_iyq3v"]
 [ext_resource type="PackedScene" uid="uid://17oana8owvic" path="res://scenes/character/healthbar.tscn" id="2_vik5t"]
+[ext_resource type="PackedScene" uid="uid://dcp1scfnwnqhy" path="res://scenes/character/manabar.tscn" id="3_k7jh3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uou4y"]
 size = Vector2(127, 128)
@@ -22,6 +23,12 @@ offset_left = -122.0
 offset_top = -110.0
 offset_right = 123.0
 offset_bottom = -89.0
+
+[node name="Manabar" parent="." instance=ExtResource("3_k7jh3")]
+offset_left = -122.0
+offset_top = -85.0
+offset_right = 123.0
+offset_bottom = -78.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_fjpeu")
@@ -51,4 +58,6 @@ one_shot = true
 one_shot = true
 
 [connection signal="health_changed" from="." to="Healthbar" method="_set_health"]
+[connection signal="mana_changed" from="." to="Manabar" method="_set_health"]
 [connection signal="max_health_changed" from="." to="Healthbar" method="_set_max_health"]
+[connection signal="max_mana_changed" from="." to="Manabar" method="_set_max_health"]

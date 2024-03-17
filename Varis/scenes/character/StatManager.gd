@@ -2,6 +2,9 @@ extends Node
 
 var players = []
 
+func restart():
+	players = []
+
 func add_player(num: int):
 	var stats: Stats = Stats.new()
 	players.push_back(stats)

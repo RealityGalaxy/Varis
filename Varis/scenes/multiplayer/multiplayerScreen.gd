@@ -13,6 +13,7 @@ func _ready():
 	
 func spawn_level(data):
 	var a = (load(data) as PackedScene).instantiate()
+	StatManager.restart()
 	return a
 
 

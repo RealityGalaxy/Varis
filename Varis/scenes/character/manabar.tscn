@@ -1,11 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://17oana8owvic"]
+[gd_scene load_steps=6 format=3 uid="uid://dcp1scfnwnqhy"]
 
-[ext_resource type="Script" path="res://scenes/character/healthbar.gd" id="1_1vlpt"]
+[ext_resource type="Script" path="res://scenes/character/healthbar.gd" id="1_i6s6h"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vpocq"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fr214"]
-bg_color = Color(0.164706, 0.643137, 0.376471, 1)
+bg_color = Color(0, 0.584314, 0.85098, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jnm3p"]
 bg_color = Color(0.105882, 0.105882, 0.105882, 1)
@@ -25,7 +25,7 @@ theme_override_styles/background = SubResource("StyleBoxEmpty_vpocq")
 theme_override_styles/fill = SubResource("StyleBoxFlat_fr214")
 value = 69.0
 show_percentage = false
-script = ExtResource("1_1vlpt")
+script = ExtResource("1_i6s6h")
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.4
