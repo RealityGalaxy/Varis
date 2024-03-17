@@ -42,6 +42,10 @@ replication_config = SubResource("SceneReplicationConfig_eqrt6")
 
 [node name="Cooldowns" type="Node2D" parent="."]
 
+[node name="Common" type="Timer" parent="Cooldowns"]
+wait_time = 0.1
+one_shot = true
+
 [node name="CD1" type="Timer" parent="Cooldowns"]
 one_shot = true
 
@@ -55,6 +59,9 @@ one_shot = true
 one_shot = true
 
 [node name="CD5" type="Timer" parent="Cooldowns"]
+one_shot = true
+
+[node name="Dash" type="Timer" parent="Cooldowns"]
 one_shot = true
 
 [connection signal="health_changed" from="." to="Healthbar" method="_set_health"]

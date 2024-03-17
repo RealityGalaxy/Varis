@@ -10,11 +10,15 @@ signal mana_changed(new_mana)
 signal max_mana_changed(new_max_mana)
 
 @export var player_num: int = 1
-var speed: int = 400
+var speed: int = 500
+var dash_speed: int = 3000
 var jump_speed: int = -1000
 var double_jump_speed: int = -700
 var jumps_left: int = 2
 var gravity = 2000
+var direction = 0
+var acceleration = 0.4
+var friction = 0.3
 var vel: Vector2 = Vector2.ZERO
 @onready var healthbar = $Healthbar
 @onready var manabar = $Manabar
@@ -26,11 +30,11 @@ func _ready():
 	
 
 func get_input():
-	vel.x = 0
+	direction = 0
 	if Input.is_action_pressed("right"):
-		vel.x += speed
+		direction = 1
 	if Input.is_action_pressed("left"):
-		vel.x -= speed
+		direction = -1
 	if Input.is_action_pressed("spell1"):
 		rpc("UseProjectile1", get_global_mouse_position(), Time.get_unix_time_from_system())
 	if Input.is_action_pressed("spell2"):
@@ -41,9 +45,18 @@ func get_input():
 		rpc("UseProjectile4", get_global_mouse_position(), Time.get_unix_time_from_system())
 	if Input.is_action_pressed("spell5"):
 		rpc("UseProjectile5", get_global_mouse_position(), Time.get_unix_time_from_system())
+	if Input.is_action_pressed("dash"):
+		if $Cooldowns/Dash.is_stopped():
+			$Cooldowns/Dash.start()
+			dash()
+
+func dash():
+	vel.x += direction * dash_speed
 
 @rpc("any_peer", "call_local")
 func UseProjectile1(mouse_pos: Vector2, shot_time: float):
+	if not $Cooldowns/Common.is_stopped():
+		return
 	var spells = StatManager.get_player_stats(player_num).spells
 	if not spells[0]:
 		return
@@ -51,11 +64,14 @@ func UseProjectile1(mouse_pos: Vector2, shot_time: float):
 	var current_mana = StatManager.get_player_stats(player_num).current_mana
 	if($Cooldowns/CD1.is_stopped() && current_mana >= mana_cost):
 			$Cooldowns/CD1.start(SpellData.Spells[spells[0]].cooldown)
+			$Cooldowns/Common.start(0.1)
 			use_mana(SpellData.Spells[spells[0]].mana_cost)
 			use_spell.emit(spells[0], player_num, position, mouse_pos, shot_time)
 
 @rpc("any_peer", "call_local")
 func UseProjectile2(mouse_pos: Vector2, shot_time: float):
+	if not $Cooldowns/Common.is_stopped():
+		return
 	var spells = StatManager.get_player_stats(player_num).spells
 	if not spells[1]:
 		return
@@ -63,11 +79,14 @@ func UseProjectile2(mouse_pos: Vector2, shot_time: float):
 	var current_mana = StatManager.get_player_stats(player_num).current_mana
 	if($Cooldowns/CD2.is_stopped() && current_mana >= mana_cost):
 			$Cooldowns/CD2.start(SpellData.Spells[spells[1]].cooldown)
+			$Cooldowns/Common.start(0.1)
 			use_mana(SpellData.Spells[spells[1]].mana_cost)
 			use_spell.emit(spells[1], player_num, position, mouse_pos, shot_time)
 
 @rpc("any_peer", "call_local")
 func UseProjectile3(mouse_pos: Vector2, shot_time: float):
+	if not $Cooldowns/Common.is_stopped():
+		return
 	var spells = StatManager.get_player_stats(player_num).spells
 	if not spells[2]:
 		return
@@ -75,11 +94,14 @@ func UseProjectile3(mouse_pos: Vector2, shot_time: float):
 	var current_mana = StatManager.get_player_stats(player_num).current_mana
 	if($Cooldowns/CD3.is_stopped() && current_mana >= mana_cost):
 			$Cooldowns/CD3.start(SpellData.Spells[spells[2]].cooldown)
+			$Cooldowns/Common.start(0.1)
 			use_mana(SpellData.Spells[spells[2]].mana_cost)
 			use_spell.emit(spells[2], player_num, position, mouse_pos, shot_time)
 
 @rpc("any_peer", "call_local")
 func UseProjectile4(mouse_pos: Vector2, shot_time: float):
+	if not $Cooldowns/Common.is_stopped():
+		return
 	var spells = StatManager.get_player_stats(player_num).spells
 	if not spells[3]:
 		return
@@ -87,11 +109,14 @@ func UseProjectile4(mouse_pos: Vector2, shot_time: float):
 	var current_mana = StatManager.get_player_stats(player_num).current_mana
 	if($Cooldowns/CD4.is_stopped() && current_mana >= mana_cost):
 			$Cooldowns/CD4.start(SpellData.Spells[spells[3]].cooldown)
+			$Cooldowns/Common.start(0.1)
 			use_mana(SpellData.Spells[spells[3]].mana_cost)
 			use_spell.emit(spells[3], player_num, position, mouse_pos, shot_time)
 
 @rpc("any_peer", "call_local")
 func UseProjectile5(mouse_pos: Vector2, shot_time: float):
+	if not $Cooldowns/Common.is_stopped():
+		return
 	var spells = StatManager.get_player_stats(player_num).spells
 	if not spells[4]:
 		return
@@ -99,6 +124,7 @@ func UseProjectile5(mouse_pos: Vector2, shot_time: float):
 	var current_mana = StatManager.get_player_stats(player_num).current_mana
 	if($Cooldowns/CD5.is_stopped() && current_mana >= mana_cost):
 			$Cooldowns/CD5.start(SpellData.Spells[spells[4]].cooldown)
+			$Cooldowns/Common.start(0.1)
 			use_mana(mana_cost)
 			use_spell.emit(spells[4], player_num, position, mouse_pos, shot_time)
 
@@ -127,7 +153,12 @@ func _physics_process(delta):
 			else:
 				vel.y += double_jump_speed
 				vel.y = clamp(vel.y, jump_speed, double_jump_speed)
-			
+	
+	if direction != 0:
+		vel.x = lerp(vel.x, float(direction * speed), acceleration)
+	else:
+		vel.x = lerp(vel.x, 0.0, friction)
+	
 	velocity = vel
 	move_and_slide()
 

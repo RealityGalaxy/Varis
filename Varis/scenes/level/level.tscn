@@ -46,6 +46,9 @@ sources/0 = SubResource("TileSetAtlasSource_rfgjm")
 
 [node name="Level" type="Node2D"]
 
+[node name="GameManager" type="Node2D" parent="."]
+script = ExtResource("6_rr77g")
+
 [node name="SpellManager" parent="." instance=ExtResource("1_xxy83")]
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -83,6 +86,3 @@ position = Vector2(824, 60)
 spawn_path = NodePath(".")
 script = ExtResource("3_bo8on")
 playerScene = ExtResource("4_hlpcm")
-
-[node name="GameManager" type="Node2D" parent="."]
-script = ExtResource("6_rr77g")
