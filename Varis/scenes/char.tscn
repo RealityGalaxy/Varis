@@ -25,7 +25,7 @@ offset_right = 123.0
 offset_bottom = -89.0
 
 [node name="Player (holder)" type="Sprite2D" parent="."]
-position = Vector2(-196.25, 61.25)
+position = Vector2(-180, 61.25)
 scale = Vector2(0.359918, 0.359918)
 texture = ExtResource("3_34nqf")
 
@@ -34,7 +34,7 @@ visible = false
 texture = ExtResource("2_fjpeu")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-13.125, 60.625)
+position = Vector2(3.125, 60.625)
 scale = Vector2(0.999999, 0.999999)
 shape = SubResource("RectangleShape2D_uou4y")
 
