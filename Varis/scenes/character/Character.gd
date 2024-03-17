@@ -18,11 +18,13 @@ var gravity = 2000
 var vel: Vector2 = Vector2.ZERO
 @onready var healthbar = $Healthbar
 @onready var manabar = $Manabar
+@onready var anim = $AnimatedSprite2D
 
 func _ready():
 	var stats = StatManager.get_player_stats(player_num)
 	healthbar._init_healthbar(stats.current_health, stats.max_health)
 	manabar._init_healthbar(stats.current_mana, stats.max_mana)
+	anim.play("default")
 	
 
 func get_input():
