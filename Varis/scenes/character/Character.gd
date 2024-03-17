@@ -23,6 +23,7 @@ func _ready():
 	var stats = StatManager.get_player_stats(player_num)
 	healthbar._init_healthbar(stats.current_health, stats.max_health)
 	manabar._init_healthbar(stats.current_mana, stats.max_mana)
+	unlock_spell("basic")
 	
 
 func get_input():
@@ -161,6 +162,7 @@ func take_damage(damage: int):
 		emit_signal("health_changed", stats.current_health)
 		if stats.current_health < 0:
 			stats.current_health = 0
+			$CPUParticles2D.emitting = true
 	rpc("set_stats", player_num, stats)
 
 func increase_damage(amount: float):
