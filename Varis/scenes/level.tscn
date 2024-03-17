@@ -1,5 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://cgw6rfirr30ks"]
+[gd_scene load_steps=8 format=3 uid="uid://cgw6rfirr30ks"]
 
+[ext_resource type="Texture2D" uid="uid://byadn1chqmare" path="res://graphics/placeholder/Background.jpg" id="1_4nckw"]
 [ext_resource type="Texture2D" uid="uid://hb5qw0s3eac2" path="res://graphics/terrain/tilemaps/GrassTilemap.png" id="1_jefxm"]
 [ext_resource type="PackedScene" uid="uid://cubitxapsm3h1" path="res://scenes/char.tscn" id="2_7accs"]
 [ext_resource type="Script" path="res://scripts/MultiplayerSpawner.gd" id="3_lyedi"]
@@ -43,6 +44,11 @@ physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_rfgjm")
 
 [node name="Level" type="Node2D"]
+
+[node name="UntitledArtwork(1)" type="Sprite2D" parent="."]
+position = Vector2(959.778, 539)
+scale = Vector2(1.00185, 1.00185)
+texture = ExtResource("1_4nckw")
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_ie8pg")

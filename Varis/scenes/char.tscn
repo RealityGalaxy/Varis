@@ -1,11 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://cubitxapsm3h1"]
+[gd_scene load_steps=7 format=3 uid="uid://cubitxapsm3h1"]
 
 [ext_resource type="Texture2D" uid="uid://c380wvdmmtcf2" path="res://icon.svg" id="2_fjpeu"]
 [ext_resource type="Script" path="res://scripts/Character.gd" id="2_iyq3v"]
 [ext_resource type="PackedScene" uid="uid://17oana8owvic" path="res://scenes/healthbar.tscn" id="2_vik5t"]
+[ext_resource type="Texture2D" uid="uid://8na25rofy8a4" path="res://graphics/placeholder/Player-Static.png" id="3_34nqf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uou4y"]
-size = Vector2(127, 128)
+size = Vector2(191.25, 276.25)
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_eqrt6"]
 properties/0/path = NodePath(".:position")
@@ -23,11 +24,18 @@ offset_top = -110.0
 offset_right = 123.0
 offset_bottom = -89.0
 
+[node name="Player (holder)" type="Sprite2D" parent="."]
+position = Vector2(-196.25, 61.25)
+scale = Vector2(0.359918, 0.359918)
+texture = ExtResource("3_34nqf")
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
 texture = ExtResource("2_fjpeu")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0.5, 0)
+position = Vector2(-13.125, 60.625)
+scale = Vector2(0.999999, 0.999999)
 shape = SubResource("RectangleShape2D_uou4y")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
