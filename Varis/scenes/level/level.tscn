@@ -1,5 +1,6 @@
-[gd_scene load_steps=11 format=3 uid="uid://cgw6rfirr30ks"]
+[gd_scene load_steps=12 format=3 uid="uid://cgw6rfirr30ks"]
 
+[ext_resource type="PackedScene" uid="uid://dayfxbmtsuqrd" path="res://scenes/Rain/Rain.tscn" id="1_3xpcx"]
 [ext_resource type="Texture2D" uid="uid://hb5qw0s3eac2" path="res://graphics/terrain/tilemaps/GrassTilemap.png" id="1_qesyg"]
 [ext_resource type="Texture2D" uid="uid://byadn1chqmare" path="res://graphics/placeholder/Background.jpg" id="1_u5atv"]
 [ext_resource type="PackedScene" uid="uid://ynsikejtex8b" path="res://scenes/character/SpellManager.tscn" id="1_xxy83"]
@@ -91,6 +92,11 @@ texture = SubResource("CanvasTexture_a7tux")
 position = Vector2(959.778, 539)
 scale = Vector2(1.00185, 1.00185)
 texture = ExtResource("1_u5atv")
+
+[node name="Rain" parent="." instance=ExtResource("1_3xpcx")]
+z_index = 1
+position = Vector2(1020, 0)
+scale = Vector2(3, 3)
 
 [node name="SpellManager" parent="." instance=ExtResource("1_xxy83")]
 

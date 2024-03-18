@@ -204,31 +204,43 @@ func take_damage(damage: int):
 	if actual_damage > 0:
 		stats.current_health -= actual_damage
 		emit_signal("health_changed", stats.current_health)
-		if stats.current_health < 0:
+		if stats.current_health <= 0:
 			stats.current_health = 0
 			$CPUParticles2D.emitting = true
+			get_parent().get_parent().get_child(0).show_player_win(player_num)
 	set_stats(player_num, inst_to_dict(stats))
 
+func handle_card(card: Card):
+	var mode = card.card_unlock
+	match mode:
+		"damage":
+			rpc("increase_damage", card.card_value)
+
+@rpc("any_peer", "call_local")
 func increase_damage(amount: float):
 	var stats = StatManager.get_player_stats(player_num)
 	stats.damage_multiplier += amount
-	rpc("set_stats", player_num, inst_to_dict(stats))
+	set_stats(player_num, inst_to_dict(stats))
 
+@rpc("any_peer", "call_local")
 func increase_reduction(amount: float):
 	var stats = StatManager.get_player_stats(player_num)
 	stats.damage_reduction += amount
-	rpc("set_stats", player_num, inst_to_dict(stats))
+	set_stats(player_num, inst_to_dict(stats))
 
+@rpc("any_peer", "call_local")
 func increase_speed(amount: float):
 	var stats = StatManager.get_player_stats(player_num)
 	stats.speed_multiplier += amount
-	rpc("set_stats", player_num, inst_to_dict(stats))
+	set_stats(player_num, inst_to_dict(stats))
 
+@rpc("any_peer", "call_local")
 func increase_cooldown(amount: float):
 	var stats = StatManager.get_player_stats(player_num)
 	stats.cooldown_reduction += amount
-	rpc("set_stats", player_num, inst_to_dict(stats))
+	set_stats(player_num, inst_to_dict(stats))
 
+@rpc("any_peer", "call_local")
 func increase_max_health(amount: int):
 	var stats = StatManager.get_player_stats(player_num)
 	stats.max_health += amount
@@ -243,11 +255,12 @@ func use_mana(amount: int):
 	emit_signal("mana_changed", stats.current_mana)
 	set_stats(player_num, inst_to_dict(stats))
 
+@rpc("any_peer", "call_local")
 func increase_max_mana(amount: int):
 	var stats = StatManager.get_player_stats(player_num)
 	stats.max_mana += amount
 	emit_signal("max_mana_changed", stats.max_mana)
-	rpc("set_stats", player_num, inst_to_dict(stats))
+	set_stats(player_num, inst_to_dict(stats))
 
 func heal(amount: int):
 	var stats = StatManager.get_player_stats(player_num)

@@ -11,6 +11,7 @@ var started: bool = false
 
 func _ready():
 	StatManager.restart()
+	GameStatus.reset_players()
 	text.text = "Waiting for player"
 	
 func _process(delta):
@@ -56,9 +57,9 @@ func _on_display_winner_timeout():
 	print(GameStatus.winner_num)
 	tween.tween_property(dim, "modulate", Color(0,0,0,0.7), 1.5)
 	await tween.finished
-	if GameStatus.winner_num == GameStatus.current_player:
+	if GameStatus.winner_num != GameStatus.current_player:
 		for i in 4:
-			rpc("spawn_card", inst_to_dict(CardData.Cards.pick_random()), i)
+			rpc("spawn_card", inst_to_dict(CardData.Cards[i]), i)
 
 @rpc("any_peer", "call_local")
 func spawn_card(card, index: int):
@@ -69,14 +70,16 @@ func spawn_card(card, index: int):
 	card_obj.get_node("CardEffect").text = card.card_desc
 	card_obj.get_node("CardImage").texture = load(card.card_image)
 	card_obj.position = Vector2(700,1500)
+	card_obj.card = card
 	var final_pos = Vector2(250+400*index, 400)
 	card_obj.rotation = card_obj.position.angle_to_point(final_pos)
 	$Cards.add_child(card_obj)
-	card_obj.gui_input.connect(on_card_click)
+	card_obj.card_clicked.connect(on_card_click)
 	var tween = create_tween()
 	tween.tween_property(card_obj, "position", final_pos, 2)
 	var tween2 = create_tween()
 	tween2.tween_property(card_obj, "rotation", 0, 2)
   
-func on_card_click():
-	pass
+func on_card_click(input: InputEvent, card: Card):
+	if input.is_action("ui_left"):
+		$"../MultiplayerSpawner".get_children()[GameStatus.loser_num-1].handle_card(card)

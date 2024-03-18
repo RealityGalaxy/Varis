@@ -112,6 +112,9 @@ one_shot = true
 [node name="CD5" type="Timer" parent="Cooldowns"]
 one_shot = true
 
+[node name="Dash" type="Timer" parent="Cooldowns"]
+one_shot = true
+
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
 emitting = false
 amount = 60
@@ -125,9 +128,6 @@ initial_velocity_max = 200.0
 scale_amount_min = 3.0
 scale_amount_max = 6.0
 scale_amount_curve = SubResource("Curve_xgln0")
-
-[node name="Dash" type="Timer" parent="Cooldowns"]
-one_shot = true
 
 [connection signal="health_changed" from="." to="Healthbar" method="_set_health"]
 [connection signal="mana_changed" from="." to="Manabar" method="_set_health"]

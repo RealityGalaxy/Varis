@@ -45,7 +45,7 @@ func air_basic(pos: Vector2, mouse_position: Vector2, player_num: int, spell: St
 	projectile.look_at(mouse_position)
 	$Projectiles.add_child(projectile)
 	
-func water_basic(pos: Vector2, mouse_position: Vector2, player_num: int, shot_time: float, spell: String):
+func water_basic(pos: Vector2, mouse_position: Vector2, player_num: int, spell: String):
 	var projectile_scene: PackedScene = preload("res://scenes/projectiles/basic_water/basicwater.tscn")
 	var projectile = projectile_scene.instantiate()
 	
@@ -53,10 +53,9 @@ func water_basic(pos: Vector2, mouse_position: Vector2, player_num: int, shot_ti
 	projectile.player = player_num
 	projectile.damage = SpellData.Spells[spell].base_damage * StatManager.get_player_stats(player_num).damage_multiplier
 	projectile.look_at(mouse_position)
-	projectile.sub_tick(Time.get_unix_time_from_system()-shot_time)
 	$Projectiles.add_child(projectile)
 	
-func earth_basic(pos: Vector2, mouse_position: Vector2, player_num: int, shot_time: float, spell: String):
+func earth_basic(pos: Vector2, mouse_position: Vector2, player_num: int, spell: String):
 	var projectile_scene: PackedScene = preload("res://scenes/projectiles/basic_earth/basicearth.tscn")
 	var projectile = projectile_scene.instantiate()
 	
@@ -64,5 +63,4 @@ func earth_basic(pos: Vector2, mouse_position: Vector2, player_num: int, shot_ti
 	projectile.player = player_num
 	projectile.damage = SpellData.Spells[spell].base_damage * StatManager.get_player_stats(player_num).damage_multiplier
 	projectile.look_at(mouse_position)
-	projectile.sub_tick(Time.get_unix_time_from_system()-shot_time)
 	$Projectiles.add_child(projectile)
