@@ -30,6 +30,8 @@ color_ramp = SubResource("GradientTexture1D_q21au")
 size = Vector2(89, 37)
 
 [node name="Projectile" type="Area2D"]
+collision_layer = 7
+collision_mask = 7
 script = ExtResource("1_dqsyf")
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
