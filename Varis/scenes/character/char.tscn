@@ -2,19 +2,19 @@
 
 [ext_resource type="Texture2D" uid="uid://c380wvdmmtcf2" path="res://icon.svg" id="2_fjpeu"]
 [ext_resource type="Script" path="res://scenes/character/Character.gd" id="2_iyq3v"]
-[ext_resource type="Texture2D" uid="uid://gxjpjhp53d4j" path="res://graphics/Player_Anim_Paper.png" id="2_rsw0f"]
 [ext_resource type="PackedScene" uid="uid://17oana8owvic" path="res://scenes/character/healthbar.tscn" id="2_vik5t"]
 [ext_resource type="PackedScene" uid="uid://dcp1scfnwnqhy" path="res://scenes/character/manabar.tscn" id="3_k7jh3"]
+[ext_resource type="Texture2D" uid="uid://gxjpjhp53d4j" path="res://graphics/placeholder/Player_Anim_Paper.png" id="4_e8vku"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ui26g"]
-atlas = ExtResource("2_rsw0f")
+atlas = ExtResource("4_e8vku")
 region = Rect2(10, 3, 545, 780)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lf3oe"]
-atlas = ExtResource("2_rsw0f")
+atlas = ExtResource("4_e8vku")
 region = Rect2(565, 3, 545, 780)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_y7dqa"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_jwmfe"]
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -28,46 +28,55 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_uou4y"]
-size = Vector2(108.75, 161.25)
-
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_eqrt6"]
 properties/0/path = NodePath(".:position")
 properties/0/spawn = true
 properties/0/replication_mode = 1
+properties/1/path = NodePath("AnimatedSprite2D:flip_h")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath("AnimatedSprite2D:animation")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+properties/3/path = NodePath("AnimatedSprite2D:frame")
+properties/3/spawn = true
+properties/3/replication_mode = 1
+properties/4/path = NodePath("AnimatedSprite2D:offset")
+properties/4/spawn = true
+properties/4/replication_mode = 1
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m1r42"]
+size = Vector2(69.375, 277.5)
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
 position = Vector2(100, 100)
-scale = Vector2(0.8, 0.8)
+scale = Vector2(0.6, 0.6)
+floor_block_on_wall = false
 script = ExtResource("2_iyq3v")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-texture_filter = 1
-position = Vector2(-11.5349, 8.13573)
-scale = Vector2(0.209963, 0.209963)
-sprite_frames = SubResource("SpriteFrames_y7dqa")
-frame_progress = 0.157988
-
 [node name="Healthbar" parent="." instance=ExtResource("2_vik5t")]
-offset_left = -116.0
-offset_top = -119.0
-offset_right = 90.0
-offset_bottom = -98.0
+offset_left = -88.75
+offset_top = -108.75
+offset_right = 156.25
+offset_bottom = -87.75
+metadata/_edit_use_anchors_ = true
 
 [node name="Manabar" parent="." instance=ExtResource("3_k7jh3")]
-offset_left = -116.0
-offset_top = -94.0
-offset_right = 90.0
-offset_bottom = -87.0
+offset_left = -88.75
+offset_top = -83.75
+offset_right = 156.25
+offset_bottom = -76.75
+metadata/_edit_use_anchors_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 6
+position = Vector2(20, 65)
+scale = Vector2(0.360294, 0.360294)
+sprite_frames = SubResource("SpriteFrames_jwmfe")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 visible = false
 texture = ExtResource("2_fjpeu")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-10.91, 7.51074)
-scale = Vector2(1, 1)
-shape = SubResource("RectangleShape2D_uou4y")
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_eqrt6")
@@ -88,6 +97,11 @@ one_shot = true
 
 [node name="CD5" type="Timer" parent="Cooldowns"]
 one_shot = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(33.4375, 66.25)
+scale = Vector2(0.999999, 0.999999)
+shape = SubResource("RectangleShape2D_m1r42")
 
 [connection signal="health_changed" from="." to="Healthbar" method="_set_health"]
 [connection signal="mana_changed" from="." to="Manabar" method="_set_health"]

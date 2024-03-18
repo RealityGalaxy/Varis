@@ -29,87 +29,91 @@ func _ready():
 
 func get_input():
 	vel.x = 0
-	if Input.is_action_pressed("right"):
-		vel.x += speed
 	if Input.is_action_pressed("left"):
 		vel.x -= speed
+		anim.flip_h = true
+		anim.offset.x = 75
+	if Input.is_action_pressed("right"):
+		vel.x += speed
+		anim.flip_h = false
+		anim.offset.x = 0
 	if Input.is_action_pressed("spell1"):
-		rpc("UseProjectile1", get_global_mouse_position(), Time.get_unix_time_from_system())
+		rpc("UseProjectile1", get_global_mouse_position())
 	if Input.is_action_pressed("spell2"):
-		rpc("UseProjectile2", get_global_mouse_position(), Time.get_unix_time_from_system())
+		rpc("UseProjectile2", get_global_mouse_position())
 	if Input.is_action_pressed("spell3"):
-		rpc("UseProjectile3", get_global_mouse_position(), Time.get_unix_time_from_system())
+		rpc("UseProjectile3", get_global_mouse_position())
 	if Input.is_action_pressed("spell4"):
-		rpc("UseProjectile4", get_global_mouse_position(), Time.get_unix_time_from_system())
+		rpc("UseProjectile4", get_global_mouse_position())
 	if Input.is_action_pressed("spell5"):
-		rpc("UseProjectile5", get_global_mouse_position(), Time.get_unix_time_from_system())
+		rpc("UseProjectile5", get_global_mouse_position())
 
-@rpc("any_peer", "call_local")
-func UseProjectile1(mouse_pos: Vector2, shot_time: float):
+@rpc("call_local")
+func UseProjectile1(mouse_pos: Vector2):
 	var spells = StatManager.get_player_stats(player_num).spells
 	if not spells[0]:
 		return
 	var mana_cost = SpellData.Spells[spells[0]].mana_cost
 	var current_mana = StatManager.get_player_stats(player_num).current_mana
 	if($Cooldowns/CD1.is_stopped() && current_mana >= mana_cost):
-			$Cooldowns/CD1.start(SpellData.Spells[spells[0]].cooldown)
-			use_mana(SpellData.Spells[spells[0]].mana_cost)
-			use_spell.emit(spells[0], player_num, position, mouse_pos, shot_time)
+		$Cooldowns/CD1.start(SpellData.Spells[spells[0]].cooldown)
+		use_mana(SpellData.Spells[spells[0]].mana_cost)
+		use_spell.emit(spells[0], player_num, position, mouse_pos)
 
-@rpc("any_peer", "call_local")
-func UseProjectile2(mouse_pos: Vector2, shot_time: float):
+@rpc("call_local")
+func UseProjectile2(mouse_pos: Vector2):
 	var spells = StatManager.get_player_stats(player_num).spells
 	if not spells[1]:
 		return
 	var mana_cost = SpellData.Spells[spells[1]].mana_cost
 	var current_mana = StatManager.get_player_stats(player_num).current_mana
 	if($Cooldowns/CD2.is_stopped() && current_mana >= mana_cost):
-			$Cooldowns/CD2.start(SpellData.Spells[spells[1]].cooldown)
-			use_mana(SpellData.Spells[spells[1]].mana_cost)
-			use_spell.emit(spells[1], player_num, position, mouse_pos, shot_time)
+		$Cooldowns/CD2.start(SpellData.Spells[spells[1]].cooldown)
+		use_mana(SpellData.Spells[spells[1]].mana_cost)
+		use_spell.emit(spells[1], player_num, position, mouse_pos)
 
-@rpc("any_peer", "call_local")
-func UseProjectile3(mouse_pos: Vector2, shot_time: float):
+@rpc("call_local")
+func UseProjectile3(mouse_pos: Vector2):
 	var spells = StatManager.get_player_stats(player_num).spells
 	if not spells[2]:
 		return
 	var mana_cost = SpellData.Spells[spells[2]].mana_cost
 	var current_mana = StatManager.get_player_stats(player_num).current_mana
 	if($Cooldowns/CD3.is_stopped() && current_mana >= mana_cost):
-			$Cooldowns/CD3.start(SpellData.Spells[spells[2]].cooldown)
-			use_mana(SpellData.Spells[spells[2]].mana_cost)
-			use_spell.emit(spells[2], player_num, position, mouse_pos, shot_time)
+		$Cooldowns/CD3.start(SpellData.Spells[spells[2]].cooldown)
+		use_mana(SpellData.Spells[spells[2]].mana_cost)
+		use_spell.emit(spells[2], player_num, position, mouse_pos)
 
-@rpc("any_peer", "call_local")
-func UseProjectile4(mouse_pos: Vector2, shot_time: float):
+@rpc("call_local")
+func UseProjectile4(mouse_pos: Vector2):
 	var spells = StatManager.get_player_stats(player_num).spells
 	if not spells[3]:
 		return
 	var mana_cost = SpellData.Spells[spells[3]].mana_cost
 	var current_mana = StatManager.get_player_stats(player_num).current_mana
 	if($Cooldowns/CD4.is_stopped() && current_mana >= mana_cost):
-			$Cooldowns/CD4.start(SpellData.Spells[spells[3]].cooldown)
-			use_mana(SpellData.Spells[spells[3]].mana_cost)
-			use_spell.emit(spells[3], player_num, position, mouse_pos, shot_time)
+		$Cooldowns/CD4.start(SpellData.Spells[spells[3]].cooldown)
+		use_mana(SpellData.Spells[spells[3]].mana_cost)
+		use_spell.emit(spells[3], player_num, position, mouse_pos)
 
-@rpc("any_peer", "call_local")
-func UseProjectile5(mouse_pos: Vector2, shot_time: float):
+@rpc("call_local")
+func UseProjectile5(mouse_pos: Vector2):
 	var spells = StatManager.get_player_stats(player_num).spells
 	if not spells[4]:
 		return
 	var mana_cost = SpellData.Spells[spells[4]].mana_cost
 	var current_mana = StatManager.get_player_stats(player_num).current_mana
 	if($Cooldowns/CD5.is_stopped() && current_mana >= mana_cost):
-			$Cooldowns/CD5.start(SpellData.Spells[spells[4]].cooldown)
-			use_mana(mana_cost)
-			use_spell.emit(spells[4], player_num, position, mouse_pos, shot_time)
+		$Cooldowns/CD5.start(SpellData.Spells[spells[4]].cooldown)
+		use_mana(mana_cost)
+		use_spell.emit(spells[4], player_num, position, mouse_pos)
 
 func _physics_process(delta):
 	if !is_multiplayer_authority():
 		return
 	
-	regen_mana(delta)
-	
+	rpc("regen_mana", delta)
+		
 	get_input()
 	
 	if is_on_floor() or is_on_ceiling():
@@ -133,9 +137,9 @@ func _physics_process(delta):
 	velocity = vel
 	move_and_slide()
 
-@rpc("any_peer", "call_local")
-func set_stats(player_num: int, stats: Stats):
-	StatManager.set_player_stats(player_num, stats)
+@rpc("call_local")
+func set_stats(player_number: int, stats):
+	StatManager.set_player_stats(player_number, dict_to_inst(stats))
 
 func unlock_spell(spell: String):
 	var stats = StatManager.get_player_stats(player_num)
@@ -143,8 +147,9 @@ func unlock_spell(spell: String):
 		if stats.spells[i] == null:
 			stats.spells[i] = spell
 			break
-	rpc("set_stats", player_num, stats)
+	rpc("set_stats", player_num, inst_to_dict(stats))
 
+@rpc("any_peer", "call_local")
 func regen_mana(delta):
 	var stats = StatManager.get_player_stats(player_num)
 	var prev_mana = stats.current_mana
@@ -152,7 +157,7 @@ func regen_mana(delta):
 	if prev_mana == stats.current_mana:
 		return
 	emit_signal("mana_changed", stats.current_mana)
-	rpc("set_stats", player_num, stats)
+	set_stats(player_num, inst_to_dict(stats))
 
 func take_damage(damage: int):
 	var stats = StatManager.get_player_stats(player_num)
@@ -163,48 +168,50 @@ func take_damage(damage: int):
 		emit_signal("health_changed", stats.current_health)
 		if stats.current_health < 0:
 			stats.current_health = 0
-	rpc("set_stats", player_num, stats)
+	set_stats(player_num, inst_to_dict(stats))
 
 func increase_damage(amount: float):
 	var stats = StatManager.get_player_stats(player_num)
 	stats.damage_multiplier += amount
-	rpc("set_stats", player_num, stats)
+	rpc("set_stats", player_num, inst_to_dict(stats))
 
 func increase_reduction(amount: float):
 	var stats = StatManager.get_player_stats(player_num)
 	stats.damage_reduction += amount
-	rpc("set_stats", player_num, stats)
+	rpc("set_stats", player_num, inst_to_dict(stats))
 
 func increase_speed(amount: float):
 	var stats = StatManager.get_player_stats(player_num)
 	stats.speed_multiplier += amount
-	rpc("set_stats", player_num, stats)
+	rpc("set_stats", player_num, inst_to_dict(stats))
 
 func increase_cooldown(amount: float):
 	var stats = StatManager.get_player_stats(player_num)
 	stats.cooldown_reduction += amount
-	rpc("set_stats", player_num, stats)
-	
+	rpc("set_stats", player_num, inst_to_dict(stats))
+
 func increase_max_health(amount: int):
 	var stats = StatManager.get_player_stats(player_num)
 	stats.max_health += amount
+	stats.current_health += amount
 	emit_signal("max_health_changed", stats.max_health)
-	rpc("set_stats", player_num, stats)
+	emit_signal("health_changed", stats.current_health)
+	set_stats(player_num, inst_to_dict(stats))
 
 func use_mana(amount: int):
 	var stats = StatManager.get_player_stats(player_num)
 	stats.current_mana -= amount
 	emit_signal("mana_changed", stats.current_mana)
-	rpc("set_stats", player_num, stats)
+	set_stats(player_num, inst_to_dict(stats))
 
 func increase_max_mana(amount: int):
 	var stats = StatManager.get_player_stats(player_num)
 	stats.max_mana += amount
 	emit_signal("max_mana_changed", stats.max_mana)
-	rpc("set_stats", player_num, stats)
+	rpc("set_stats", player_num, inst_to_dict(stats))
 
 func heal(amount: int):
 	var stats = StatManager.get_player_stats(player_num)
 	stats.current_health = clamp(stats.current_health + amount, 0, stats.max_health)
 	emit_signal("health_changed", stats.current_health)
-	rpc("set_stats", player_num, stats)
+	rpc("set_stats", player_num, inst_to_dict(stats))
