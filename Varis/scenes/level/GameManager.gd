@@ -7,12 +7,15 @@ extends Node2D
 
 var time_left: float = 3
 var text_size: float = 80
+var started: bool = false
 
 func _ready():
 	StatManager.restart()
-	start_round()
+	text.text = "Waiting for player"
 	
 func _process(delta):
+	if GameStatus.players.size() == 2 and not started:
+		start_round()
 	if not timer_round_start.is_stopped():
 		var new_time = ceil(timer_round_start.time_left)
 		text.add_theme_font_size_override("font_size", 80)
@@ -24,6 +27,7 @@ func _process(delta):
 		text.text = str(new_time)
 
 func start_round():
+	started = true
 	timer_round_start.start()
 	
 func show_cards():
