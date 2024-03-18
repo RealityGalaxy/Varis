@@ -48,19 +48,24 @@ func _on_display_winner_timeout():
 	GameStatus.pause_time = true
 	text.visible = false
 	var tween = create_tween()
-	tween.tween_property(dim, "modulate", Color(0,0,0,0.5), 1)
+	tween.tween_property(dim, "modulate", Color(0,0,0,0.7), 1.5)
 	await tween.finished
-	spawn_card()
+	for i in 4:
+		rpc("spawn_card", CardData.Cards.pick_random(), i)
 
-func spawn_card():
-	var card : Card = CardData.Cards.pick_random()
+@rpc("call_local")
+func spawn_card(card: Card, index: int):
 	var card_scene = preload("res://scenes/menus/round_pick/card.tscn")
 	var card_obj = card_scene.instantiate()
 	card_obj.get_node("CardName").text = card.card_name
 	card_obj.get_node("CardEffect").text = card.card_desc
 	card_obj.get_node("CardImage").texture = load(card.card_image)
 	card_obj.position = Vector2(700,1500)
+	var final_pos = Vector2(250+400*index, 400)
+	card_obj.rotation = card_obj.position.angle_to_point(final_pos)
 	$Cards.add_child(card_obj)
 	var tween = create_tween()
-	tween.tween_property(card_obj, "position", Vector2(400, 400), 2)
+	tween.tween_property(card_obj, "position", final_pos, 2)
+	var tween2 = create_tween()
+	tween2.tween_property(card_obj, "rotation", 0, 2)
 	
