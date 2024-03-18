@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cubitxapsm3h1"]
+[gd_scene load_steps=12 format=3 uid="uid://cubitxapsm3h1"]
 
 [ext_resource type="Texture2D" uid="uid://c380wvdmmtcf2" path="res://icon.svg" id="2_fjpeu"]
 [ext_resource type="Script" path="res://scenes/character/Character.gd" id="2_iyq3v"]
@@ -47,6 +47,10 @@ properties/4/replication_mode = 1
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uxo01"]
 size = Vector2(70, 271.667)
+
+[sub_resource type="Curve" id="Curve_xgln0"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.296703), 0.0, 0.0, 0, 0]
+point_count = 2
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
 position = Vector2(100, 100)
@@ -107,6 +111,20 @@ one_shot = true
 
 [node name="CD5" type="Timer" parent="Cooldowns"]
 one_shot = true
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 60
+lifetime = 2.0
+one_shot = true
+explosiveness = 1.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 100.0
+initial_velocity_max = 200.0
+scale_amount_min = 3.0
+scale_amount_max = 6.0
+scale_amount_curve = SubResource("Curve_xgln0")
 
 [node name="Dash" type="Timer" parent="Cooldowns"]
 one_shot = true

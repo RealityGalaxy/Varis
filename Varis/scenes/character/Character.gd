@@ -206,6 +206,7 @@ func take_damage(damage: int):
 		emit_signal("health_changed", stats.current_health)
 		if stats.current_health < 0:
 			stats.current_health = 0
+			$CPUParticles2D.emitting = true
 	set_stats(player_num, inst_to_dict(stats))
 
 func increase_damage(amount: float):

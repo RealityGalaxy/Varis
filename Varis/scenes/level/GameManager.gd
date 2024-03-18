@@ -77,6 +77,6 @@ func spawn_card(card, index: int):
 	tween.tween_property(card_obj, "position", final_pos, 2)
 	var tween2 = create_tween()
 	tween2.tween_property(card_obj, "rotation", 0, 2)
-	
+  
 func on_card_click():
 	pass

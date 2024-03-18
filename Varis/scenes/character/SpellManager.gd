@@ -8,6 +8,10 @@ func on_spell_fire(spell: String, player: int, pos: Vector2, mouse_position: Vec
 			fire_basic(pos, mouse_position, player, spell)
 		'basic_air':
 			air_basic(pos, mouse_position, player, spell)
+		'basic_earth':
+			earth_basic(pos, mouse_position, player, spell)
+		'basic_water':
+			water_basic(pos, mouse_position, player, spell)
 		_:
 			print('weird shit happened : '+spell)
 
@@ -39,4 +43,26 @@ func air_basic(pos: Vector2, mouse_position: Vector2, player_num: int, spell: St
 	projectile.player = player_num
 	projectile.damage = SpellData.Spells[spell].base_damage * StatManager.get_player_stats(player_num).damage_multiplier
 	projectile.look_at(mouse_position)
+	$Projectiles.add_child(projectile)
+	
+func water_basic(pos: Vector2, mouse_position: Vector2, player_num: int, shot_time: float, spell: String):
+	var projectile_scene: PackedScene = preload("res://scenes/projectiles/basic_water/basicwater.tscn")
+	var projectile = projectile_scene.instantiate()
+	
+	projectile.position = pos
+	projectile.player = player_num
+	projectile.damage = SpellData.Spells[spell].base_damage * StatManager.get_player_stats(player_num).damage_multiplier
+	projectile.look_at(mouse_position)
+	projectile.sub_tick(Time.get_unix_time_from_system()-shot_time)
+	$Projectiles.add_child(projectile)
+	
+func earth_basic(pos: Vector2, mouse_position: Vector2, player_num: int, shot_time: float, spell: String):
+	var projectile_scene: PackedScene = preload("res://scenes/projectiles/basic_earth/basicearth.tscn")
+	var projectile = projectile_scene.instantiate()
+	
+	projectile.position = pos
+	projectile.player = player_num
+	projectile.damage = SpellData.Spells[spell].base_damage * StatManager.get_player_stats(player_num).damage_multiplier
+	projectile.look_at(mouse_position)
+	projectile.sub_tick(Time.get_unix_time_from_system()-shot_time)
 	$Projectiles.add_child(projectile)
