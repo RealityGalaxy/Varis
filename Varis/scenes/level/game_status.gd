@@ -13,4 +13,4 @@ func winner(num):
 		if players[i] != num:
 			winner_num = players[i]
 			return players[i]
-	return 1
+	return -1
