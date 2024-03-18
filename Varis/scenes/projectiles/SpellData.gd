@@ -9,9 +9,9 @@ var Spells = {
 	"air_gate":new_spell("air_gate", 5, "res://scenes/spells/air_gate/air_gate.tscn", 0, 50),
 }
 
-func new_spell(name: String, cooldown: float, spell_file: String, damage: int, cost: int):
+func new_spell(spell_name: String, cooldown: float, spell_file: String, damage: int, cost: int):
 	var spell: Spell = Spell.new()
-	spell.spell_name = name
+	spell.spell_name = spell_name
 	spell.cooldown = cooldown
 	spell.spell_file = spell_file
 	spell.base_damage = damage

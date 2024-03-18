@@ -139,7 +139,7 @@ func UseProjectile5(mouse_pos: Vector2):
 			use_spell.emit(spells[4], player_num, position, mouse_pos)
 
 func _physics_process(delta):
-	if !is_multiplayer_authority():
+	if !is_multiplayer_authority() or GameStatus.pause_time:
 		return
 	
 	rpc("regen_mana", delta)
