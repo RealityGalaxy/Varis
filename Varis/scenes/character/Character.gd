@@ -24,6 +24,9 @@ func _ready():
 	healthbar._init_healthbar(stats.current_health, stats.max_health)
 	manabar._init_healthbar(stats.current_mana, stats.max_mana)
 	unlock_spell("basic")
+	unlock_spell("basic_air")
+	unlock_spell("basic_earth")
+	unlock_spell("basic_water")
 	
 
 func get_input():
