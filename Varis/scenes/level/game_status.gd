@@ -8,7 +8,6 @@ var players = []
 func set_player(num):
 	current_player = num
 
-
 func winner(num):
 	for i in players.size():
 		if players[i] != num:

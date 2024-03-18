@@ -48,13 +48,17 @@ func _on_display_winner_timeout():
 	GameStatus.pause_time = true
 	text.visible = false
 	var tween = create_tween()
+	print(GameStatus.current_player)
+	print(GameStatus.winner_num)
 	tween.tween_property(dim, "modulate", Color(0,0,0,0.7), 1.5)
 	await tween.finished
-	for i in 4:
-		rpc("spawn_card", CardData.Cards.pick_random(), i)
+	if GameStatus.winner_num == GameStatus.current_player:
+		for i in 4:
+			rpc("spawn_card", inst_to_dict(CardData.Cards.pick_random()), i)
 
-@rpc("call_local")
-func spawn_card(card: Card, index: int):
+@rpc("any_peer", "call_local")
+func spawn_card(card, index: int):
+	card = dict_to_inst(card)
 	var card_scene = preload("res://scenes/menus/round_pick/card.tscn")
 	var card_obj = card_scene.instantiate()
 	card_obj.get_node("CardName").text = card.card_name

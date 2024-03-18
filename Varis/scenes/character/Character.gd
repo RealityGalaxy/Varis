@@ -29,6 +29,7 @@ func _ready():
 	healthbar._init_healthbar(stats.current_health, stats.max_health)
 	manabar._init_healthbar(stats.current_mana, stats.max_mana)
 	anim.play("default")
+	set_collision_layer_value(player_num, true)
 	
 
 func get_input():
@@ -141,6 +142,8 @@ func UseProjectile5(mouse_pos: Vector2):
 func _physics_process(delta):
 	if !is_multiplayer_authority() or GameStatus.pause_time:
 		return
+		
+	GameStatus.set_player(player_num)
 	
 	rpc("regen_mana", delta)
 		
