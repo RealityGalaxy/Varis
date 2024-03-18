@@ -72,7 +72,11 @@ func spawn_card(card, index: int):
 	var final_pos = Vector2(250+400*index, 400)
 	card_obj.rotation = card_obj.position.angle_to_point(final_pos)
 	$Cards.add_child(card_obj)
+	card_obj.gui_input.connect(on_card_click)
 	var tween = create_tween()
 	tween.tween_property(card_obj, "position", final_pos, 2)
 	var tween2 = create_tween()
 	tween2.tween_property(card_obj, "rotation", 0, 2)
+  
+func on_card_click():
+	pass
