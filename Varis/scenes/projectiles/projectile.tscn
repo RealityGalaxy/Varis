@@ -1,7 +1,30 @@
-[gd_scene load_steps=4 format=3 uid="uid://dywddbq0vxwmx"]
+[gd_scene load_steps=9 format=3 uid="uid://dywddbq0vxwmx"]
 
 [ext_resource type="Script" path="res://scenes/projectiles/Projectile.gd" id="1_13q56"]
 [ext_resource type="Texture2D" uid="uid://c380wvdmmtcf2" path="res://icon.svg" id="2_f0vah"]
+
+[sub_resource type="Gradient" id="Gradient_t2rnw"]
+colors = PackedColorArray(0.317178, 0.000423984, 0.42079, 1, 0.988235, 0.462745, 0.945098, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_6mgv3"]
+gradient = SubResource("Gradient_t2rnw")
+
+[sub_resource type="Curve" id="Curve_qbqus"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.241758), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_p467f"]
+curve = SubResource("Curve_qbqus")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_nymat"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 10.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.5
+scale_max = 3.0
+scale_curve = SubResource("CurveTexture_p467f")
+color_ramp = SubResource("GradientTexture1D_6mgv3")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h0u77"]
 size = Vector2(78, 22)
@@ -10,6 +33,13 @@ size = Vector2(78, 22)
 collision_layer = 7
 collision_mask = 7
 script = ExtResource("1_13q56")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+position = Vector2(-28, 1)
+amount = 500
+process_material = SubResource("ParticleProcessMaterial_nymat")
+lifetime = 0.2
+fixed_fps = 60
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 modulate = Color(0.701961, 0.32549, 1, 1)
