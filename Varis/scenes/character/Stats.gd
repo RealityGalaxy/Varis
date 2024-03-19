@@ -11,3 +11,4 @@ var damage_reduction : float = 1
 var speed_multiplier : float = 1
 var cooldown_reduction : float = 1
 var spells = ["basic", null, null, null, null]
+var win_count: int = 0
