@@ -21,6 +21,7 @@ StatManager="*res://scenes/character/StatManager.gd"
 SpellData="*res://scenes/projectiles/SpellData.gd"
 GameStatus="*res://scenes/level/game_status.gd"
 CardData="*res://scenes/menus/round_pick/card_data.gd"
+GlobalSettings="*res://scenes/menus/settings/global_settings.gd"
 
 [display]
 

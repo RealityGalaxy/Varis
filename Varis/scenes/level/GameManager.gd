@@ -73,7 +73,6 @@ func _on_timer_timeout():
 	GameStatus.pause_time = false
 	text.visible = false
 
-
 func _on_display_winner_timeout():
 	GameStatus.pause_time = true
 	text.visible = false
