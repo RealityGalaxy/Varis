@@ -185,6 +185,8 @@ func unlock_spell(spell: String):
 	for i in 5:
 		if stats.spells[i] == null:
 			stats.spells[i] = spell
+			var list = $"../../GameManager/SpellUI".get_children()[player_num-1]
+			list.changeImage(i+1, SpellData.Spells[stats.spells[i]].image_path)
 			break
 	set_stats(player_num, inst_to_dict(stats))
 
