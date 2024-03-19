@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://bm7vq3bu0uuvq"]
 
-[ext_resource type="Script" path="res://scenes/spells/air_gate/Air Gate.gd" id="1_y8v74"]
+[ext_resource type="Script" path="res://scenes/spells/air_gate/Air_Gate.gd" id="1_y8v74"]
 [ext_resource type="Texture2D" uid="uid://c1ln2gy72s8o7" path="res://scenes/spells/air_gate/Circle_(transparent).png" id="2_44vm7"]
 [ext_resource type="Texture2D" uid="uid://dtkorp6khjq2" path="res://scenes/spells/air_gate/Ski_trail_rating_symbol_black_circle.png" id="3_sqbh4"]
 

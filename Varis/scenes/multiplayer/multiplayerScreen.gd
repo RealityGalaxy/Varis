@@ -70,6 +70,8 @@ func _on_join_pressed():
 func _input(event):
 		if Input.is_action_just_pressed("esc"):
 			Steam.deleteLobbyData(lobby_id, "name")
+			Steam.closeConnection(peer.get_unique_id(), 0, "disconnected", true)
+			peer = SteamMultiplayerPeer.new()
 			get_tree().change_scene_to_file("res://scenes/menus/main_menu/main_menu.tscn")
 
 func _on_back_pressed():

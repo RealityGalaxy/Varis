@@ -101,8 +101,9 @@ func on_card_click(input: InputEvent, card: Card, index):
 	if input is InputEventMouseButton and input.pressed and input.button_index == 1 and not selected and timer_movement.is_stopped():
 		print(GameStatus.loser_num-1)
 		$"../MultiplayerSpawner".get_children()[GameStatus.loser_num-1].handle_card(card)
-		select_card(index)
-		
+		rpc("select_card", index)
+
+@rpc("any_peer", "call_local")
 func select_card(index):
 	selected = true
 	var cards = $Cards.get_children()

@@ -11,9 +11,6 @@ func change_sprite():
 	$Ball.visible = false
 	$Hitbox.enabled = true
 
-
-
-
 func _on_entered(body):
 	if body is PlayerChar or body is Projectile:
-		
+		pass
