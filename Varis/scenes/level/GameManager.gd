@@ -45,8 +45,16 @@ func show_player_win(loser_num):
 	won = true
 	timer_winner.start()
 	var winner = GameStatus.winner(loser_num)
+	update_winner_text(winner-1)
 	text.text = "Player %d has won" % winner
 	text.visible = true
+	
+func update_winner_text(winner_num):
+	var stats = StatManager.get_player_stats(winner_num)
+	stats.win_count += 1
+	StatManager.set_player_stats(winner_num, stats)
+	$Wincounts.get_children()[winner_num].text = "Player %d wins: %d" % [winner_num+1, stats.win_count]
+
 
 func restart_round():
 	selected = false
