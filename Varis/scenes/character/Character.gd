@@ -141,7 +141,7 @@ func UseProjectile5(mouse_pos: Vector2, hash_id: int):
 			use_spell.emit(spells[4], player_num, position, mouse_pos, hash_id)
 
 func _physics_process(delta):
-	if !is_multiplayer_authority() or GameStatus.pause_time:
+	if !is_multiplayer_authority() or GameStatus.pause_time or StatManager.get_player_stats(player_num).current_health <= 0:
 		return
 		
 	GameStatus.set_player(player_num)
