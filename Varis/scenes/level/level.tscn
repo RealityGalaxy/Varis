@@ -65,6 +65,10 @@ one_shot = true
 wait_time = 2.0
 one_shot = true
 
+[node name="Movement" type="Timer" parent="GameManager/Timers"]
+wait_time = 2.0
+one_shot = true
+
 [node name="Cards" type="Node2D" parent="GameManager"]
 z_index = 3
 

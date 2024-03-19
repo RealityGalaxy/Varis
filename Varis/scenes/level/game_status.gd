@@ -14,5 +14,5 @@ func set_player(num):
 
 func winner(num):
 	winner_num = players[0] if num == players[1] else players[1]
-	loser_num = players[1] if num == players[0] else players[0]
+	loser_num = players[0] if num == players[0] else players[1]
 	return winner_num

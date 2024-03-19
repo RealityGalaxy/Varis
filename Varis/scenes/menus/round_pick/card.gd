@@ -1,8 +1,9 @@
 extends Control
 
-signal card_clicked(event: InputEvent, card_data: Card)
+signal card_clicked(event: InputEvent, card_data: Card, index)
 
 var card: Card
+var index: int
 
 
 
@@ -18,4 +19,4 @@ func _on_mouse_exited():
 
 func _on_gui_input(event):
 	if GameStatus.current_player != GameStatus.winner_num:
-		card_clicked.emit(event, card)
+		card_clicked.emit(event, card, index)

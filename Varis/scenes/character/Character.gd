@@ -175,17 +175,17 @@ func _physics_process(delta):
 	velocity = vel
 	move_and_slide()
 
-@rpc("call_local")
 func set_stats(player_number: int, stats):
 	StatManager.set_player_stats(player_number, dict_to_inst(stats))
 
+@rpc("any_peer", "call_local")
 func unlock_spell(spell: String):
 	var stats = StatManager.get_player_stats(player_num)
 	for i in 5:
 		if stats.spells[i] == null:
 			stats.spells[i] = spell
 			break
-	rpc("set_stats", player_num, inst_to_dict(stats))
+	set_stats(player_num, inst_to_dict(stats))
 
 @rpc("any_peer", "call_local")
 func regen_mana(delta):
@@ -207,14 +207,28 @@ func take_damage(damage: int):
 		if stats.current_health <= 0:
 			stats.current_health = 0
 			$CPUParticles2D.emitting = true
+			visible = false
 			get_parent().get_parent().get_child(0).show_player_win(player_num)
 	set_stats(player_num, inst_to_dict(stats))
 
 func handle_card(card: Card):
+	print(inst_to_dict(card))
 	var mode = card.card_unlock
 	match mode:
 		"damage":
 			rpc("increase_damage", card.card_value)
+		"reduction":
+			rpc("increase_reduction", card.card_value)
+		"speed":
+			rpc("increase_speed", card.card_value)
+		"cdr":
+			rpc("increase_cooldown", card.card_value)
+		"max_health":
+			rpc("increase_max_health", card.card_value)
+		"max_mana":
+			rpc("increase_max_mana", card.card_value)
+		"unlock_spell":
+			rpc("unlock_spell", card.card_value)
 
 @rpc("any_peer", "call_local")
 func increase_damage(amount: float):
@@ -262,8 +276,9 @@ func increase_max_mana(amount: int):
 	emit_signal("max_mana_changed", stats.max_mana)
 	set_stats(player_num, inst_to_dict(stats))
 
+@rpc("any_peer", "call_local")
 func heal(amount: int):
 	var stats = StatManager.get_player_stats(player_num)
 	stats.current_health = clamp(stats.current_health + amount, 0, stats.max_health)
 	emit_signal("health_changed", stats.current_health)
-	rpc("set_stats", player_num, inst_to_dict(stats))
+	set_stats(player_num, inst_to_dict(stats))
