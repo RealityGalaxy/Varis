@@ -27,7 +27,7 @@ func _on_host_pressed():
 func _on_lobby_created(connect, id):
 	if connect:
 		lobby_id = id
-		Steam.setLobbyData(lobby_id, "name", "godlobby | %s" % $Steam.username)
+		Steam.setLobbyData(lobby_id, "name", "godlobby | ")
 		Steam.setLobbyJoinable(lobby_id, true)
 
 func join_lobby(id):
