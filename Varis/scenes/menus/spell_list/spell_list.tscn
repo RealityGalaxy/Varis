@@ -1,4 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://b45ydlouck4io"]
+[gd_scene load_steps=4 format=3 uid="uid://b45ydlouck4io"]
+
+[ext_resource type="Script" path="res://scenes/menus/spell_list/spell_list.gd" id="1_htmkj"]
+[ext_resource type="Texture2D" uid="uid://vh2oxwyrlm3h" path="res://scenes/projectiles/basic.png" id="2_bm22w"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_plqaq"]
 
@@ -11,6 +14,7 @@ offset_right = -1460.0
 offset_bottom = -980.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_htmkj")
 
 [node name="Background" type="ColorRect" parent="."]
 layout_mode = 0
@@ -58,15 +62,15 @@ offset_right = 450.0
 offset_bottom = 90.0
 color = Color(0.188235, 0.188235, 0.188235, 1)
 
-[node name="Images" type="Node" parent="."]
+[node name="Images" type="Control" parent="."]
+anchors_preset = 0
 
 [node name="Image1" type="TextureRect" parent="Images"]
-visible = false
 offset_left = 15.0
 offset_top = 15.0
 offset_right = 85.0
 offset_bottom = 85.0
-texture = SubResource("CanvasTexture_plqaq")
+texture = ExtResource("2_bm22w")
 expand_mode = 1
 
 [node name="Image2" type="TextureRect" parent="Images"]
@@ -105,7 +109,8 @@ offset_bottom = 85.0
 texture = SubResource("CanvasTexture_plqaq")
 expand_mode = 1
 
-[node name="Labels" type="Node" parent="."]
+[node name="Labels" type="Control" parent="."]
+anchors_preset = 0
 
 [node name="Label1" type="Label" parent="Labels"]
 offset_left = 31.0

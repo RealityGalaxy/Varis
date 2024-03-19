@@ -6,3 +6,4 @@ var cooldown: float
 var spell_file: String
 var base_damage: int
 var mana_cost: int
+var image_path: String

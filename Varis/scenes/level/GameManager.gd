@@ -48,7 +48,6 @@ func show_player_win(loser_num):
 	update_winner_text(winner-1)
 	text.text = "Player %d has won" % winner
 	text.visible = true
-	
 func update_winner_text(winner_num):
 	var stats = StatManager.get_player_stats(winner_num)
 	stats.win_count += 1
