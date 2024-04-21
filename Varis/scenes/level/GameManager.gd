@@ -14,7 +14,7 @@ var won: bool = false
 
 func _ready():
 	StatManager.restart()
-	GameStatus.reset_players()
+	GameStatus.reset()
 	text.text = "Waiting for player"
 	
 func _process(delta):

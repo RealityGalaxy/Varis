@@ -31,6 +31,7 @@ func _ready():
 	manabar._init_healthbar(stats.current_mana, stats.max_mana)
 	anim.play("default")
 	set_collision_layer_value(player_num, true)
+	$"../../GameManager/SpellUI".get_children()[1 if player_num == 1 else 0].get_child(2).visible = false
 	
 
 func get_input():
@@ -214,6 +215,13 @@ func take_damage_rpc(damage: int, id):
 	projectiles.push_back(id)
 	var stats = StatManager.get_player_stats(player_num)
 	# so that damage reduction would go from 1 to 2 :shrug:
+	
+	if stats.is_shielded:
+		stats.is_shielded = false
+		set_stats(player_num, inst_to_dict(stats))
+		$CollisionShape2D.get_child(0).destroy()
+		return
+	
 	var actual_damage = damage * (2 - stats.damage_reduction)
 	if actual_damage > 0:
 		stats.current_health -= actual_damage
@@ -295,4 +303,13 @@ func heal(amount: int):
 	var stats = StatManager.get_player_stats(player_num)
 	stats.current_health = clamp(stats.current_health + amount, 0, stats.max_health)
 	emit_signal("health_changed", stats.current_health)
+	set_stats(player_num, inst_to_dict(stats))
+
+func receive_shield(status: bool):
+	rpc("shield", status)
+
+@rpc("any_peer", "call_local")
+func shield(status: bool):
+	var stats = StatManager.get_player_stats(player_num)
+	stats.is_shielded = status
 	set_stats(player_num, inst_to_dict(stats))

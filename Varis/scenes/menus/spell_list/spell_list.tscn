@@ -66,6 +66,7 @@ color = Color(0.188235, 0.188235, 0.188235, 1)
 anchors_preset = 0
 
 [node name="Image1" type="TextureRect" parent="Images"]
+layout_mode = 0
 offset_left = 15.0
 offset_top = 15.0
 offset_right = 85.0
@@ -75,6 +76,7 @@ expand_mode = 1
 
 [node name="Image2" type="TextureRect" parent="Images"]
 visible = false
+layout_mode = 0
 offset_left = 105.0
 offset_top = 15.0
 offset_right = 175.0
@@ -84,6 +86,7 @@ expand_mode = 1
 
 [node name="Image3" type="TextureRect" parent="Images"]
 visible = false
+layout_mode = 0
 offset_left = 195.0
 offset_top = 15.0
 offset_right = 265.0
@@ -93,6 +96,7 @@ expand_mode = 1
 
 [node name="Image4" type="TextureRect" parent="Images"]
 visible = false
+layout_mode = 0
 offset_left = 285.0
 offset_top = 15.0
 offset_right = 355.0
@@ -102,6 +106,7 @@ expand_mode = 1
 
 [node name="Image5" type="TextureRect" parent="Images"]
 visible = false
+layout_mode = 0
 offset_left = 375.0
 offset_top = 15.0
 offset_right = 445.0
@@ -113,6 +118,7 @@ expand_mode = 1
 anchors_preset = 0
 
 [node name="Label1" type="Label" parent="Labels"]
+layout_mode = 0
 offset_left = 31.0
 offset_top = 105.0
 offset_right = 71.0
@@ -121,6 +127,7 @@ text = "LMB"
 horizontal_alignment = 1
 
 [node name="Label2" type="Label" parent="Labels"]
+layout_mode = 0
 offset_left = 120.0
 offset_top = 105.0
 offset_right = 160.0
@@ -129,6 +136,7 @@ text = "RMB"
 horizontal_alignment = 1
 
 [node name="Label3" type="Label" parent="Labels"]
+layout_mode = 0
 offset_left = 208.0
 offset_top = 105.0
 offset_right = 248.0
@@ -137,6 +145,7 @@ text = "Q"
 horizontal_alignment = 1
 
 [node name="Label4" type="Label" parent="Labels"]
+layout_mode = 0
 offset_left = 300.0
 offset_top = 105.0
 offset_right = 340.0
@@ -145,6 +154,7 @@ text = "E"
 horizontal_alignment = 1
 
 [node name="Label5" type="Label" parent="Labels"]
+layout_mode = 0
 offset_left = 396.0
 offset_top = 105.0
 offset_right = 436.0

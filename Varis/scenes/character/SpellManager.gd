@@ -12,6 +12,8 @@ func on_spell_fire(spell: String, player: int, pos: Vector2, mouse_position: Vec
 			earth_basic(pos, mouse_position, player, spell, hash_id)
 		'basic_water':
 			water_basic(pos, mouse_position, player, spell, hash_id)
+		'shield':
+			shield(player, spell)
 		_:
 			print('weird shit happened : '+spell)
 
@@ -69,3 +71,12 @@ func earth_basic(pos: Vector2, mouse_position: Vector2, player_num: int, spell: 
 	projectile.damage = SpellData.Spells[spell].base_damage * StatManager.get_player_stats(player_num).damage_multiplier
 	projectile.look_at(mouse_position)
 	$Projectiles.add_child(projectile)
+	
+func shield(player_num: int, spell: String):
+	var shield_scene: PackedScene = preload("res://scenes/spells/shield/shield.tscn")
+	var shield = shield_scene.instantiate()
+	
+	var player = $"../MultiplayerSpawner".get_child(player_num-1)
+	
+	player.get_child(5).add_child(shield)
+	shield.connect("shield_change", player.receive_shield)

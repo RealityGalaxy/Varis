@@ -1,5 +1,15 @@
 extends Control
 
+func _ready():
+	for n in range(1, 6):
+		changeLabel(n, translate(InputMap.action_get_events("spell%d" % n)[0].as_text()))
+
+func translate(hotkey: String):
+	if hotkey.ends_with("Mouse Button"):
+		return hotkey[0] + "MB"
+	if hotkey.ends_with("(Physical)"):
+		return hotkey.trim_suffix("(Physical)")
+	return hotkey
 
 func changeImage(id, _path):
 	var image

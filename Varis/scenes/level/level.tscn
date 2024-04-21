@@ -93,7 +93,8 @@ position = Vector2(960, 540)
 scale = Vector2(1920, 1080)
 texture = SubResource("CanvasTexture_a7tux")
 
-[node name="Wincounts" type="Node" parent="GameManager"]
+[node name="Wincounts" type="Node2D" parent="GameManager"]
+z_index = 4
 
 [node name="Player1" type="Label" parent="GameManager/Wincounts"]
 offset_top = -25.0
@@ -131,13 +132,11 @@ offset_right = 0.0
 offset_bottom = -886.0
 
 [node name="Sky" type="Sprite2D" parent="."]
-visible = false
 position = Vector2(959.778, 539)
 scale = Vector2(1.00185, 1.00185)
 texture = ExtResource("1_u5atv")
 
 [node name="Rain" parent="." instance=ExtResource("1_3xpcx")]
-visible = false
 z_index = 1
 position = Vector2(1020, 0)
 scale = Vector2(3, 3)

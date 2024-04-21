@@ -6,6 +6,13 @@ var winner_num: int = -1
 var loser_num: int = -1
 var players = []
 
+func reset():
+	pause_time = true
+	current_player = -1
+	winner_num = -1
+	loser_num = -1
+	players = []
+
 func reset_players():
 	players = []
 
