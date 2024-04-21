@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://cgw6rfirr30ks"]
 
+[ext_resource type="Texture2D" uid="uid://bk518pymy3ioy" path="res://graphics/terrain/Background.png" id="1_6bngk"]
 [ext_resource type="Texture2D" uid="uid://hb5qw0s3eac2" path="res://graphics/terrain/tilemaps/GrassTilemap.png" id="1_qesyg"]
-[ext_resource type="Texture2D" uid="uid://byadn1chqmare" path="res://graphics/placeholder/Background.jpg" id="1_u5atv"]
 [ext_resource type="PackedScene" uid="uid://ynsikejtex8b" path="res://scenes/character/SpellManager.tscn" id="1_xxy83"]
 [ext_resource type="PackedScene" uid="uid://4r48f8lttmp" path="res://scenes/level/deathzone.tscn" id="2_xw1hr"]
 [ext_resource type="Script" path="res://scenes/multiplayer/MultiplayerSpawner.gd" id="3_bo8on"]
@@ -47,10 +47,9 @@ sources/0 = SubResource("TileSetAtlasSource_rfgjm")
 
 [node name="Level" type="Node2D"]
 
-[node name="Sky" type="Sprite2D" parent="."]
-position = Vector2(959.778, 539)
-scale = Vector2(1.00185, 1.00185)
-texture = ExtResource("1_u5atv")
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(960, 540)
+texture = ExtResource("1_6bngk")
 
 [node name="SpellManager" parent="." instance=ExtResource("1_xxy83")]
 
