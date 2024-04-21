@@ -1,12 +1,16 @@
-[gd_scene load_steps=10 format=3 uid="uid://cgw6rfirr30ks"]
+[gd_scene load_steps=13 format=3 uid="uid://cgw6rfirr30ks"]
 
+[ext_resource type="PackedScene" uid="uid://dayfxbmtsuqrd" path="res://scenes/Rain/Rain.tscn" id="1_3xpcx"]
 [ext_resource type="Texture2D" uid="uid://hb5qw0s3eac2" path="res://graphics/terrain/tilemaps/GrassTilemap.png" id="1_qesyg"]
 [ext_resource type="Texture2D" uid="uid://byadn1chqmare" path="res://graphics/placeholder/Background.jpg" id="1_u5atv"]
 [ext_resource type="PackedScene" uid="uid://ynsikejtex8b" path="res://scenes/character/SpellManager.tscn" id="1_xxy83"]
+[ext_resource type="PackedScene" uid="uid://b45ydlouck4io" path="res://scenes/menus/spell_list/spell_list.tscn" id="2_5gk46"]
 [ext_resource type="PackedScene" uid="uid://4r48f8lttmp" path="res://scenes/level/deathzone.tscn" id="2_xw1hr"]
 [ext_resource type="Script" path="res://scenes/multiplayer/MultiplayerSpawner.gd" id="3_bo8on"]
 [ext_resource type="PackedScene" uid="uid://cubitxapsm3h1" path="res://scenes/character/char.tscn" id="4_hlpcm"]
 [ext_resource type="Script" path="res://scenes/level/GameManager.gd" id="6_rr77g"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_a7tux"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rfgjm"]
 texture = ExtResource("1_qesyg")
@@ -42,15 +46,100 @@ texture_region_size = Vector2i(64, 64)
 
 [sub_resource type="TileSet" id="TileSet_ie8pg"]
 tile_size = Vector2i(64, 64)
-physics_layer_0/collision_layer = 1
+physics_layer_0/collision_layer = 4
+physics_layer_0/collision_mask = 4
 sources/0 = SubResource("TileSetAtlasSource_rfgjm")
 
 [node name="Level" type="Node2D"]
+
+[node name="GameManager" type="Node2D" parent="."]
+z_index = 100
+script = ExtResource("6_rr77g")
+
+[node name="Timers" type="Node" parent="GameManager"]
+
+[node name="RoundStart" type="Timer" parent="GameManager/Timers"]
+wait_time = 3.0
+one_shot = true
+
+[node name="DisplayWinner" type="Timer" parent="GameManager/Timers"]
+wait_time = 2.0
+one_shot = true
+
+[node name="Movement" type="Timer" parent="GameManager/Timers"]
+wait_time = 2.0
+one_shot = true
+
+[node name="Cards" type="Node2D" parent="GameManager"]
+z_index = 3
+
+[node name="TimerText" type="Label" parent="GameManager"]
+offset_left = 920.0
+offset_top = 540.0
+offset_right = 930.0
+offset_bottom = 563.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 80
+text = "3"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Dim" type="Sprite2D" parent="GameManager"]
+modulate = Color(0, 0, 0, 0)
+position = Vector2(960, 540)
+scale = Vector2(1920, 1080)
+texture = SubResource("CanvasTexture_a7tux")
+
+[node name="Wincounts" type="Node2D" parent="GameManager"]
+z_index = 4
+
+[node name="Player1" type="Label" parent="GameManager/Wincounts"]
+offset_top = -25.0
+offset_right = 374.0
+offset_bottom = 85.0
+size_flags_horizontal = 6
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 50
+text = "Player 1 wins: 0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Player2" type="Label" parent="GameManager/Wincounts"]
+offset_left = 1430.0
+offset_top = -21.0
+offset_right = 2025.0
+offset_bottom = 89.0
+size_flags_horizontal = 6
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 50
+text = "Player 2 wins: 0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="SpellUI" type="Node" parent="GameManager"]
+
+[node name="Spell List L" parent="GameManager/SpellUI" instance=ExtResource("2_5gk46")]
+offset_top = 94.0
+offset_bottom = -886.0
+
+[node name="Spell List R" parent="GameManager/SpellUI" instance=ExtResource("2_5gk46")]
+offset_left = 1460.0
+offset_top = 94.0
+offset_right = 0.0
+offset_bottom = -886.0
 
 [node name="Sky" type="Sprite2D" parent="."]
 position = Vector2(959.778, 539)
 scale = Vector2(1.00185, 1.00185)
 texture = ExtResource("1_u5atv")
+
+[node name="Rain" parent="." instance=ExtResource("1_3xpcx")]
+z_index = 1
+position = Vector2(1020, 0)
+scale = Vector2(3, 3)
 
 [node name="SpellManager" parent="." instance=ExtResource("1_xxy83")]
 
@@ -90,5 +179,5 @@ spawn_path = NodePath(".")
 script = ExtResource("3_bo8on")
 playerScene = ExtResource("4_hlpcm")
 
-[node name="GameManager" type="Node2D" parent="."]
-script = ExtResource("6_rr77g")
+[connection signal="timeout" from="GameManager/Timers/RoundStart" to="GameManager" method="_on_timer_timeout"]
+[connection signal="timeout" from="GameManager/Timers/DisplayWinner" to="GameManager" method="_on_display_winner_timeout"]

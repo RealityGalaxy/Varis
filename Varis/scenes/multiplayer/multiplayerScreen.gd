@@ -13,7 +13,6 @@ func _ready():
 	
 func spawn_level(data):
 	var a = (load(data) as PackedScene).instantiate()
-	StatManager.restart()
 	return a
 
 
@@ -28,9 +27,8 @@ func _on_host_pressed():
 func _on_lobby_created(connect, id):
 	if connect:
 		lobby_id = id
-		Steam.setLobbyData(lobby_id, "name", str("godlobby"))
+		Steam.setLobbyData(lobby_id, "name", "godlobby | ")
 		Steam.setLobbyJoinable(lobby_id, true)
-		print(lobby_id)
 
 func join_lobby(id):
 	peer.connect_lobby(id)
@@ -53,9 +51,9 @@ func _on_lobby_match_list(lobbies):
 		var lobby_name = Steam.getLobbyData(lobby, "name")
 		var player_count = Steam.getNumLobbyMembers(lobby)
 		
-		if lobby_name == "godlobby":
+		if lobby_name.begins_with("godlobby"):
 			var button = Button.new()
-			button.set_text(str(lobby_name, "| Players: ", player_count))
+			button.set_text(str(lobby_name.erase(0, 11), "| Players: ", player_count))
 			button.set_size(Vector2(100, 5))
 			button.connect("pressed", Callable(self, "join_lobby").bind(lobby))
 			$MarginContainer/PopupPanel/LobbyScrollContainer/Lobbies.add_child(button)
@@ -72,7 +70,9 @@ func _on_join_pressed():
 func _input(event):
 		if Input.is_action_just_pressed("esc"):
 			Steam.deleteLobbyData(lobby_id, "name")
-			get_tree().change_scene_to_file("res://scenes/menus/main_menu.tscn")
+			Steam.closeConnection(peer.get_unique_id(), 0, "disconnected", true)
+			peer = SteamMultiplayerPeer.new()
+			get_tree().change_scene_to_file("res://scenes/menus/main_menu/main_menu.tscn")
 
 func _on_back_pressed():
-	get_tree().change_scene_to_file("res://scenes/menus/main_menu.tscn")
+	get_tree().change_scene_to_file("res://scenes/menus/main_menu/main_menu.tscn")

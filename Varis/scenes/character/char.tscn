@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://cubitxapsm3h1"]
+[gd_scene load_steps=12 format=3 uid="uid://cubitxapsm3h1"]
 
 [ext_resource type="Texture2D" uid="uid://c380wvdmmtcf2" path="res://icon.svg" id="2_fjpeu"]
 [ext_resource type="Script" path="res://scenes/character/Character.gd" id="2_iyq3v"]
@@ -45,12 +45,18 @@ properties/4/path = NodePath("AnimatedSprite2D:offset")
 properties/4/spawn = true
 properties/4/replication_mode = 1
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_m1r42"]
-size = Vector2(69.375, 277.5)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uxo01"]
+size = Vector2(70, 271.667)
+
+[sub_resource type="Curve" id="Curve_xgln0"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.296703), 0.0, 0.0, 0, 0]
+point_count = 2
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
 position = Vector2(100, 100)
 scale = Vector2(0.6, 0.6)
+collision_layer = 0
+collision_mask = 4
 floor_block_on_wall = false
 script = ExtResource("2_iyq3v")
 
@@ -81,7 +87,15 @@ texture = ExtResource("2_fjpeu")
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_eqrt6")
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(33.3334, 65.8333)
+shape = SubResource("RectangleShape2D_uxo01")
+
 [node name="Cooldowns" type="Node2D" parent="."]
+
+[node name="Common" type="Timer" parent="Cooldowns"]
+wait_time = 0.1
+one_shot = true
 
 [node name="CD1" type="Timer" parent="Cooldowns"]
 one_shot = true
@@ -98,10 +112,22 @@ one_shot = true
 [node name="CD5" type="Timer" parent="Cooldowns"]
 one_shot = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(33.4375, 66.25)
-scale = Vector2(0.999999, 0.999999)
-shape = SubResource("RectangleShape2D_m1r42")
+[node name="Dash" type="Timer" parent="Cooldowns"]
+one_shot = true
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 60
+lifetime = 2.0
+one_shot = true
+explosiveness = 1.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 100.0
+initial_velocity_max = 200.0
+scale_amount_min = 3.0
+scale_amount_max = 6.0
+scale_amount_curve = SubResource("Curve_xgln0")
 
 [connection signal="health_changed" from="." to="Healthbar" method="_set_health"]
 [connection signal="mana_changed" from="." to="Manabar" method="_set_health"]
