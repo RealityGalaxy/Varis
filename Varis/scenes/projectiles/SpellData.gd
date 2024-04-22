@@ -2,7 +2,7 @@ extends Node
 
 var Spells = {
 	"basic":new_spell("basic", 0.2, "res://scenes/projectiles/projectile.tscn", 5, 10, "res://scenes/projectiles/basic.png"),
-	"basic_earth":new_spell("basic_earth", 0.15, "res://scenes/projectiles/projectile.tscn", 3, 5, "res://scenes/projectiles/basic_earth/rock_throw.png"),
+	"basic_earth":new_spell("basic_earth", 0.15, "res://scenes/projectiles/projectile.tscn", 3, 5, "res://graphics/projectiles/basic_earth.png"),
 	"basic_air":new_spell("basic_air", 0.4, "res://scenes/projectiles/projectile.tscn", 15, 20, "res://graphics/projectiles/basic_air.png"),
 	"basic_fire":new_spell("basic_fire", 1, "res://scenes/projectiles/projectile.tscn", 30, 40, "res://graphics/projectiles/basic_fire.png"),
 	"basic_water":new_spell("basic_water", 0.5, "res://scenes/projectiles/projectile.tscn", 15, 20, "res://scenes/projectiles/basic_water/water_arrow.png"),

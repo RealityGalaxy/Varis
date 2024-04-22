@@ -4,14 +4,14 @@
 [ext_resource type="Script" path="res://scenes/character/Character.gd" id="2_iyq3v"]
 [ext_resource type="PackedScene" uid="uid://17oana8owvic" path="res://scenes/character/healthbar.tscn" id="2_vik5t"]
 [ext_resource type="PackedScene" uid="uid://dcp1scfnwnqhy" path="res://scenes/character/manabar.tscn" id="3_k7jh3"]
-[ext_resource type="Texture2D" uid="uid://gxjpjhp53d4j" path="res://graphics/sprites/Player_Anim_Paper.png" id="4_e8vku"]
+[ext_resource type="Texture2D" uid="uid://gxjpjhp53d4j" path="res://graphics/sprites/Player_Anim_Paper.png" id="4_gwgbb"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ui26g"]
-atlas = ExtResource("4_e8vku")
+atlas = ExtResource("4_gwgbb")
 region = Rect2(10, 3, 545, 780)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_lf3oe"]
-atlas = ExtResource("4_e8vku")
+atlas = ExtResource("4_gwgbb")
 region = Rect2(565, 3, 545, 780)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_jwmfe"]
