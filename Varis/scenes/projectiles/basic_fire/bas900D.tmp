@@ -1,0 +1,104 @@
+[gd_scene load_steps=15 format=3 uid="uid://be5o63enulwgv"]
+
+[ext_resource type="Script" path="res://scenes/projectiles/Projectile.gd" id="1_dqsyf"]
+[ext_resource type="Texture2D" uid="uid://yrs34pl0yfdk" path="res://graphics/Pixel.png" id="2_osxcf"]
+[ext_resource type="Script" path="res://scenes/projectiles/basic_fire/FireBallSprite.gd" id="3_alklp"]
+[ext_resource type="Script" path="res://scenes/projectiles/TwistingLinesParticles.gd" id="3_txx7a"]
+
+[sub_resource type="Curve" id="Curve_wtof8"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_hufj5"]
+offsets = PackedFloat32Array(0, 0.26, 0.973333)
+colors = PackedColorArray(0, 0, 0, 0, 0.882353, 0, 0, 1, 1, 1, 0, 1)
+
+[sub_resource type="Animation" id="Animation_lm188"]
+resource_name = "FireBasicAnimation"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 6.28319]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_c7nbh"]
+_data = {
+"FireBasicAnimation": SubResource("Animation_lm188")
+}
+
+[sub_resource type="Gradient" id="Gradient_8hfyp"]
+colors = PackedColorArray(1, 0, 0, 1, 1, 1, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_q21au"]
+gradient = SubResource("Gradient_8hfyp")
+
+[sub_resource type="Curve" id="Curve_3lo2g"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.241758), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_j1ybt"]
+curve = SubResource("Curve_3lo2g")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ynjqu"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 20.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.5
+scale_max = 2.0
+scale_curve = SubResource("CurveTexture_j1ybt")
+color_ramp = SubResource("GradientTexture1D_q21au")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h0u77"]
+size = Vector2(89, 37)
+
+[node name="Projectile" type="Area2D"]
+collision_layer = 7
+collision_mask = 7
+script = ExtResource("1_dqsyf")
+
+[node name="Node2D" type="Node2D" parent="."]
+scale = Vector2(0.691406, 0.287109)
+
+[node name="Line2D" type="Line2D" parent="Node2D"]
+modulate = Color(1.5, 1.5, 1.5, 1)
+position = Vector2(2.16705, 2.83516)
+scale = Vector2(1.2167, 1.43504)
+points = PackedVector2Array(-21.9894, 252.871, 3.10526, 215.927, 12.4836, 177.63, -16.0458, 126.661, 1.78511, 78.1189, 0, 3.483)
+width_curve = SubResource("Curve_wtof8")
+gradient = SubResource("Gradient_hufj5")
+script = ExtResource("3_txx7a")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 0, 0, 1)
+rotation = 6.28319
+scale = Vector2(0.691406, 0.287109)
+texture = ExtResource("2_osxcf")
+script = ExtResource("3_alklp")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D"]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_c7nbh")
+}
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="Sprite2D"]
+scale = Vector2(1.44633, 3.483)
+amount = 4000
+process_material = SubResource("ParticleProcessMaterial_ynjqu")
+lifetime = 0.5
+speed_scale = 2.0
+fixed_fps = 60
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_h0u77")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
