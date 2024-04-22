@@ -9,12 +9,12 @@ var index: int
 
 func _on_mouse_entered():
 	if GameStatus.current_player != GameStatus.winner_num:
-		$CardUi.modulate = Color("816741")
+		$CardUi.modulate = Color(0.8, 0.8, 0.8)
 
 
 func _on_mouse_exited():
 	if GameStatus.current_player != GameStatus.winner_num:
-		$CardUi.modulate = Color("634e2f")
+		$CardUi.modulate = Color.WHITE
 
 
 func _on_gui_input(event):

@@ -14,10 +14,15 @@ grow_vertical = 2
 scale = Vector2(1.7, 1.7)
 script = ExtResource("1_jyyds")
 
-[node name="CardUi" type="Sprite2D" parent="."]
-position = Vector2(77.0588, 107.647)
+[node name="CardUi" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -20.0
+offset_top = -5.88235
+offset_right = 335.0
+offset_bottom = 447.118
 scale = Vector2(0.528235, 0.528235)
 texture = ExtResource("2_tmede")
+expand_mode = 1
 
 [node name="CardName" type="Label" parent="."]
 layout_mode = 0
