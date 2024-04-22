@@ -1,0 +1,164 @@
+[gd_scene load_steps=4 format=3 uid="uid://b45ydlouck4io"]
+
+[ext_resource type="Script" path="res://scenes/menus/spell_list/spell_list.gd" id="1_htmkj"]
+[ext_resource type="Texture2D" uid="uid://vh2oxwyrlm3h" path="res://scenes/projectiles/basic.png" id="2_bm22w"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_plqaq"]
+
+[node name="Spell List" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1460.0
+offset_bottom = -980.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_htmkj")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 460.0
+offset_bottom = 100.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect1" type="ColorRect" parent="Background"]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 90.0
+offset_bottom = 90.0
+color = Color(0.188235, 0.188235, 0.188235, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="Background"]
+layout_mode = 0
+offset_left = 100.0
+offset_top = 10.0
+offset_right = 180.0
+offset_bottom = 90.0
+color = Color(0.188235, 0.188235, 0.188235, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="Background"]
+layout_mode = 0
+offset_left = 190.0
+offset_top = 10.0
+offset_right = 270.0
+offset_bottom = 90.0
+color = Color(0.188235, 0.188235, 0.188235, 1)
+
+[node name="ColorRect4" type="ColorRect" parent="Background"]
+layout_mode = 0
+offset_left = 280.0
+offset_top = 10.0
+offset_right = 360.0
+offset_bottom = 90.0
+color = Color(0.188235, 0.188235, 0.188235, 1)
+
+[node name="ColorRect5" type="ColorRect" parent="Background"]
+layout_mode = 0
+offset_left = 370.0
+offset_top = 10.0
+offset_right = 450.0
+offset_bottom = 90.0
+color = Color(0.188235, 0.188235, 0.188235, 1)
+
+[node name="Images" type="Control" parent="."]
+anchors_preset = 0
+
+[node name="Image1" type="TextureRect" parent="Images"]
+layout_mode = 0
+offset_left = 15.0
+offset_top = 15.0
+offset_right = 85.0
+offset_bottom = 85.0
+texture = ExtResource("2_bm22w")
+expand_mode = 1
+
+[node name="Image2" type="TextureRect" parent="Images"]
+visible = false
+layout_mode = 0
+offset_left = 105.0
+offset_top = 15.0
+offset_right = 175.0
+offset_bottom = 85.0
+texture = SubResource("CanvasTexture_plqaq")
+expand_mode = 1
+
+[node name="Image3" type="TextureRect" parent="Images"]
+visible = false
+layout_mode = 0
+offset_left = 195.0
+offset_top = 15.0
+offset_right = 265.0
+offset_bottom = 85.0
+texture = SubResource("CanvasTexture_plqaq")
+expand_mode = 1
+
+[node name="Image4" type="TextureRect" parent="Images"]
+visible = false
+layout_mode = 0
+offset_left = 285.0
+offset_top = 15.0
+offset_right = 355.0
+offset_bottom = 85.0
+texture = SubResource("CanvasTexture_plqaq")
+expand_mode = 1
+
+[node name="Image5" type="TextureRect" parent="Images"]
+visible = false
+layout_mode = 0
+offset_left = 375.0
+offset_top = 15.0
+offset_right = 445.0
+offset_bottom = 85.0
+texture = SubResource("CanvasTexture_plqaq")
+expand_mode = 1
+
+[node name="Labels" type="Control" parent="."]
+anchors_preset = 0
+
+[node name="Label1" type="Label" parent="Labels"]
+layout_mode = 0
+offset_left = 31.0
+offset_top = 105.0
+offset_right = 71.0
+offset_bottom = 128.0
+text = "LMB"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="Labels"]
+layout_mode = 0
+offset_left = 120.0
+offset_top = 105.0
+offset_right = 160.0
+offset_bottom = 128.0
+text = "RMB"
+horizontal_alignment = 1
+
+[node name="Label3" type="Label" parent="Labels"]
+layout_mode = 0
+offset_left = 208.0
+offset_top = 105.0
+offset_right = 248.0
+offset_bottom = 128.0
+text = "Q"
+horizontal_alignment = 1
+
+[node name="Label4" type="Label" parent="Labels"]
+layout_mode = 0
+offset_left = 300.0
+offset_top = 105.0
+offset_right = 340.0
+offset_bottom = 128.0
+text = "E"
+horizontal_alignment = 1
+
+[node name="Label5" type="Label" parent="Labels"]
+layout_mode = 0
+offset_left = 396.0
+offset_top = 105.0
+offset_right = 436.0
+offset_bottom = 128.0
+text = "R
+"
+horizontal_alignment = 1
