@@ -14,6 +14,8 @@ func on_spell_fire(spell: String, player: int, pos: Vector2, mouse_position: Vec
 			water_basic(pos, mouse_position, player, spell, hash_id)
 		'shield':
 			shield(player, spell)
+		"wind_wall":
+			windwall(pos, mouse_position, player, spell, hash_id)
 		_:
 			print('weird shit happened : '+spell)
 
@@ -79,4 +81,15 @@ func shield(player_num: int, spell: String):
 	var player = $"../MultiplayerSpawner".get_child(player_num-1)
 	
 	player.get_child(5).add_child(shield)
+	shield.player_id = player_num
 	shield.connect("shield_change", player.receive_shield)
+
+
+func windwall(pos: Vector2, mouse_position: Vector2, player_num: int, spell: String, hash_id):
+	var wall_scene: PackedScene = preload("res://scenes/spells/wall/wall.tscn")
+	var wall = wall_scene.instantiate()
+	
+	var player = $"../MultiplayerSpawner".get_child(player_num - 1)
+	
+	wall.position = mouse_position
+	$Spells.add_child(wall)

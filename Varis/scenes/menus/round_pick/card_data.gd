@@ -12,6 +12,7 @@ var Cards = [
 	new_card("Bloody heart", "Increase maximum health by 30", "res://icon.svg", "max_health", 30),
 	new_card("Quickshot", "Decrease cooldowns by 15%", "res://icon.svg", "cdr", -0.15),
 	new_card("Why?", "Decrease damage by 10%", "res://icon.svg", "damage", -0.1),
+	new_card("Wind wall", "Launch a wall that negates spells", "res://icon.svg", "unlock_spell", "wind_wall"),
 ]
 
 func new_card(card_name: String, card_desc: String, card_image: String, unlock: String, value):

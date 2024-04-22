@@ -1,0 +1,28 @@
+[gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://c618q0v1uevn5"]
+
+[sub_resource type="Shader" id="Shader_3dckx"]
+code = "shader_type canvas_item;
+
+uniform sampler2D dissolve_texture : source_color;
+uniform float dissolve_value : hint_range(0,1);
+
+void fragment(){
+    vec4 main_texture = texture(TEXTURE, UV);
+    vec4 noise_texture = texture(dissolve_texture, UV);
+    main_texture.a *= floor(dissolve_value + min(1, noise_texture.x));
+    COLOR *= main_texture;
+}"
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_fpine"]
+noise_type = 0
+frequency = 0.002
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_0aqvy"]
+seamless_blend_skirt = 0.051
+bump_strength = 0.0
+noise = SubResource("FastNoiseLite_fpine")
+
+[resource]
+shader = SubResource("Shader_3dckx")
+shader_parameter/dissolve_value = 1.0
+shader_parameter/dissolve_texture = SubResource("NoiseTexture2D_0aqvy")
