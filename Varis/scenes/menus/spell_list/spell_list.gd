@@ -1,5 +1,6 @@
 extends Control
 
+
 func _ready():
 	for n in range(1, 6):
 		changeLabel(n, translate(InputMap.action_get_events("spell%d" % n)[0].as_text()))
