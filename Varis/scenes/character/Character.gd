@@ -58,6 +58,8 @@ func get_input():
 		if $Cooldowns/Dash.is_stopped():
 			$Cooldowns/Dash.start()
 			dash()
+	#if Input.is_action_pressed("spell3"):
+	#	rpc("UseProjectile6", get_global_mouse_position(), hash(Time.get_unix_time_from_system()))
 
 func dash():
 	vel.x += direction * dash_speed
@@ -313,3 +315,4 @@ func shield(status: bool):
 	var stats = StatManager.get_player_stats(player_num)
 	stats.is_shielded = status
 	set_stats(player_num, inst_to_dict(stats))
+	

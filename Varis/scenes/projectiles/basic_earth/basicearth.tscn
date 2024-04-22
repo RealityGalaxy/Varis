@@ -30,7 +30,7 @@ scale_max = 3.0
 scale_curve = SubResource("CurveTexture_5agml")
 color_ramp = SubResource("GradientTexture1D_snwpg")
 
-[node name="Projectile" type="Area2D"]
+[node name="Projectile" type="Area2D" groups=["projectile"]]
 collision_layer = 7
 collision_mask = 7
 script = ExtResource("1_n8fjg")
