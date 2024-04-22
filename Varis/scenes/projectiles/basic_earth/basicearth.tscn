@@ -3,7 +3,11 @@
 [ext_resource type="Script" path="res://scenes/projectiles/Projectile.gd" id="1_n8fjg"]
 [ext_resource type="Texture2D" uid="uid://c380wvdmmtcf2" path="res://icon.svg" id="2_pchwa"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h0u77"]
+size = Vector2(20, 18)
+
 [sub_resource type="Gradient" id="Gradient_w1wgm"]
+offsets = PackedFloat32Array(0, 0.303279)
 colors = PackedColorArray(0.339955, 0.260861, 0.0951946, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_snwpg"]
@@ -17,40 +21,35 @@ point_count = 2
 curve = SubResource("Curve_nkacv")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_sajk5"]
-lifetime_randomness = 0.5
 particle_flag_disable_z = true
-emission_shape = 1
-emission_sphere_radius = 35.0
+emission_shape = 2
+emission_sphere_radius = 58.01
 gravity = Vector3(0, 0, 0)
-scale_min = 0.5
+scale_min = 2.0
 scale_max = 3.0
 scale_curve = SubResource("CurveTexture_5agml")
 color_ramp = SubResource("GradientTexture1D_snwpg")
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_h0u77"]
-size = Vector2(20, 18)
 
 [node name="Projectile" type="Area2D"]
 collision_layer = 7
 collision_mask = 7
 script = ExtResource("1_n8fjg")
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_h0u77")
+
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
-position = Vector2(-4, 0)
 scale = Vector2(0.15625, 0.140625)
-amount = 200
+amount = 2000
 process_material = SubResource("ParticleProcessMaterial_sajk5")
-lifetime = 0.1
-speed_scale = 2.0
-fixed_fps = 60
+lifetime = 0.05
+fixed_fps = 144
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
 modulate = Color(0.329412, 0.203922, 0.133333, 1)
 self_modulate = Color(1, 0.6, 0, 1)
 scale = Vector2(0.15625, 0.140625)
 texture = ExtResource("2_pchwa")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_h0u77")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
