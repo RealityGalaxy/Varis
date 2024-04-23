@@ -133,7 +133,6 @@ func select_card(index):
 	var tween = create_tween()
 	tween.tween_property(dim, "modulate", Color(0,0,0,0), 1.5)
 	restart_round()
-	
 
 
 func _on_button_pressed():

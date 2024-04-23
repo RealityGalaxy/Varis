@@ -29,7 +29,7 @@ var extra_vel: Vector2 = Vector2.ZERO
 var speedmult = 1
 
 func _ready():
-	id = get_instance_id()
+	id = Time.get_ticks_msec()
 	var stats = StatManager.get_player_stats(player_num)
 	healthbar._init_healthbar(stats.current_health, stats.max_health)
 	manabar._init_healthbar(stats.current_mana, stats.max_mana)
@@ -43,11 +43,11 @@ func get_input():
 	direction = 0
 	if Input.is_action_pressed("left"):
 		direction = -1
-		anim.flip_h = true if player_num == 1 else false
+		anim.flip_h = true
 		anim.offset.x = 75 if player_num == 1 else 0
 	if Input.is_action_pressed("right"):
 		direction = 1
-		anim.flip_h = false if player_num == 1 else true
+		anim.flip_h = false
 		anim.offset.x = 0 if player_num == 1 else 75
 	if Input.is_action_pressed("spell1"):
 		rpc("UseProjectile1", get_global_mouse_position(), hash(Time.get_unix_time_from_system()))

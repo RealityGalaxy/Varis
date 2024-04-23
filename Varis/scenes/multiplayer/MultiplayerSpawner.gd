@@ -21,7 +21,7 @@ func spawnPlayer(data):
 	players[data] = player
 	var spawnpoint
 	if get_parent().find_child("Maps"):
-		$"../Maps".set_map(players.keys()[0] % 3)
+		$"../Maps".set_map(0)
 		spawnpoint = $"../Maps".map.get_child(0).get_child(index)
 		player.scale = Vector2(0.4, 0.4)
 	else:

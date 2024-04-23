@@ -43,7 +43,36 @@ func spawn_enemy(amount = 1):
 func add_enemy(enemy):
 	$Enemies.add_child(enemy)
 
+var save_path = "user://score.save"
+
+var score_save = ["0", "0", "0", "0", "0"]
+
+func sort_desc(a, b):
+	if a > b:
+		return true
+	return false 
+
+func save_score(new_score):
+	score_save.append(str(new_score) + " " + Time.get_date_string_from_system()) 
+	score_save.sort_custom(sort_desc)
+	var new_store = []
+	for i in range(5):
+		new_store.append(score_save[i])
+	var file = FileAccess.open(save_path, FileAccess.WRITE)
+	file.store_var(new_store)
+	print_debug(new_store)
+	test_load()
+	
+func test_load():
+	if FileAccess.file_exists(save_path):
+		var file = FileAccess.open(save_path, FileAccess.READ)
+		var score_save_temp = file.get_var()
+		print_debug(score_save_temp)
+
 func _ready():
+	if FileAccess.file_exists(save_path):
+		var file = FileAccess.open(save_path, FileAccess.READ)
+		score_save = file.get_var()
 	StatManager.restart()
 	GameStatus.reset()
 	text.text = "Waiting for player"
@@ -91,7 +120,18 @@ func show_player_win(loser_num):
 	Score: " + str(score)
 	text.visible = true
 	button.visible = true
-
+	save_score(score)
+	$Leaderboard.text = generate_leaderboard(score_save)
+	$Leaderboard.visible = true
+	
+func generate_leaderboard(array):
+	var string = "Hiscores:
+		1. " + str(array[0]) + "
+		2. " + str(array[1]) + "
+		3. " + str(array[2]) + "
+		4. " + str(array[3]) + "
+		5. " + str(array[4])
+	return string
 
 func restart_round():
 	selected = false
@@ -152,6 +192,8 @@ func select_card(index):
 	await tween.tween_property(dim, "modulate", Color(0,0,0,0), 1.5).finished
 	restart_round()
 	
+
+
 
 
 func _on_button_pressed():
