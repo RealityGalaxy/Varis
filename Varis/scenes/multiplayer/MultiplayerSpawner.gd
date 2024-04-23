@@ -7,7 +7,7 @@ func _ready():
 	spawn_function = spawnPlayer
 	if is_multiplayer_authority():
 		spawn(1)
-		spawn(2)
+		#spawn(2)
 		
 		multiplayer.peer_connected.connect(spawn)
 		multiplayer.peer_disconnected.connect(removePlayer)
@@ -22,6 +22,7 @@ func spawnPlayer(data):
 
 	var spawnpoint = $"../Maps".map.get_child(0).get_child(index)
 	player.position = spawnpoint.position
+	player.scale = Vector2(0.4, 0.4)
 	index += 1;
 
 	player.player_num = index;
