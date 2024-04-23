@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://gxjpjhp53d4j"
-path="res://.godot/imported/Player_Anim_Paper.png-0bc393bfcba78b05fb853d12138f5572.ctex"
+uid="uid://rc5n1tb6yokc"
+path="res://.godot/imported/Circle_(transparent).png-4c0a51534759c3ac5957220def40a452.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://graphics/sprites/Player_Anim_Paper.png"
-dest_files=["res://.godot/imported/Player_Anim_Paper.png-0bc393bfcba78b05fb853d12138f5572.ctex"]
+source_file="res://scenes/spells/wall/Circle_(transparent).png"
+dest_files=["res://.godot/imported/Circle_(transparent).png-4c0a51534759c3ac5957220def40a452.ctex"]
 
 [params]
 

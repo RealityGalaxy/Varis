@@ -6,3 +6,5 @@
 script = ExtResource("1_iaqmx")
 
 [node name="Projectiles" type="Node2D" parent="."]
+
+[node name="Spells" type="Node2D" parent="."]

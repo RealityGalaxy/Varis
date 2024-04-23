@@ -3,8 +3,12 @@
 [ext_resource type="Script" path="res://scenes/projectiles/Projectile.gd" id="1_w5o2c"]
 [ext_resource type="Texture2D" uid="uid://c380wvdmmtcf2" path="res://icon.svg" id="2_1a1wd"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h0u77"]
+size = Vector2(7.75, 23.5)
+
 [sub_resource type="Gradient" id="Gradient_dhmav"]
-colors = PackedColorArray(1, 0.882246, 0.862196, 1, 1, 1, 0, 1)
+offsets = PackedFloat32Array(0, 0.991803)
+colors = PackedColorArray(1, 0.882246, 0.862196, 1, 7.09929e-06, 0.648447, 1.92523e-07, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_um1rk"]
 gradient = SubResource("Gradient_dhmav")
@@ -17,38 +21,51 @@ point_count = 2
 curve = SubResource("Curve_w471n")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_xd4ii"]
-lifetime_randomness = 0.5
 particle_flag_disable_z = true
 emission_shape = 1
 emission_sphere_radius = 12.0
 gravity = Vector3(0, 0, 0)
-scale_min = 0.5
-scale_max = 2.0
+scale_min = 2.0
+scale_max = 3.0
 scale_curve = SubResource("CurveTexture_ek6uv")
 color_ramp = SubResource("GradientTexture1D_um1rk")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_h0u77"]
-size = Vector2(87.5, 23.5)
-
-[node name="Projectile" type="Area2D"]
+[node name="Projectile" type="Area2D" groups=["projectile"]]
 collision_layer = 7
 collision_mask = 7
 script = ExtResource("1_w5o2c")
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
-position = Vector2(-34, -1)
-amount = 2000
-process_material = SubResource("ParticleProcessMaterial_xd4ii")
-lifetime = 0.2
-speed_scale = 0.5
-fixed_fps = 60
-
 [node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
 modulate = Color(5.326, 4.142, 2.366, 1)
 scale = Vector2(0.681641, 0.182617)
 texture = ExtResource("2_1a1wd")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(1, 2)
 shape = SubResource("RectangleShape2D_h0u77")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="CollisionShape2D"]
+scale = Vector2(0.5, 1)
+amount = 4000
+process_material = SubResource("ParticleProcessMaterial_xd4ii")
+lifetime = 0.01
+fixed_fps = 144
+
+[node name="GPUParticles2DTop" type="GPUParticles2D" parent="CollisionShape2D"]
+position = Vector2(0, -9)
+scale = Vector2(0.3, 0.3)
+amount = 1000
+process_material = SubResource("ParticleProcessMaterial_xd4ii")
+lifetime = 0.2
+fixed_fps = 144
+
+[node name="GPUParticles2DBottom" type="GPUParticles2D" parent="CollisionShape2D"]
+position = Vector2(0, 9)
+scale = Vector2(0.3, 0.3)
+amount = 1000
+process_material = SubResource("ParticleProcessMaterial_xd4ii")
+lifetime = 0.2
+fixed_fps = 144
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

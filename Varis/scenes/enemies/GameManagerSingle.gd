@@ -44,15 +44,8 @@ func show_player_win(loser_num):
 		return
 	won = true
 	timer_winner.start()
-	var winner = GameStatus.winner(loser_num)
-	update_winner_text(winner-1)
-	text.text = "Player %d has won" % winner
+	text.text = "You have lost"
 	text.visible = true
-func update_winner_text(winner_num):
-	var stats = StatManager.get_player_stats(winner_num)
-	stats.win_count += 1
-	StatManager.set_player_stats(winner_num, stats)
-	$Wincounts.get_children()[winner_num].text = "Player %d wins: %d" % [winner_num+1, stats.win_count]
 
 
 func restart_round():
@@ -64,8 +57,7 @@ func restart_round():
 		player.visible = true
 		player.heal(1000)
 		player.regen_mana(1000)
-		var map = $"../Maps".map
-		player.position = map.get_child(0).get_children()[i].position
+		player.position = $"../SpawnPoints".get_children()[i].position
 		
 	start_round()
 

@@ -20,9 +20,9 @@ func spawnPlayer(data):
 	player.use_spell.connect(get_node("../SpellManager").on_spell_fire)
 	players[data] = player
 
-	for spawnpoint in get_tree().get_nodes_in_group("PlayerSpawnPoint"):
-		if spawnpoint.name == str(index):
-			player.position = spawnpoint.position
+	var spawnpoint = $"../Maps".map.get_child(0).get_child(index)
+	player.position = spawnpoint.position
+	player.scale = Vector2(0.4, 0.4)
 	index += 1;
 
 	player.player_num = index;
