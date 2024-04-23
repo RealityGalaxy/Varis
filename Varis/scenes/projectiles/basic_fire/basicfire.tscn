@@ -1,7 +1,6 @@
-[gd_scene load_steps=14 format=3 uid="uid://be5o63enulwgv"]
+[gd_scene load_steps=10 format=3 uid="uid://be5o63enulwgv"]
 
 [ext_resource type="Script" path="res://scenes/projectiles/Projectile.gd" id="1_dqsyf"]
-[ext_resource type="Script" path="res://scenes/projectiles/TwistingLinesParticles.gd" id="3_txx7a"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h0u77"]
 size = Vector2(39, 37)
@@ -40,16 +39,6 @@ scale_curve = SubResource("CurveTexture_j1ybt")
 color_ramp = SubResource("GradientTexture1D_q21au")
 turbulence_noise_strength = 0.0
 
-[sub_resource type="Curve" id="Curve_wtof8"]
-_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="Gradient" id="Gradient_hufj5"]
-offsets = PackedFloat32Array(0, 0.26, 0.973333)
-colors = PackedColorArray(0, 0, 0, 0, 0.882353, 0, 0, 1, 1, 1, 0, 1)
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_7c82w"]
-
 [node name="Projectile" type="Area2D"]
 collision_layer = 6
 collision_mask = 7
@@ -64,21 +53,5 @@ amount = 2000
 process_material = SubResource("ParticleProcessMaterial_ynjqu")
 lifetime = 0.1
 fixed_fps = 60
-
-[node name="Line2D" type="Line2D" parent="CollisionShape2D"]
-visible = false
-modulate = Color(1.5, 1.5, 1.5, 1)
-show_behind_parent = true
-z_index = -1
-points = PackedVector2Array(-153.619, 5.3789e-05, -129.04, 4.52244e-05, -102.003, 3.58034e-05, -77.4241, 2.72389e-05, -49.1581, 2.44919, -39.9362, 3.38883, -10.5, 1)
-width = 5.0
-width_curve = SubResource("Curve_wtof8")
-gradient = SubResource("Gradient_hufj5")
-script = ExtResource("3_txx7a")
-
-[node name="Sprite2D" type="Sprite2D" parent="CollisionShape2D"]
-visible = false
-modulate = Color(1.5, 1.5, 1.5, 1)
-texture = SubResource("CompressedTexture2D_7c82w")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
