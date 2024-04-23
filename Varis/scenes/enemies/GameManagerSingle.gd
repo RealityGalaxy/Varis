@@ -60,14 +60,6 @@ func save_score(new_score):
 		new_store.append(score_save[i])
 	var file = FileAccess.open(save_path, FileAccess.WRITE)
 	file.store_var(new_store)
-	print_debug(new_store)
-	test_load()
-	
-func test_load():
-	if FileAccess.file_exists(save_path):
-		var file = FileAccess.open(save_path, FileAccess.READ)
-		var score_save_temp = file.get_var()
-		print_debug(score_save_temp)
 
 func _ready():
 	if FileAccess.file_exists(save_path):
