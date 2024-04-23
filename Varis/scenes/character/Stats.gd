@@ -10,6 +10,6 @@ var damage_multiplier : float = 1
 var damage_reduction : float = 1
 var speed_multiplier : float = 1
 var cooldown_reduction : float = 1
-var spells = ["basic", "wind_wall", null, null, null]
+var spells = ["basic", null, null, null, null]
 var is_shielded : bool = false
 var win_count: int = 0

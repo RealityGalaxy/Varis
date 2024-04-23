@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://dm0fup1at8e7n"]
 
 [ext_resource type="Script" path="res://scenes/enemies/eye_drone.gd" id="1_6yc5o"]
-[ext_resource type="Texture2D" uid="uid://dk0usjhfweo61" path="res://scenes/enemies/pixel-art-eye-monster-character-png.webp" id="1_oybo3"]
+[ext_resource type="Texture2D" uid="uid://c03ngxyuuretw" path="res://graphics/placeholder/enemi.png" id="2_i5m1u"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rpxju"]
 radius = 32.0
@@ -17,9 +17,10 @@ script = ExtResource("1_6yc5o")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture_filter = 5
-rotation = 1.5708
-scale = Vector2(0.06, 0.06)
-texture = ExtResource("1_oybo3")
+position = Vector2(-7, 13)
+rotation = 1.09062
+scale = Vector2(0.139998, 0.139998)
+texture = ExtResource("2_i5m1u")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(16, 3)

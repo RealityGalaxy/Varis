@@ -17,6 +17,7 @@ var jump_speed: int = -1000
 var double_jump_speed: int = -700
 var jumps_left: int = 2
 var gravity = 2400
+var id
 var direction = 0
 var acceleration = 0.3
 var friction = 0.6
@@ -28,6 +29,7 @@ var extra_vel: Vector2 = Vector2.ZERO
 var speedmult = 1
 
 func _ready():
+	id = get_instance_id()
 	var stats = StatManager.get_player_stats(player_num)
 	healthbar._init_healthbar(stats.current_health, stats.max_health)
 	manabar._init_healthbar(stats.current_mana, stats.max_mana)

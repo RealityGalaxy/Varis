@@ -130,7 +130,7 @@ offset_bottom = 209.0
 size_flags_horizontal = 6
 size_flags_vertical = 6
 theme_override_font_sizes/font_size = 80
-text = "Score: 0 / 100"
+text = "Score: 0 / 250"
 vertical_alignment = 1
 
 [node name="Dim" type="Sprite2D" parent="GameManager"]

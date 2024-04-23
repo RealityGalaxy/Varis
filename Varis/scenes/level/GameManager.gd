@@ -48,6 +48,7 @@ func show_player_win(loser_num):
 	update_winner_text(winner-1)
 	text.text = "Player %d has won" % winner
 	text.visible = true
+	
 func update_winner_text(winner_num):
 	var stats = StatManager.get_player_stats(winner_num)
 	stats.win_count += 1
@@ -79,10 +80,15 @@ func _on_display_winner_timeout():
 	var tween = create_tween()
 	tween.tween_property(dim, "modulate", Color(0,0,0,0.7), 1.5)
 	await tween.finished
-	if GameStatus.winner_num != GameStatus.current_player:
-		for i in 4:
-			rpc("spawn_card", inst_to_dict(CardData.Cards.pick_random()), i)
-		timer_movement.start()
+	if StatManager.get_player_stats(0).win_count >= 10 or StatManager.get_player_stats(1).win_count >= 10:
+		text.visible = true
+		$TimerText/Button.visible = true
+		text.text = "Player %d wins the game!" % GameStatus.winner_num
+	else:
+		if GameStatus.winner_num != GameStatus.current_player:
+			for i in 4:
+				rpc("spawn_card", inst_to_dict(CardData.Cards.pick_random()), i)
+			timer_movement.start()
 
 @rpc("any_peer", "call_local")
 func spawn_card(card, index: int):
@@ -128,3 +134,7 @@ func select_card(index):
 	tween.tween_property(dim, "modulate", Color(0,0,0,0), 1.5)
 	restart_round()
 	
+
+
+func _on_button_pressed():
+	get_tree().change_scene_to_file("res://scenes/menus/main_menu/main_menu.tscn")

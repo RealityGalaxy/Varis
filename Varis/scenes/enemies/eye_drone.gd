@@ -2,7 +2,8 @@ extends CharacterBody2D
 
 var movement_speed: float = 200.0
 var damage: int = 10
-var health: int = 60
+var health: int = 50
+var max_health: int = 50
 
 @onready var navigation_agent: NavigationAgent2D = $NavigationAgent2D
 var player = null
@@ -13,6 +14,7 @@ func flash_red():
 	create_tween().tween_property(self, 'modulate', Color.WHITE, 0.1)
 
 func _ready():
+	health = max_health
 	navigation_agent.path_desired_distance = 4.0
 	navigation_agent.target_desired_distance = 4.0
 
@@ -32,7 +34,7 @@ func take_damage(damage: int, direction: Vector2):
 
 
 func die():
-	get_parent().get_child(0).add_score(300)
+	get_parent().get_parent().add_score(max_health)
 	dead = true
 	$Area2D.set_deferred("monitoring", false)
 	$Area2D.set_deferred("monitoring", false)
@@ -43,7 +45,7 @@ func die():
 func actor_setup():
 	await get_tree().physics_frame
 	await get_tree().create_timer(1).timeout
-	player = $"../MultiplayerSpawner".get_child(0)
+	player = $"../../../MultiplayerSpawner".get_child(0)
 	set_movement_target(player.position)
 	
 

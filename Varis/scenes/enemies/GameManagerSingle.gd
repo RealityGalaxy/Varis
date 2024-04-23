@@ -13,11 +13,16 @@ var started: bool = false
 var selected: bool = false
 var won: bool = false
 var score = 0
-var next_card = 250
+var next_card = 100
 var time = 0.0
+var enemies = 0
+var max_enemies = 2
 
 func add_score(add: int):
-	score += add
+	score += add * (1 + (floor(time / 30)) * 0.1)
+	enemies-=1
+	if(enemies < max_enemies):
+		spawn_enemy(2 if enemies + 2 <= max_enemies else 1)
 	if score >= next_card:
 		next_card += 50
 		next_card *= 1.7
@@ -25,15 +30,24 @@ func add_score(add: int):
 		show_cards()
 		
 func spawn_enemy(amount = 1):
+	var spawnpoints = $"../EnemySpawns".get_children()
 	for i in range(amount):
-		var spawnpoint = $"../EnemySpawns".get_children().pick_random().position
+		enemies += 1
+		var spawnpoint = spawnpoints.pick_random()
+		spawnpoints.remove_at(spawnpoints.find(spawnpoint))
 		var enemy = load("res://scenes/enemies/eye_drone.tscn").instantiate()
+		call_deferred("add_enemy", enemy)
+		enemy.position = spawnpoint.position
+		enemy.max_health *= (1 + (floor(time / 30)) * 0.1)
+
+func add_enemy(enemy):
+	$Enemies.add_child(enemy)
 
 func _ready():
 	StatManager.restart()
 	GameStatus.reset()
 	text.text = "Waiting for player"
-	spawn_enemy(3)
+	spawn_enemy()
 	
 func _process(delta):
 	if GameStatus.players.size() == 1 and not started:
@@ -48,12 +62,13 @@ func _process(delta):
 		text.add_theme_font_size_override("font_size", ceil(text_size))
 		text.text = str(new_time)
 	if not GameStatus.pause_time and not won:
+		max_enemies = 2 + floor(time / 40)
 		time += delta
 		update_game_texts()
 		
 func update_game_texts():
 	$LevelTimer.text = str(floor(time / 60)) + ':' + (str(int(time) % 60) if int(time) % 60 >= 10 else ('0' + str(int(time) % 60)))
-	$ScoreText.text = "Score: " + str(score) + " / " + str(next_card)
+	$ScoreText.text = "Score: " + str(floor(score)) + " / " + str(floor(next_card))
 
 func start_round():
 	started = true

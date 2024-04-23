@@ -1,7 +1,7 @@
 extends Node
 
 var Spells = {
-	"basic":new_spell("basic", 0.2, "res://scenes/projectiles/projectile.tscn", 5, 10, "res://scenes/projectiles/basic.png"),
+	"basic":new_spell("basic", 0.2, "res://scenes/projectiles/projectile.tscn", 5, 10, "res://graphics/projectiles/IMG_0345.png"),
 	"basic_earth":new_spell("basic_earth", 0.15, "res://scenes/projectiles/projectile.tscn", 3, 5, "res://graphics/projectiles/basic_earth.png"),
 	"basic_air":new_spell("basic_air", 0.4, "res://scenes/projectiles/projectile.tscn", 15, 20, "res://graphics/projectiles/basic_air.png"),
 	"basic_fire":new_spell("basic_fire", 1, "res://scenes/projectiles/projectile.tscn", 30, 40, "res://graphics/projectiles/basic_fire.png"),
