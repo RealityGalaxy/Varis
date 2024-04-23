@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://6e8sm7nonkqw"
-path="res://.godot/imported/powerful_spell.png-126f0ed97a89194b9db0583898ba4d1f.ctex"
+uid="uid://dqxaau8qbo18h"
+path="res://.godot/imported/quickshot.png-44065cf3f69ab1fd9d1163fc7706a4ea.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://graphics/projectiles/powerful_spell.png"
-dest_files=["res://.godot/imported/powerful_spell.png-126f0ed97a89194b9db0583898ba4d1f.ctex"]
+source_file="res://graphics/buffs/quickshot.png"
+dest_files=["res://.godot/imported/quickshot.png-44065cf3f69ab1fd9d1163fc7706a4ea.ctex"]
 
 [params]
 

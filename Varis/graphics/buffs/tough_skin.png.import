@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cy0y51lllvdpk"
-path="res://.godot/imported/nimble_feet.png-0da7732f58d10ccf063e3d792981f3d4.ctex"
+uid="uid://1esyfp8vm6yk"
+path="res://.godot/imported/tough_skin.png-1a5fdd14668e29e2964747bf54baa208.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://graphics/projectiles/nimble_feet.png"
-dest_files=["res://.godot/imported/nimble_feet.png-0da7732f58d10ccf063e3d792981f3d4.ctex"]
+source_file="res://graphics/buffs/tough_skin.png"
+dest_files=["res://.godot/imported/tough_skin.png-1a5fdd14668e29e2964747bf54baa208.ctex"]
 
 [params]
 
