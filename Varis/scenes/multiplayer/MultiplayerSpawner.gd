@@ -7,7 +7,7 @@ func _ready():
 	spawn_function = spawnPlayer
 	if is_multiplayer_authority():
 		spawn(1)
-		spawn(2)
+		#spawn(2)
 		
 		multiplayer.peer_connected.connect(spawn)
 		multiplayer.peer_disconnected.connect(removePlayer)
@@ -19,10 +19,13 @@ func spawnPlayer(data):
 	player.set_multiplayer_authority(data)
 	player.use_spell.connect(get_node("../SpellManager").on_spell_fire)
 	players[data] = player
-
-	var spawnpoint = $"../Maps".map.get_child(0).get_child(index)
+	var spawnpoint
+	if get_parent().find_child("Maps"):
+		spawnpoint = $"../Maps".map.get_child(0).get_child(index)
+		player.scale = Vector2(0.4, 0.4)
+	else:
+		spawnpoint = $"../SpawnPoints".get_children().pick_random()
 	player.position = spawnpoint.position
-	player.scale = Vector2(0.4, 0.4)
 	index += 1;
 
 	player.player_num = index;

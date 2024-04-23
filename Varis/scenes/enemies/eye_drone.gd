@@ -2,10 +2,15 @@ extends CharacterBody2D
 
 var movement_speed: float = 200.0
 var damage: int = 10
+var health: int = 60
 
 @onready var navigation_agent: NavigationAgent2D = $NavigationAgent2D
 var player = null
 var extra_vel = Vector2.ZERO
+
+func flash_red():
+	await create_tween().tween_property(self, 'modulate', Color(1, 0.6, 0.6), 0.1).finished
+	create_tween().tween_property(self, 'modulate', Color.WHITE, 0.1)
 
 func _ready():
 	navigation_agent.path_desired_distance = 4.0
@@ -13,6 +18,27 @@ func _ready():
 
 	# Make sure to not await during _ready.
 	call_deferred("actor_setup")
+
+var dead = false
+
+func take_damage(damage: int, direction: Vector2):
+	extra_vel += damage * direction * 80
+	health -= damage
+	if(health <= 0):
+		die()
+	else:
+		flash_red()
+
+
+
+func die():
+	get_parent().get_child(0).add_score(300)
+	dead = true
+	$Area2D.set_deferred("monitoring", false)
+	$Area2D.set_deferred("monitoring", false)
+	$CollisionShape2D.set_deferred("disabled", true)
+	await create_tween().tween_property(self, 'modulate', Color.TRANSPARENT, 0.5).finished
+	queue_free()
 
 func actor_setup():
 	await get_tree().physics_frame
@@ -27,7 +53,7 @@ func set_movement_target(movement_target: Vector2):
 var next_rotation = null
 
 func _physics_process(delta):
-	if player == null:
+	if player == null or GameStatus.pause_time or dead:
 		return
 
 	set_movement_target(player.position)
@@ -57,3 +83,9 @@ func _on_area_2d_body_entered(body):
 func _on_timer_timeout():
 	if player == null:
 		return
+
+
+func _on_area_2d_area_entered(area):
+	if area.is_in_group("projectile"):
+		take_damage(area.damage, area.position.direction_to(position))
+		area.queue_free()

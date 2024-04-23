@@ -1,6 +1,7 @@
 extends Node2D
 
 @onready var text = $TimerText
+@onready var button = $TimerText/Button
 @onready var timer_round_start = $Timers/RoundStart
 @onready var timer_winner = $Timers/DisplayWinner
 @onready var timer_movement = $Timers/Movement
@@ -11,14 +12,31 @@ var text_size: float = 80
 var started: bool = false
 var selected: bool = false
 var won: bool = false
+var score = 0
+var next_card = 250
+var time = 0.0
+
+func add_score(add: int):
+	score += add
+	if score >= next_card:
+		next_card += 50
+		next_card *= 1.7
+		update_game_texts()
+		show_cards()
+		
+func spawn_enemy(amount = 1):
+	for i in range(amount):
+		var spawnpoint = $"../EnemySpawns".get_children().pick_random().position
+		var enemy = load("res://scenes/enemies/eye_drone.tscn").instantiate()
 
 func _ready():
 	StatManager.restart()
 	GameStatus.reset()
 	text.text = "Waiting for player"
+	spawn_enemy(3)
 	
 func _process(delta):
-	if GameStatus.players.size() == 2 and not started:
+	if GameStatus.players.size() == 1 and not started:
 		start_round()
 	if not timer_round_start.is_stopped():
 		var new_time = ceil(timer_round_start.time_left)
@@ -29,6 +47,13 @@ func _process(delta):
 			text_size = 80
 		text.add_theme_font_size_override("font_size", ceil(text_size))
 		text.text = str(new_time)
+	if not GameStatus.pause_time and not won:
+		time += delta
+		update_game_texts()
+		
+func update_game_texts():
+	$LevelTimer.text = str(floor(time / 60)) + ':' + (str(int(time) % 60) if int(time) % 60 >= 10 else ('0' + str(int(time) % 60)))
+	$ScoreText.text = "Score: " + str(score) + " / " + str(next_card)
 
 func start_round():
 	started = true
@@ -36,30 +61,27 @@ func start_round():
 	timer_round_start.start()
 	
 func show_cards():
-	pass
-	
+	GameStatus.pause_time = true
+	create_tween().tween_property(dim, "modulate", Color(0,0,0,0.7), 1.5)
+	timer_winner.start()
 
 func show_player_win(loser_num):
 	if won:
 		return
 	won = true
-	timer_winner.start()
-	text.text = "You have lost"
+	create_tween().tween_property(text, "modulate", Color(1,1,1), 1.5)
+	create_tween().tween_property(dim, "modulate", Color(0,0,0,0.7), 1.5)
+	text.text = "You have died.
+	Survived: " + (str(floor(time / 60)) + ':' + (str(int(time) % 60) if int(time) % 60 >= 10 else ('0' + str(int(time) % 60)))) + " 
+	Score: " + str(score)
 	text.visible = true
+	button.visible = true
 
 
 func restart_round():
 	selected = false
 	won = false
-	var players = $"../MultiplayerSpawner".get_children()
-	for i in players.size():
-		var player = players[i]
-		player.visible = true
-		player.heal(1000)
-		player.regen_mana(1000)
-		player.position = $"../SpawnPoints".get_children()[i].position
-		
-	start_round()
+	_on_timer_timeout()
 
 func _on_timer_timeout():
 	GameStatus.pause_time = false
@@ -68,13 +90,9 @@ func _on_timer_timeout():
 func _on_display_winner_timeout():
 	GameStatus.pause_time = true
 	text.visible = false
-	var tween = create_tween()
-	tween.tween_property(dim, "modulate", Color(0,0,0,0.7), 1.5)
-	await tween.finished
-	if GameStatus.winner_num != GameStatus.current_player:
-		for i in 4:
-			rpc("spawn_card", inst_to_dict(CardData.Cards.pick_random()), i)
-		timer_movement.start()
+	for i in 4:
+		rpc("spawn_card", inst_to_dict(CardData.Cards.pick_random()), i)
+	timer_movement.start()
 
 @rpc("any_peer", "call_local")
 func spawn_card(card, index: int):
@@ -98,8 +116,7 @@ func spawn_card(card, index: int):
   
 func on_card_click(input: InputEvent, card: Card, index):
 	if input is InputEventMouseButton and input.pressed and input.button_index == 1 and not selected and timer_movement.is_stopped():
-		print(GameStatus.loser_num-1)
-		$"../MultiplayerSpawner".get_children()[GameStatus.loser_num-1].handle_card(card)
+		$"../MultiplayerSpawner".get_children()[0].handle_card(card)
 		rpc("select_card", index)
 
 @rpc("any_peer", "call_local")
@@ -117,6 +134,10 @@ func select_card(index):
 	for i in cards.size():
 		cards[i].queue_free()
 	var tween = create_tween()
-	tween.tween_property(dim, "modulate", Color(0,0,0,0), 1.5)
+	await tween.tween_property(dim, "modulate", Color(0,0,0,0), 1.5).finished
 	restart_round()
 	
+
+
+func _on_button_pressed():
+	get_tree().change_scene_to_file("res://scenes/menus/main_menu/main_menu.tscn")

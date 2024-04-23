@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dayfxbmtsuqrd" path="res://scenes/Rain/Rain.tscn" id="1_3xpcx"]
 [ext_resource type="Texture2D" uid="uid://hb5qw0s3eac2" path="res://graphics/terrain/tilemaps/GrassTilemap.png" id="1_qesyg"]
-[ext_resource type="Texture2D" uid="uid://byadn1chqmare" path="res://graphics/placeholder/Background.jpg" id="1_u5atv"]
+[ext_resource type="Texture2D" uid="uid://tybwuvagd8f" path="res://graphics/placeholder/Background.jpg" id="1_u5atv"]
 [ext_resource type="PackedScene" uid="uid://ynsikejtex8b" path="res://scenes/character/SpellManager.tscn" id="1_xxy83"]
 [ext_resource type="PackedScene" uid="uid://b45ydlouck4io" path="res://scenes/menus/spell_list/spell_list.tscn" id="2_5gk46"]
 [ext_resource type="PackedScene" uid="uid://4r48f8lttmp" path="res://scenes/level/deathzone.tscn" id="2_xw1hr"]
@@ -239,7 +239,7 @@ scale = Vector2(10, 110)
 position = Vector2(2181, 321)
 scale = Vector2(10, 110)
 
-[node name="Maps" type="Node" parent="."]
+[node name="Maps" type="Node2D" parent="."]
 script = ExtResource("9_dvt6g")
 
 [node name="GrassMap" type="TileMap" parent="Maps"]

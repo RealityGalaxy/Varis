@@ -3,7 +3,7 @@ extends Node
 var Cards = [
 	new_card("Fireball", "Launch a big high damage fireball", "res://graphics/projectiles/basic_fire.png", "unlock_spell", "basic_fire"),
 	new_card("Rock throw", "Quickly throw many small rocks", "res://graphics/projectiles/basic_earth.png", "unlock_spell", "basic_earth"),
-	new_card("Water arrow", "Shoot a long thin arrow of water", "res://scenes/projectiles/basic_water/water_arrow.png", "unlock_spell", "basic_water"),
+	#new_card("Water arrow", "Shoot a long thin arrow of water", "res://scenes/projectiles/basic_water/water_arrow.png", "unlock_spell", "basic_water"),
 	new_card("Air bolt", "Release bolts of air", "res://graphics/projectiles/air_bolt.png", "unlock_spell", "basic_air"),
 	new_card("Powerfull spells", "Increase damage by 20%", "res://graphics/buffs/powerful_spell.png", "damage", 0.2),
 	new_card("Nimble feet", "Increase movement speed by 10%", "res://graphics/buffs/nimble_feet.png", "speed", 0.1),

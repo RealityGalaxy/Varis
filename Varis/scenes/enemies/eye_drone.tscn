@@ -43,4 +43,5 @@ shape = SubResource("CircleShape2D_afwkn")
 
 [connection signal="path_changed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_path_changed"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
