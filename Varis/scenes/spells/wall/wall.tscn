@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://dpsiy8m4ewtc1"]
+
+[ext_resource type="Script" path="res://scenes/spells/wall/wall.gd" id="2_5etl5"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_k02xl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2qlqx"]
+size = Vector2(0.763979, 3.22441)
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_cgorb"]
+
+[node name="Wall" type="Node2D"]
+position = Vector2(17, 15)
+scale = Vector2(100, 100)
+script = ExtResource("2_5etl5")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+material = SubResource("CanvasItemMaterial_k02xl")
+scale = Vector2(50, 50)
+collision_priority = 3.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0.0031801, 0.015478)
+scale = Vector2(0.01, 0.01)
+shape = SubResource("RectangleShape2D_2qlqx")
+one_way_collision_margin = 20.6
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D"]
+position = Vector2(0.00321416, 0.0152748)
+scale = Vector2(0.00797168, 0.0326505)
+texture = SubResource("PlaceholderTexture2D_cgorb")
