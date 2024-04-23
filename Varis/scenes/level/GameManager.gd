@@ -64,7 +64,8 @@ func restart_round():
 		player.visible = true
 		player.heal(1000)
 		player.regen_mana(1000)
-		player.position = $"../SpawnPoints".get_children()[i].position
+		var map = $"../Maps".map
+		player.position = map.get_child(0).get_children()[i].position
 		
 	start_round()
 

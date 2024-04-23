@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://cubitxapsm3h1"]
+[gd_scene load_steps=15 format=3 uid="uid://cubitxapsm3h1"]
 
 [ext_resource type="Texture2D" uid="uid://c380wvdmmtcf2" path="res://icon.svg" id="2_fjpeu"]
 [ext_resource type="Script" path="res://scenes/character/Character.gd" id="2_iyq3v"]
 [ext_resource type="PackedScene" uid="uid://17oana8owvic" path="res://scenes/character/healthbar.tscn" id="2_vik5t"]
 [ext_resource type="PackedScene" uid="uid://dcp1scfnwnqhy" path="res://scenes/character/manabar.tscn" id="3_k7jh3"]
 [ext_resource type="Texture2D" uid="uid://gxjpjhp53d4j" path="res://graphics/placeholder/Player_Anim_Paper.png" id="4_e8vku"]
+[ext_resource type="Texture2D" uid="uid://kuskljjt2his" path="res://graphics/placeholder/BrownmanSprite.png" id="5_yru0s"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ui26g"]
 atlas = ExtResource("4_e8vku")
@@ -13,6 +14,14 @@ region = Rect2(10, 3, 545, 780)
 [sub_resource type="AtlasTexture" id="AtlasTexture_lf3oe"]
 atlas = ExtResource("4_e8vku")
 region = Rect2(565, 3, 545, 780)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sa5o5"]
+atlas = ExtResource("5_yru0s")
+region = Rect2(0, 0, 500, 770)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s0ld7"]
+atlas = ExtResource("5_yru0s")
+region = Rect2(500, 0, 500, 770)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_jwmfe"]
 animations = [{
@@ -24,7 +33,18 @@ animations = [{
 "texture": SubResource("AtlasTexture_lf3oe")
 }],
 "loop": true,
-"name": &"default",
+"name": &"player1",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sa5o5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s0ld7")
+}],
+"loop": true,
+"name": &"player2",
 "speed": 5.0
 }]
 
@@ -79,6 +99,8 @@ texture_filter = 6
 position = Vector2(20, 65)
 scale = Vector2(0.360294, 0.360294)
 sprite_frames = SubResource("SpriteFrames_jwmfe")
+animation = &"player1"
+frame_progress = 0.418529
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 visible = false

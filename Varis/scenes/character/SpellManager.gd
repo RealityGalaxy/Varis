@@ -1,5 +1,11 @@
 extends Node2D
 
+var scaleOffset
+
+func _ready():
+	scaleOffset = 1 if GameStatus.players.size() == 2 else 0.8
+	pass
+
 func on_spell_fire(spell: String, player: int, pos: Vector2, mouse_position: Vector2, hash_id: int):
 	match spell:
 		'basic':
@@ -25,6 +31,7 @@ func basic(pos: Vector2, mouse_position: Vector2, player_num: int, spell: String
 	
 	projectile.id = hash_id
 	projectile.position = pos
+	projectile.scale = projectile.scale * scaleOffset
 	projectile.player = player_num
 	projectile.damage = SpellData.Spells[spell].base_damage * StatManager.get_player_stats(player_num).damage_multiplier
 	projectile.look_at(mouse_position)
@@ -36,6 +43,7 @@ func fire_basic(pos: Vector2, mouse_position: Vector2, player_num: int, spell: S
 	
 	projectile.id = hash_id
 	projectile.position = pos
+	projectile.scale = projectile.scale * scaleOffset
 	projectile.player = player_num
 	projectile.damage = SpellData.Spells[spell].base_damage * StatManager.get_player_stats(player_num).damage_multiplier
 	projectile.look_at(mouse_position)
@@ -47,6 +55,7 @@ func air_basic(pos: Vector2, mouse_position: Vector2, player_num: int, spell: St
 	
 	projectile.id = hash_id
 	projectile.position = pos
+	projectile.scale = projectile.scale * scaleOffset
 	projectile.player = player_num
 	projectile.damage = SpellData.Spells[spell].base_damage * StatManager.get_player_stats(player_num).damage_multiplier
 	projectile.look_at(mouse_position)
@@ -58,6 +67,7 @@ func water_basic(pos: Vector2, mouse_position: Vector2, player_num: int, spell: 
 	
 	projectile.id = hash_id
 	projectile.position = pos
+	projectile.scale = projectile.scale * scaleOffset
 	projectile.player = player_num
 	projectile.damage = SpellData.Spells[spell].base_damage * StatManager.get_player_stats(player_num).damage_multiplier
 	projectile.look_at(mouse_position)
@@ -69,6 +79,7 @@ func earth_basic(pos: Vector2, mouse_position: Vector2, player_num: int, spell: 
 	
 	projectile.id = hash_id
 	projectile.position = pos
+	projectile.scale = projectile.scale * scaleOffset
 	projectile.player = player_num
 	projectile.damage = SpellData.Spells[spell].base_damage * StatManager.get_player_stats(player_num).damage_multiplier
 	projectile.look_at(mouse_position)
