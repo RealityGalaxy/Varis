@@ -1,7 +1,18 @@
-[gd_scene load_steps=9 format=3 uid="uid://be5o63enulwgv"]
+[gd_scene load_steps=10 format=3 uid="uid://be5o63enulwgv"]
 
 [ext_resource type="Script" path="res://scenes/projectiles/Projectile.gd" id="1_dqsyf"]
-[ext_resource type="Texture2D" uid="uid://c380wvdmmtcf2" path="res://icon.svg" id="2_2ixxj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h0u77"]
+size = Vector2(39, 37)
+
+[sub_resource type="Curve" id="Curve_wr84k"]
+min_value = -360.0
+max_value = 360.0
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_cdac5"]
+curve = SubResource("Curve_wr84k")
 
 [sub_resource type="Gradient" id="Gradient_8hfyp"]
 colors = PackedColorArray(1, 0, 0, 1, 1, 1, 0, 1)
@@ -20,33 +31,27 @@ curve = SubResource("Curve_3lo2g")
 particle_flag_disable_z = true
 emission_shape = 1
 emission_sphere_radius = 20.0
+angle_curve = SubResource("CurveTexture_cdac5")
 gravity = Vector3(0, 0, 0)
-scale_min = 0.5
-scale_max = 2.0
+scale_min = 6.0
+scale_max = 10.0
 scale_curve = SubResource("CurveTexture_j1ybt")
 color_ramp = SubResource("GradientTexture1D_q21au")
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_h0u77"]
-size = Vector2(89, 37)
+turbulence_noise_strength = 0.0
 
 [node name="Projectile" type="Area2D" groups=["projectile"]]
 collision_layer = 7
 collision_mask = 7
 script = ExtResource("1_dqsyf")
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
-amount = 4000
-process_material = SubResource("ParticleProcessMaterial_ynjqu")
-lifetime = 0.5
-speed_scale = 2.0
-fixed_fps = 60
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-modulate = Color(1, 0, 0, 1)
-scale = Vector2(0.691406, 0.287109)
-texture = ExtResource("2_2ixxj")
-
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 0)
 shape = SubResource("RectangleShape2D_h0u77")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="CollisionShape2D"]
+amount = 2000
+process_material = SubResource("ParticleProcessMaterial_ynjqu")
+lifetime = 0.1
+fixed_fps = 60
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

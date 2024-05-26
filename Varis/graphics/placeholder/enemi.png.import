@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://rc5n1tb6yokc"
-path="res://.godot/imported/Circle_(transparent).png-4c0a51534759c3ac5957220def40a452.ctex"
+uid="uid://c03ngxyuuretw"
+path="res://.godot/imported/enemi.png-7f71720b2ed92b2347251a0d431ab14f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/spells/wall/Circle_(transparent).png"
-dest_files=["res://.godot/imported/Circle_(transparent).png-4c0a51534759c3ac5957220def40a452.ctex"]
+source_file="res://graphics/placeholder/enemi.png"
+dest_files=["res://.godot/imported/enemi.png-7f71720b2ed92b2347251a0d431ab14f.ctex"]
 
 [params]
 

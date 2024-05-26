@@ -1,7 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://mwmy3eogffsj"]
+[gd_scene load_steps=6 format=3 uid="uid://mwmy3eogffsj"]
 
 [ext_resource type="Texture2D" uid="uid://c380wvdmmtcf2" path="res://icon.svg" id="1_1wece"]
 [ext_resource type="Script" path="res://scenes/menus/round_pick/card.gd" id="1_jyyds"]
+[ext_resource type="Texture2D" uid="uid://d0xg22wxb1182" path="res://graphics/ui/card_UI.png" id="2_tmede"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_dvyjd"]
+font_size = 64
+
+[sub_resource type="LabelSettings" id="LabelSettings_l4e6m"]
+font_size = 64
 
 [node name="Card" type="Control"]
 layout_mode = 3
@@ -13,48 +20,51 @@ grow_vertical = 2
 scale = Vector2(1.7, 1.7)
 script = ExtResource("1_jyyds")
 
-[node name="Border" type="ColorRect" parent="."]
+[node name="CardUi" type="TextureRect" parent="."]
+texture_filter = 6
 layout_mode = 0
-offset_right = 126.0
-offset_bottom = 213.0
-mouse_filter = 1
-color = Color(0.278431, 0.215686, 0.121569, 1)
-
-[node name="Inside" type="ColorRect" parent="."]
-layout_mode = 0
-offset_left = 5.0
-offset_top = 5.0
-offset_right = 121.0
-offset_bottom = 208.0
-mouse_filter = 1
-color = Color(0.388235, 0.305882, 0.184314, 1)
+offset_left = -20.0
+offset_top = -5.88235
+offset_right = 335.0
+offset_bottom = 447.118
+scale = Vector2(0.528235, 0.528235)
+texture = ExtResource("2_tmede")
+expand_mode = 1
 
 [node name="CardName" type="Label" parent="."]
 layout_mode = 0
-offset_right = 126.0
-offset_bottom = 31.0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 479.0
+offset_bottom = 96.0
+scale = Vector2(0.3, 0.3)
 text = "Card name"
+label_settings = SubResource("LabelSettings_dvyjd")
 horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="CardEffect" type="Label" parent="."]
 layout_mode = 0
-offset_top = 124.0
-offset_right = 126.0
-offset_bottom = 215.0
+offset_left = 10.0
+offset_top = 133.0
+offset_right = 581.0
+offset_bottom = 494.0
+scale = Vector2(0.25, 0.25)
 theme_override_font_sizes/font_size = 12
 text = "lorem ipsum lorem ipsum lorem ipsum lorem ipsum"
+label_settings = SubResource("LabelSettings_l4e6m")
 horizontal_alignment = 1
 autowrap_mode = 3
 
 [node name="CardImage" type="TextureRect" parent="."]
+texture_filter = 6
 layout_mode = 0
-offset_left = 17.0
-offset_top = 27.0
-offset_right = 107.0
-offset_bottom = 117.0
+offset_left = 34.7059
+offset_top = 38.2353
+offset_right = 124.706
+offset_bottom = 128.235
 texture = ExtResource("1_1wece")
-expand_mode = 1
+expand_mode = 2
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]

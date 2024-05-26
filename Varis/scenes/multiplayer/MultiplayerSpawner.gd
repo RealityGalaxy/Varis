@@ -19,10 +19,14 @@ func spawnPlayer(data):
 	player.set_multiplayer_authority(data)
 	player.use_spell.connect(get_node("../SpellManager").on_spell_fire)
 	players[data] = player
-
-	var spawnpoint = $"../Maps".map.get_child(0).get_child(index)
+	var spawnpoint
+	if get_parent().find_child("Maps"):
+		$"../Maps".set_map(0)
+		spawnpoint = $"../Maps".map.get_child(0).get_child(index)
+		player.scale = Vector2(0.4, 0.4)
+	else:
+		spawnpoint = $"../SpawnPoints".get_children().pick_random()
 	player.position = spawnpoint.position
-	player.scale = Vector2(0.4, 0.4)
 	index += 1;
 
 	player.player_num = index;

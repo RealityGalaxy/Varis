@@ -4,16 +4,16 @@
 [ext_resource type="Script" path="res://scenes/character/Character.gd" id="2_iyq3v"]
 [ext_resource type="PackedScene" uid="uid://17oana8owvic" path="res://scenes/character/healthbar.tscn" id="2_vik5t"]
 [ext_resource type="PackedScene" uid="uid://dcp1scfnwnqhy" path="res://scenes/character/manabar.tscn" id="3_k7jh3"]
-[ext_resource type="Texture2D" uid="uid://gxjpjhp53d4j" path="res://graphics/placeholder/Player_Anim_Paper.png" id="4_e8vku"]
+[ext_resource type="Texture2D" uid="uid://gxjpjhp53d4j" path="res://graphics/placeholder/Player_Anim_Paper.png" id="4_msris"]
 [ext_resource type="Texture2D" uid="uid://kuskljjt2his" path="res://graphics/placeholder/BrownmanSprite.png" id="5_yru0s"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ui26g"]
-atlas = ExtResource("4_e8vku")
-region = Rect2(10, 3, 545, 780)
+[sub_resource type="AtlasTexture" id="AtlasTexture_13t0l"]
+atlas = ExtResource("4_msris")
+region = Rect2(0, 0, 557, 786)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_lf3oe"]
-atlas = ExtResource("4_e8vku")
-region = Rect2(565, 3, 545, 780)
+[sub_resource type="AtlasTexture" id="AtlasTexture_dxcju"]
+atlas = ExtResource("4_msris")
+region = Rect2(557, 0, 557, 786)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sa5o5"]
 atlas = ExtResource("5_yru0s")
@@ -27,10 +27,10 @@ region = Rect2(500, 0, 500, 770)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ui26g")
+"texture": SubResource("AtlasTexture_13t0l")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_lf3oe")
+"texture": SubResource("AtlasTexture_dxcju")
 }],
 "loop": true,
 "name": &"player1",
@@ -99,8 +99,8 @@ texture_filter = 6
 position = Vector2(20, 65)
 scale = Vector2(0.360294, 0.360294)
 sprite_frames = SubResource("SpriteFrames_jwmfe")
-animation = &"player1"
-frame_progress = 0.418529
+animation = &"player2"
+frame_progress = 0.921891
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 visible = false
