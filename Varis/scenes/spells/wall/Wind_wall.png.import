@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://rc5n1tb6yokc"
-path="res://.godot/imported/Circle_(transparent).png-4c0a51534759c3ac5957220def40a452.ctex"
+uid="uid://dwjvc03dy511y"
+path="res://.godot/imported/Wind_wall.png-11748043b526f0573e9630e73368aed1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/spells/wall/Circle_(transparent).png"
-dest_files=["res://.godot/imported/Circle_(transparent).png-4c0a51534759c3ac5957220def40a452.ctex"]
+source_file="res://scenes/spells/wall/Wind_wall.png"
+dest_files=["res://.godot/imported/Wind_wall.png-11748043b526f0573e9630e73368aed1.ctex"]
 
 [params]
 
