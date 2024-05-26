@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://tybwuvagd8f"
-path="res://.godot/imported/Background.jpg-a69025a0635d4bfe164ac2f330a63822.ctex"
+uid="uid://pxx5h6km64rn"
+path="res://.godot/imported/basic_earth.png-a23a835e71a3f971ee5d18345d3a3b7c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://graphics/placeholder/Background.jpg"
-dest_files=["res://.godot/imported/Background.jpg-a69025a0635d4bfe164ac2f330a63822.ctex"]
+source_file="res://graphics/projectiles/basic_earth.png"
+dest_files=["res://.godot/imported/basic_earth.png-a23a835e71a3f971ee5d18345d3a3b7c.ctex"]
 
 [params]
 

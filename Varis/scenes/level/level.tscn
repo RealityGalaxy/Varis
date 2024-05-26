@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dayfxbmtsuqrd" path="res://scenes/Rain/Rain.tscn" id="1_3xpcx"]
 [ext_resource type="Texture2D" uid="uid://hb5qw0s3eac2" path="res://graphics/terrain/tilemaps/GrassTilemap.png" id="1_qesyg"]
-[ext_resource type="Texture2D" uid="uid://byadn1chqmare" path="res://graphics/placeholder/Background.jpg" id="1_u5atv"]
+[ext_resource type="Texture2D" uid="uid://tybwuvagd8f" path="res://graphics/placeholder/Background.jpg" id="1_u5atv"]
 [ext_resource type="PackedScene" uid="uid://ynsikejtex8b" path="res://scenes/character/SpellManager.tscn" id="1_xxy83"]
 [ext_resource type="PackedScene" uid="uid://b45ydlouck4io" path="res://scenes/menus/spell_list/spell_list.tscn" id="2_5gk46"]
 [ext_resource type="PackedScene" uid="uid://4r48f8lttmp" path="res://scenes/level/deathzone.tscn" id="2_xw1hr"]
@@ -155,6 +155,7 @@ one_shot = true
 z_index = 3
 
 [node name="TimerText" type="Label" parent="GameManager"]
+z_index = 1
 offset_left = 920.0
 offset_top = 540.0
 offset_right = 930.0
@@ -167,6 +168,16 @@ theme_override_font_sizes/font_size = 80
 text = "3"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="Button" type="Button" parent="GameManager/TimerText"]
+visible = false
+layout_mode = 0
+offset_left = 162.0
+offset_top = 105.5
+offset_right = 520.0
+offset_bottom = 201.5
+theme_override_font_sizes/font_size = 64
+text = "Main Menu"
 
 [node name="Dim" type="Sprite2D" parent="GameManager"]
 modulate = Color(0, 0, 0, 0)
@@ -239,7 +250,7 @@ scale = Vector2(10, 110)
 position = Vector2(2181, 321)
 scale = Vector2(10, 110)
 
-[node name="Maps" type="Node" parent="."]
+[node name="Maps" type="Node2D" parent="."]
 script = ExtResource("9_dvt6g")
 
 [node name="GrassMap" type="TileMap" parent="Maps"]
@@ -315,3 +326,4 @@ playerScene = ExtResource("4_hlpcm")
 
 [connection signal="timeout" from="GameManager/Timers/RoundStart" to="GameManager" method="_on_timer_timeout"]
 [connection signal="timeout" from="GameManager/Timers/DisplayWinner" to="GameManager" method="_on_display_winner_timeout"]
+[connection signal="pressed" from="GameManager/TimerText/Button" to="GameManager" method="_on_button_pressed"]

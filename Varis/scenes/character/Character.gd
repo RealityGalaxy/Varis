@@ -17,33 +17,37 @@ var jump_speed: int = -1000
 var double_jump_speed: int = -700
 var jumps_left: int = 2
 var gravity = 2400
+var id
 var direction = 0
 var acceleration = 0.3
 var friction = 0.6
 var vel: Vector2 = Vector2.ZERO
+var extra_vel: Vector2 = Vector2.ZERO
 @onready var healthbar = $Healthbar
 @onready var manabar = $Manabar
 @onready var anim = $AnimatedSprite2D
 var speedmult = 1
 
 func _ready():
+	id = Time.get_ticks_msec()
 	var stats = StatManager.get_player_stats(player_num)
 	healthbar._init_healthbar(stats.current_health, stats.max_health)
 	manabar._init_healthbar(stats.current_mana, stats.max_mana)
 	anim.play("player1" if player_num == 1 else "player2")
 	set_collision_layer_value(player_num, true)
-	$"../../GameManager/SpellUI".get_children()[1 if player_num == 1 else 0].get_child(2).visible = false
+	if $"../../GameManager/SpellUI".get_children().size() == 2:
+		$"../../GameManager/SpellUI".get_children()[1 if player_num == 1 else 0].get_child(2).visible = false
 	speedmult = 0.8 if scale.x == 0.4 else 1
 
 func get_input():
 	direction = 0
 	if Input.is_action_pressed("left"):
 		direction = -1
-		anim.flip_h = true if player_num == 1 else false
+		anim.flip_h = true
 		anim.offset.x = 75 if player_num == 1 else 0
 	if Input.is_action_pressed("right"):
 		direction = 1
-		anim.flip_h = false if player_num == 1 else true
+		anim.flip_h = false
 		anim.offset.x = 0 if player_num == 1 else 75
 	if Input.is_action_pressed("spell1"):
 		rpc("UseProjectile1", get_global_mouse_position(), hash(Time.get_unix_time_from_system()))
@@ -156,6 +160,7 @@ func _physics_process(delta):
 	
 	if is_on_floor() or is_on_ceiling():
 		jumps_left = 2 if is_on_floor() else jumps_left
+		extra_vel = Vector2() if is_on_ceiling() else extra_vel
 		vel.y = 0
 		
 	vel.y += gravity * delta
@@ -177,8 +182,15 @@ func _physics_process(delta):
 	else:
 		vel.x = lerp(vel.x, 0.0, friction)
 	
-	velocity = vel
+	if extra_vel != Vector2(0,0):
+		extra_vel = lerp(extra_vel, Vector2(0,0), 0.1)
+	
+	velocity = vel + extra_vel
 	move_and_slide()
+
+func flash_red():
+	await create_tween().tween_property(self, 'modulate', Color(1, 0.6, 0.6), 0.1).finished
+	create_tween().tween_property(self, 'modulate', Color.WHITE, 0.1)
 
 func set_stats(player_number: int, stats):
 	StatManager.set_player_stats(player_number, dict_to_inst(stats))
@@ -227,6 +239,8 @@ func take_damage_rpc(damage: int, id):
 	
 	var actual_damage = damage * (2 - stats.damage_reduction)
 	if actual_damage > 0:
+		if $"../../GameManager/SpellUI".get_children().size() == 1:
+			flash_red()
 		stats.current_health -= actual_damage
 		emit_signal("health_changed", stats.current_health)
 		if stats.current_health <= 0:

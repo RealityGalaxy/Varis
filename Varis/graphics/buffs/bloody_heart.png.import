@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://tybwuvagd8f"
-path="res://.godot/imported/Background.jpg-a69025a0635d4bfe164ac2f330a63822.ctex"
+uid="uid://du3vt65cxmpl"
+path="res://.godot/imported/bloody_heart.png-e160574aa7cf526f26d46cfe7f9878ce.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://graphics/placeholder/Background.jpg"
-dest_files=["res://.godot/imported/Background.jpg-a69025a0635d4bfe164ac2f330a63822.ctex"]
+source_file="res://graphics/buffs/bloody_heart.png"
+dest_files=["res://.godot/imported/bloody_heart.png-e160574aa7cf526f26d46cfe7f9878ce.ctex"]
 
 [params]
 

@@ -1,0 +1,290 @@
+[gd_scene load_steps=16 format=3 uid="uid://cyvijepe2gh34"]
+
+[ext_resource type="Script" path="res://scenes/enemies/GameManagerSingle.gd" id="1_vbknj"]
+[ext_resource type="PackedScene" uid="uid://b45ydlouck4io" path="res://scenes/menus/spell_list/spell_list.tscn" id="2_eeija"]
+[ext_resource type="Texture2D" uid="uid://x4pkx7ofc87y" path="res://graphics/terrain/Background.png" id="3_ogpe3"]
+[ext_resource type="PackedScene" uid="uid://dayfxbmtsuqrd" path="res://scenes/Rain/Rain.tscn" id="4_v2458"]
+[ext_resource type="PackedScene" uid="uid://ynsikejtex8b" path="res://scenes/character/SpellManager.tscn" id="5_p0hir"]
+[ext_resource type="Texture2D" uid="uid://hb5qw0s3eac2" path="res://graphics/terrain/tilemaps/GrassTilemap.png" id="6_jsg6j"]
+[ext_resource type="PackedScene" uid="uid://4r48f8lttmp" path="res://scenes/level/deathzone.tscn" id="7_mavyb"]
+[ext_resource type="Script" path="res://scenes/multiplayer/MultiplayerSpawner.gd" id="8_68s7d"]
+[ext_resource type="PackedScene" uid="uid://cubitxapsm3h1" path="res://scenes/character/char.tscn" id="9_i2jjy"]
+[ext_resource type="Texture2D" uid="uid://7k62fx517vut" path="res://graphics/terrain/Platform_1.png" id="11_qg25i"]
+[ext_resource type="Texture2D" uid="uid://b8dd43oomoe5s" path="res://graphics/terrain/Platform_2.png" id="12_5xhvs"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_a7tux"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rfgjm"]
+texture = ExtResource("6_jsg6j")
+texture_region_size = Vector2i(64, 64)
+0:0/0 = 0
+0:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:0/0/physics_layer_0/angular_velocity = 0.0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+1:0/0 = 0
+1:0/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:0/0/physics_layer_0/angular_velocity = 0.0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+0:1/0 = 0
+0:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:1/0/physics_layer_0/angular_velocity = 0.0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+1:1/0 = 0
+1:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:1/0/physics_layer_0/angular_velocity = 0.0
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+2:1/0 = 0
+2:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:1/0/physics_layer_0/angular_velocity = 0.0
+2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, -32, 32, 32, -32, 32)
+0:2/0 = 0
+0:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:2/0/physics_layer_0/angular_velocity = 0.0
+0:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(32, -32, -32, 32, 32, 32)
+1:2/0 = 0
+1:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:2/0/physics_layer_0/angular_velocity = 0.0
+1:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-32, -32, 32, 32, -32, 32)
+
+[sub_resource type="TileSet" id="TileSet_ie8pg"]
+tile_size = Vector2i(64, 64)
+physics_layer_0/collision_layer = 4
+physics_layer_0/collision_mask = 4
+sources/0 = SubResource("TileSetAtlasSource_rfgjm")
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_5irwh"]
+vertices = PackedVector2Array(1952, 428, 2138, -344, 2156, 1213, 1944, 882, 1899, 806, 1939, 299, 1942, 951, 1458, 545, 1566, 526, 1612, 518, 1652, 546, 1497, 808, 1443, 771, 1506, 506, 1893, 487, 1823, 517, 1821, 518, -299, -346, 1506, 293, 1754, 544, 1247, 831, 1278, 787, 1316, 827, 1457, 389, 793, 231, 1879, 1017, 1466, 463, 897, 546, 1366, 768, 1411, 918, 771, 936, 1511, 1030, 651, 1023, 1071, 835, 895, 761, 988, 770, 769, 797, 767, 692, 843, 708, 120, 799, 788, 449, 834, 357, 895, 546, 831, 550, 679, 447, 284, 1043, 302, 1034, 358, 1095, 422, 233, 336, 230, -306, 1211, 334, 370, 419, 446, 641, 484, 528, 480, 475, 446, 148, 1003, 1578, 1026, 1634, 1086, 1750, 1085, 1809, 1020, 530, 1083, 586, 1027)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3, 4), PackedInt32Array(1, 0, 5), PackedInt32Array(6, 3, 2), PackedInt32Array(7, 8, 9, 10, 11, 12), PackedInt32Array(13, 8, 7), PackedInt32Array(14, 0, 4), PackedInt32Array(15, 14, 4, 11, 16), PackedInt32Array(17, 1, 5, 18), PackedInt32Array(19, 16, 11), PackedInt32Array(10, 19, 11), PackedInt32Array(20, 21, 22), PackedInt32Array(17, 18, 23, 24), PackedInt32Array(25, 6, 2), PackedInt32Array(26, 13, 7, 27), PackedInt32Array(28, 12, 11, 29, 22), PackedInt32Array(30, 20, 22, 29, 31, 32), PackedInt32Array(33, 20, 30), PackedInt32Array(34, 35, 33, 30, 36), PackedInt32Array(37, 38, 34, 36, 39), PackedInt32Array(40, 41, 23, 26, 27, 42), PackedInt32Array(40, 42, 43, 44), PackedInt32Array(45, 46, 47), PackedInt32Array(23, 41, 24), PackedInt32Array(17, 24, 48, 49), PackedInt32Array(50, 17, 49, 51), PackedInt32Array(50, 51, 52, 39), PackedInt32Array(44, 43, 37, 53), PackedInt32Array(53, 37, 39, 54), PackedInt32Array(55, 54, 39, 52), PackedInt32Array(50, 39, 56), PackedInt32Array(31, 57, 58, 50), PackedInt32Array(59, 60, 25, 2), PackedInt32Array(59, 2, 50, 58), PackedInt32Array(61, 62, 32, 31), PackedInt32Array(50, 56, 45, 47), PackedInt32Array(31, 50, 47, 61)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-342, -390, 2181, -387, 2200, 1257, -350, 1254), PackedVector2Array(169, 842, 187, 970, 280, 997, 313, 981, 376, 1051, 511, 1041, 568, 985, 636, 981, 728, 914, 727, 840), PackedVector2Array(897, 589, 859, 591, 828, 661, 866, 669, 915, 720, 1004, 729, 1085, 792, 1225, 789, 1274, 720, 1315, 763, 1348, 725, 1403, 727, 1412, 588), PackedVector2Array(1532, 336, 1501, 397, 1507, 444, 1530, 469, 1570, 482, 1624, 474, 1665, 503, 1746, 501, 1806, 478, 1868, 451, 1907, 412, 1900, 341), PackedVector2Array(1518, 851, 1467, 916, 1529, 986, 1597, 982, 1653, 1043, 1731, 1042, 1791, 978, 1860, 975, 1900, 933, 1901, 893, 1875, 849), PackedVector2Array(421, 277, 378, 275, 377, 351, 436, 403, 488, 404, 541, 438, 625, 441, 664, 404, 762, 406, 788, 354, 762, 274)])
+source_geometry_group_name = &"navigation_polygon_source_group"
+agent_radius = 42.81
+
+[node name="Level" type="Node2D"]
+
+[node name="GameManager" type="Node2D" parent="."]
+z_index = 100
+script = ExtResource("1_vbknj")
+
+[node name="Timers" type="Node" parent="GameManager"]
+
+[node name="RoundStart" type="Timer" parent="GameManager/Timers"]
+wait_time = 3.0
+one_shot = true
+
+[node name="DisplayWinner" type="Timer" parent="GameManager/Timers"]
+wait_time = 2.0
+one_shot = true
+
+[node name="Movement" type="Timer" parent="GameManager/Timers"]
+wait_time = 2.0
+one_shot = true
+
+[node name="Cards" type="Node2D" parent="GameManager"]
+z_index = 3
+
+[node name="Enemies" type="Node2D" parent="GameManager"]
+
+[node name="TimerText" type="Label" parent="GameManager"]
+modulate = Color(0, 0, 0, 1)
+z_index = 2
+offset_left = 708.0
+offset_top = 422.0
+offset_right = 1122.0
+offset_bottom = 666.0
+theme_override_font_sizes/font_size = 80
+text = "3"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="GameManager/TimerText"]
+visible = false
+layout_mode = 0
+offset_left = 29.0
+offset_top = 269.5
+offset_right = 387.0
+offset_bottom = 365.5
+theme_override_font_sizes/font_size = 64
+text = "Main Menu"
+
+[node name="LevelTimer" type="Label" parent="GameManager"]
+modulate = Color(0, 0, 0, 1)
+z_index = 2
+offset_left = 920.0
+offset_top = 7.0
+offset_right = 966.0
+offset_bottom = 117.0
+size_flags_horizontal = 6
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 80
+text = "0:00"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ScoreText" type="Label" parent="GameManager"]
+modulate = Color(0, 0, 0, 1)
+z_index = 2
+offset_left = 2.0
+offset_top = 99.0
+offset_right = 836.0
+offset_bottom = 209.0
+size_flags_horizontal = 6
+size_flags_vertical = 6
+theme_override_font_sizes/font_size = 80
+text = "Score: 0 / 250"
+vertical_alignment = 1
+
+[node name="Dim" type="Sprite2D" parent="GameManager"]
+modulate = Color(0, 0, 0, 0)
+position = Vector2(960, 540)
+scale = Vector2(1920, 1080)
+texture = SubResource("CanvasTexture_a7tux")
+
+[node name="SpellUI" type="Node" parent="GameManager"]
+
+[node name="Spell List L" parent="GameManager/SpellUI" instance=ExtResource("2_eeija")]
+offset_left = -2.0
+offset_top = -3.0
+offset_right = -1462.0
+offset_bottom = -983.0
+
+[node name="Sky2" type="Sprite2D" parent="."]
+position = Vector2(959.778, 539)
+scale = Vector2(1.00185, 1.00185)
+texture = ExtResource("3_ogpe3")
+
+[node name="Rain" parent="." instance=ExtResource("4_v2458")]
+z_index = 1
+position = Vector2(1020, 0)
+scale = Vector2(3, 3)
+
+[node name="SpellManager" parent="." instance=ExtResource("5_p0hir")]
+
+[node name="TileMap" type="TileMap" parent="."]
+modulate = Color(1, 1, 1, 0)
+tile_set = SubResource("TileSet_ie8pg")
+format = 2
+layer_0/tile_data = PackedInt32Array(851971, 0, 0, 851972, 0, 0, 851973, 0, 0, 851974, 0, 0, 851975, 0, 0, 851976, 0, 0, 851977, 0, 0, 851978, 0, 0, 917510, 0, 0, 917511, 0, 0, 917512, 0, 0, 589838, 0, 0, 589839, 0, 0, 589840, 0, 0, 589841, 0, 0, 589842, 0, 0, 589843, 0, 0, 589844, 0, 0, 589845, 0, 0, 655376, 0, 0, 655377, 0, 0, 655378, 0, 0, 851992, 0, 0, 851993, 0, 0, 851994, 0, 0, 851995, 0, 0, 851996, 0, 0, 917513, 0, 0, 983047, 0, 0, 983046, 0, 0, 917509, 0, 0, 917508, 0, 0, 917507, 65536, 805306370, 917514, 65536, 1342177282, 655375, 0, 0, 655374, 65536, 805306370, 720914, 0, 0, 720913, 0, 0, 327704, 0, 0, 327705, 0, 0, 327706, 0, 0, 327708, 0, 0, 327707, 0, 0, 393242, 0, 0, 393243, 0, 0, 393244, 65536, 1342177282, 393241, 65536, 805306370, 393240, 65536, 1342177282, 327709, 65536, 2, 851997, 65536, 2, 851991, 65536, 1610612738, 917527, 65536, 805306370, 917528, 0, 0, 917529, 0, 0, 917530, 0, 0, 917531, 0, 0, 917532, 0, 0, 917533, 65536, 1342177282, 983065, 65536, 805306370, 983067, 65536, 1342177282, 983066, 0, 0, 983048, 65536, 1342177282, 983045, 65536, 805306370, 589837, 65536, 1610612738, 720912, 65536, 805306370, 720915, 65536, 1342177282, 655379, 0, 0, 655380, 0, 0, 655381, 0, 0, 262151, 0, 0, 262152, 0, 0, 262153, 0, 0, 262154, 0, 0, 262155, 0, 0, 262150, 0, 0, 327691, 0, 0, 327690, 0, 0, 327688, 0, 0, 327689, 0, 0, 327687, 0, 0, 327686, 65536, 805306370)
+
+[node name="Deathzone" parent="." instance=ExtResource("7_mavyb")]
+position = Vector2(921, 1286)
+scale = Vector2(130, 4)
+
+[node name="Deathzone2" parent="." instance=ExtResource("7_mavyb")]
+position = Vector2(-477, 225)
+scale = Vector2(10, 110)
+
+[node name="Deathzone3" parent="." instance=ExtResource("7_mavyb")]
+position = Vector2(2326, 225)
+scale = Vector2(10, 110)
+
+[node name="SpawnPoints" type="Node2D" parent="."]
+
+[node name="0" type="Node2D" parent="SpawnPoints" groups=["PlayerSpawnPoint"]]
+position = Vector2(447, 679)
+
+[node name="1" type="Node2D" parent="SpawnPoints" groups=["PlayerSpawnPoint"]]
+position = Vector2(1688, 700)
+
+[node name="2" type="Node2D" parent="SpawnPoints" groups=["PlayerSpawnPoint"]]
+position = Vector2(1142, 435)
+
+[node name="3" type="Node2D" parent="SpawnPoints" groups=["PlayerSpawnPoint"]]
+position = Vector2(597, 108)
+
+[node name="EnemySpawns" type="Node2D" parent="."]
+
+[node name="0" type="Node2D" parent="EnemySpawns"]
+position = Vector2(-160, 210)
+
+[node name="4" type="Node2D" parent="EnemySpawns"]
+position = Vector2(-133, -174)
+
+[node name="5" type="Node2D" parent="EnemySpawns"]
+position = Vector2(206, -276)
+
+[node name="6" type="Node2D" parent="EnemySpawns"]
+position = Vector2(604, -241)
+
+[node name="7" type="Node2D" parent="EnemySpawns"]
+position = Vector2(1066, -268)
+
+[node name="8" type="Node2D" parent="EnemySpawns"]
+position = Vector2(1565, -223)
+
+[node name="9" type="Node2D" parent="EnemySpawns"]
+position = Vector2(1949, -186)
+
+[node name="10" type="Node2D" parent="EnemySpawns"]
+position = Vector2(2085, 81)
+
+[node name="11" type="Node2D" parent="EnemySpawns"]
+position = Vector2(2048, 481)
+
+[node name="12" type="Node2D" parent="EnemySpawns"]
+position = Vector2(2040, 833)
+
+[node name="13" type="Node2D" parent="EnemySpawns"]
+position = Vector2(1988, 1075)
+
+[node name="14" type="Node2D" parent="EnemySpawns"]
+position = Vector2(1403, 1116)
+
+[node name="15" type="Node2D" parent="EnemySpawns"]
+position = Vector2(841, 1099)
+
+[node name="16" type="Node2D" parent="EnemySpawns"]
+position = Vector2(189, 1091)
+
+[node name="1" type="Node2D" parent="EnemySpawns"]
+position = Vector2(-232, 566)
+
+[node name="2" type="Node2D" parent="EnemySpawns"]
+position = Vector2(-128, 1025)
+
+[node name="3" type="Node2D" parent="EnemySpawns"]
+position = Vector2(231, 1195)
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+spawn_path = NodePath(".")
+script = ExtResource("8_68s7d")
+playerScene = ExtResource("9_i2jjy")
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+position = Vector2(5, -21)
+navigation_polygon = SubResource("NavigationPolygon_5irwh")
+
+[node name="Enemies" type="Node2D" parent="."]
+
+[node name="Node2D" type="Node2D" parent="."]
+z_index = -1
+
+[node name="Platform1" type="Sprite2D" parent="Node2D"]
+z_index = 1
+position = Vector2(446, 916)
+texture = ExtResource("11_qg25i")
+
+[node name="Platform2" type="Sprite2D" parent="Node2D"]
+z_index = 1
+position = Vector2(1712, 907)
+texture = ExtResource("12_5xhvs")
+
+[node name="Platform5" type="Sprite2D" parent="Node2D"]
+z_index = 1
+position = Vector2(1700, 397)
+texture = ExtResource("12_5xhvs")
+flip_h = true
+
+[node name="Platform4" type="Sprite2D" parent="Node2D"]
+z_index = 1
+position = Vector2(598, 336)
+texture = ExtResource("12_5xhvs")
+
+[node name="Platform3" type="Sprite2D" parent="Node2D"]
+z_index = 1
+position = Vector2(1145, 667)
+texture = ExtResource("11_qg25i")
+flip_h = true
+
+[connection signal="timeout" from="GameManager/Timers/RoundStart" to="GameManager" method="_on_timer_timeout"]
+[connection signal="timeout" from="GameManager/Timers/DisplayWinner" to="GameManager" method="_on_display_winner_timeout"]
+[connection signal="pressed" from="GameManager/TimerText/Button" to="GameManager" method="_on_button_pressed"]

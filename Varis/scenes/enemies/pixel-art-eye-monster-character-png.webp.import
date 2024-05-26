@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://tybwuvagd8f"
-path="res://.godot/imported/Background.jpg-a69025a0635d4bfe164ac2f330a63822.ctex"
+uid="uid://dk0usjhfweo61"
+path="res://.godot/imported/pixel-art-eye-monster-character-png.webp-59d44ed4952ec4d95cc7bcf7cbf9da62.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://graphics/placeholder/Background.jpg"
-dest_files=["res://.godot/imported/Background.jpg-a69025a0635d4bfe164ac2f330a63822.ctex"]
+source_file="res://scenes/enemies/pixel-art-eye-monster-character-png.webp"
+dest_files=["res://.godot/imported/pixel-art-eye-monster-character-png.webp-59d44ed4952ec4d95cc7bcf7cbf9da62.ctex"]
 
 [params]
 
