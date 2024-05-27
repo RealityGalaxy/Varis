@@ -1,13 +1,17 @@
 extends MultiplayerSpawner
 
 @export var playerScene : PackedScene
+
 # Called when the node enters the scene tree for the first time.
 var index = 0
+
+
 func _ready():
 	spawn_function = spawnPlayer
 	if is_multiplayer_authority():
 		spawn(1)
 		#spawn(2)
+		
 		
 		multiplayer.peer_connected.connect(spawn)
 		multiplayer.peer_disconnected.connect(removePlayer)
@@ -42,6 +46,15 @@ func spawnPlayer(data):
 	GameStatus.players.push_back(player.player_num)
 	StatManager.add_player(player.player_num, Steam.getPersonaName())
 
+
+	
+	var player_stats = StatManager.get_player_stats(player.player_num)
+	player_stats.current_mana = Settings.current_mana
+	player_stats.damage_multiplier = Settings.damage_multiplier
+	player_stats.cooldown_reduction = Settings.cooldown_reduction
+
+	StatManager.set_player_stats(player.player_num, player_stats)
+	
 	return player
 
 func removePlayer(data):

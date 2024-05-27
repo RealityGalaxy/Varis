@@ -18,12 +18,16 @@ func spawn_level(data):
 
 func _on_host_pressed():
 	Sfx.button_click()
+	$MarginContainer.queue_free()
+	$MarginContainer2.visible = true
+
+func _on_start_pressed():
+	Sfx.button_click()
 	peer.create_lobby(SteamMultiplayerPeer.LOBBY_TYPE_PUBLIC)
 	multiplayer.multiplayer_peer = peer
 	multiplayerSpawner.spawn("res://scenes/level/level.tscn")
 	$Background.queue_free()
-	$MarginContainer.queue_free()
-
+	$MarginContainer2.queue_free()
 
 func _on_lobby_created(connect, id):
 	if connect:

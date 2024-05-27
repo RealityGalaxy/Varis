@@ -24,6 +24,7 @@ CardData="*res://scenes/menus/round_pick/card_data.gd"
 GlobalSettings="*res://scenes/menus/settings/global_settings.gd"
 GlobalSteam="*res://scenes/multiplayer/Steam.gd"
 Sfx="*res://audio/sfx/SFX.tscn"
+Settings="*res://scenes/multiplayer/Settings.gd"
 
 [display]
 
