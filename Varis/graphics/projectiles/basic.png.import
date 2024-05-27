@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ce05awyqveito"
-path="res://.godot/imported/Why.png-0f297068e22bb4fa0f5f82fc749b1875.ctex"
+uid="uid://dbjpuo2nbrnyh"
+path="res://.godot/imported/basic.png-e78ed0bf4e59017495f017248423388d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/spells/why/Why.png"
-dest_files=["res://.godot/imported/Why.png-0f297068e22bb4fa0f5f82fc749b1875.ctex"]
+source_file="res://graphics/projectiles/basic.png"
+dest_files=["res://.godot/imported/basic.png-e78ed0bf4e59017495f017248423388d.ctex"]
 
 [params]
 

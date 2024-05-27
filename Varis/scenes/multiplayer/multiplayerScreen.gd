@@ -17,6 +17,7 @@ func spawn_level(data):
 
 
 func _on_host_pressed():
+	Sfx.button_click()
 	peer.create_lobby(SteamMultiplayerPeer.LOBBY_TYPE_PUBLIC)
 	multiplayer.multiplayer_peer = peer
 	multiplayerSpawner.spawn("res://scenes/level/level.tscn")
@@ -59,7 +60,8 @@ func _on_lobby_match_list(lobbies):
 			$MarginContainer/PopupPanel/LobbyScrollContainer/Lobbies.add_child(button)
 
 func _on_join_pressed():
-
+	Sfx.button_click()
+	
 	for button in $MarginContainer/PopupPanel/LobbyScrollContainer/Lobbies.get_children():
 		button.queue_free()
 		
@@ -75,4 +77,5 @@ func _input(event):
 			get_tree().change_scene_to_file("res://scenes/menus/main_menu/main_menu.tscn")
 
 func _on_back_pressed():
+	Sfx.button_click()
 	get_tree().change_scene_to_file("res://scenes/menus/main_menu/main_menu.tscn")

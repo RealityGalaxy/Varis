@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dwjvc03dy511y"
-path="res://.godot/imported/Wind_wall.png-11748043b526f0573e9630e73368aed1.ctex"
+path="res://.godot/imported/Wind_wall.png-0c2630467989bedbda39d997631dc473.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/spells/wall/Wind_wall.png"
-dest_files=["res://.godot/imported/Wind_wall.png-11748043b526f0573e9630e73368aed1.ctex"]
+source_file="res://graphics/projectiles/Wind_wall.png"
+dest_files=["res://.godot/imported/Wind_wall.png-0c2630467989bedbda39d997631dc473.ctex"]
 
 [params]
 

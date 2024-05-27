@@ -1,14 +1,14 @@
 extends Node
 
 var Spells = {
-	"basic":new_spell("basic", 0.2, "res://scenes/projectiles/projectile.tscn", 5, 10, "res://graphics/projectiles/IMG_0345.png", "res://audio/sfx/Basic.wav"),
+	"basic":new_spell("basic", 0.2, "res://scenes/projectiles/projectile.tscn", 5, 10, "res://graphics/projectiles/basic.png", "res://audio/sfx/Basic.wav"),
 	"basic_earth":new_spell("basic_earth", 0.15, "res://scenes/projectiles/projectile.tscn", 3, 5, "res://graphics/projectiles/basic_earth.png", "res://audio/sfx/Earth.wav"),
 	"basic_air":new_spell("basic_air", 0.4, "res://scenes/projectiles/projectile.tscn", 15, 20, "res://graphics/projectiles/basic_air.png", "res://audio/sfx/Air.wav"),
 	"basic_fire":new_spell("basic_fire", 1, "res://scenes/projectiles/projectile.tscn", 30, 40, "res://graphics/projectiles/basic_fire.png", "res://audio/sfx/Fire.wav"),
 	"basic_water":new_spell("basic_water", 0.5, "res://scenes/projectiles/projectile.tscn", 15, 20, "res://scenes/projectiles/basic_water/water_arrow.png", "res://audio/sfx/Water.wav"),
 	"air_gate":new_spell("air_gate", 5, "res://scenes/spells/air_gate/air_gate.tscn", 0, 50, "res://scenes/spells/air_gate/Circle_(transparent).png", "res://audio/sfx/Air_gate.wav"),
 	"shield":new_spell("shield", 7, "res://scenes/spells/shield/shield.tscn", 0, 50, "res://scenes/spells/shield/Ski_trail_rating_symbol_black_circle.png", "res://audio/sfx/Shield.wav"),
-	"wind_wall":new_spell("wind_wall", 5, "res://scenes/spells/wall/wall.tscn", 0, 50, "res://scenes/spells/wall/Circle_(transparent).png", "res://audio/sfx/Wind_wall.wav"),
+	"wind_wall":new_spell("wind_wall", 5, "res://scenes/spells/wall/wall.tscn", 0, 50, "res://graphics/projectiles/Wind_wall.png", "res://audio/sfx/Wind_wall.wav"),
 }
 
 func new_spell(spell_name: String, cooldown: float, spell_file: String, damage: int, cost: int, imagePath: String, sfxPath: String):
@@ -19,5 +19,5 @@ func new_spell(spell_name: String, cooldown: float, spell_file: String, damage: 
 	spell.base_damage = damage
 	spell.mana_cost = cost
 	spell.image_path =  imagePath
-	spell.sfx = sfxPath
+	spell.sfx_path = sfxPath
 	return spell

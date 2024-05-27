@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dbjpuo2nbrnyh"
-path="res://.godot/imported/IMG_0345.png-6a26cdcb479b04b96207a961a5df369d.ctex"
+uid="uid://ce05awyqveito"
+path="res://.godot/imported/Why.png-d9fb5020dc8f3de52a79508186c41ef7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://graphics/projectiles/IMG_0345.png"
-dest_files=["res://.godot/imported/IMG_0345.png-6a26cdcb479b04b96207a961a5df369d.ctex"]
+source_file="res://graphics/buffs/Why.png"
+dest_files=["res://.godot/imported/Why.png-d9fb5020dc8f3de52a79508186c41ef7.ctex"]
 
 [params]
 
