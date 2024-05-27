@@ -71,17 +71,18 @@ func restart_round():
 	start_round()
 
 func _on_timer_timeout():
-	Sfx.round_end()
 	GameStatus.pause_time = false
 	text.visible = false
 
 func _on_display_winner_timeout():
+	Sfx.round_end()
 	GameStatus.pause_time = true
 	text.visible = false
 	var tween = create_tween()
 	tween.tween_property(dim, "modulate", Color(0,0,0,0.7), 1.5)
 	await tween.finished
 	if StatManager.get_player_stats(0).win_count >= 10 or StatManager.get_player_stats(1).win_count >= 10:
+		Sfx.round_lose()
 		text.visible = true
 		$TimerText/Button.visible = true
 		text.text = "Player %d wins the game!" % GameStatus.winner_num
