@@ -21,7 +21,6 @@ func _process(delta):
 	if GameStatus.players.size() == 2 and not started:
 		start_round()
 	if not timer_round_start.is_stopped():
-		Sfx.round_end()
 		var new_time = ceil(timer_round_start.time_left)
 		text.add_theme_font_size_override("font_size", 80)
 		text_size -= 20 * delta
@@ -72,6 +71,7 @@ func restart_round():
 	start_round()
 
 func _on_timer_timeout():
+	Sfx.round_end()
 	GameStatus.pause_time = false
 	text.visible = false
 

@@ -166,6 +166,7 @@ func spawn_card(card, index: int):
   
 func on_card_click(input: InputEvent, card: Card, index):
 	if input is InputEventMouseButton and input.pressed and input.button_index == 1 and not selected and timer_movement.is_stopped():
+		Sfx.button_click()
 		$"../MultiplayerSpawner".get_children()[0].handle_card(card)
 		rpc("select_card", index)
 
