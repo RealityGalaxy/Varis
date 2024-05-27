@@ -35,6 +35,7 @@ func _process(delta):
 		text.text = str(new_time)
 
 func start_round():
+	get_tree().root.find_child("Loading2").queue_free()
 	update_winner_text(0, 0)
 	update_winner_text(1, 0)
 	started = true
