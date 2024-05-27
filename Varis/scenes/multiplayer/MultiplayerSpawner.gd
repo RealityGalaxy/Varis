@@ -31,7 +31,7 @@ func spawnPlayer(data):
 	var spawnpoint = Vector2(0,0)
 	if get_parent().find_child("Maps") and GlobalSteam.lobby_id != -1:
 		$"../Maps".set_map(GlobalSteam.lobby_id % 3)
-		spawnpoint = $"../Maps".map.get_child(0).get_child(index-1).position
+		spawnpoint = $"../Maps".map.get_child(0).get_child(index).position
 		player.scale = Vector2(0.4, 0.4)
 	elif not get_parent().find_child("Maps") and GlobalSteam.lobby_id == -1:
 		spawnpoint = $"../SpawnPoints".get_children().pick_random().position
