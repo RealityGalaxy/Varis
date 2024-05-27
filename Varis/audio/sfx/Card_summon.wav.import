@@ -2,13 +2,13 @@
 
 importer="wav"
 type="AudioStreamWAV"
-uid="uid://bfiutacrrmh1f"
-path="res://.godot/imported/Earth.wav-1285002e0322b7b494d8582b9334b153.sample"
+uid="uid://cinpr82akbubi"
+path="res://.godot/imported/Card_summon.wav-86a2555c2687f5ef6e64b795ff0cd3bf.sample"
 
 [deps]
 
-source_file="res://audio/sfx/Earth.wav"
-dest_files=["res://.godot/imported/Earth.wav-1285002e0322b7b494d8582b9334b153.sample"]
+source_file="res://audio/sfx/Card_summon.wav"
+dest_files=["res://.godot/imported/Card_summon.wav-86a2555c2687f5ef6e64b795ff0cd3bf.sample"]
 
 [params]
 

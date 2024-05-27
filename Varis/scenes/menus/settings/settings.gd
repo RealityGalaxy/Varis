@@ -1,6 +1,7 @@
 extends Control
 
 func _on_back_pressed():
+	Sfx.button_click()
 	get_tree().change_scene_to_file("res://scenes/menus/main_menu/main_menu.tscn")
 
 func change_keybind(action, new_hotkey):
@@ -30,25 +31,30 @@ func change_button_text(button: String, newbind):
 			$Spell5.text = newbind
 
 func _on_spell_1_pressed():
+	Sfx.button_click()
 	bind = "spell1"
 	change_button_text(bind, "Press a key")
 
 
 func _on_spell_2_pressed():
+	Sfx.button_click()
 	bind = "spell2"
 	change_button_text(bind, "Press a key")
 
 
 func _on_spell_3_pressed():
+	Sfx.button_click()
 	bind = "spell3"
 	change_button_text(bind, "Press a key")
 
 
 func _on_spell_4_pressed():
+	Sfx.button_click()
 	bind = "spell4"
 	change_button_text(bind, "Press a key")
 
 
 func _on_spell_5_pressed():
+	Sfx.button_click()
 	bind = "spell5"
 	change_button_text(bind, "Press a key")

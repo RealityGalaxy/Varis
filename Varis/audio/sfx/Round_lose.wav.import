@@ -2,13 +2,13 @@
 
 importer="wav"
 type="AudioStreamWAV"
-uid="uid://bfiutacrrmh1f"
-path="res://.godot/imported/Earth.wav-1285002e0322b7b494d8582b9334b153.sample"
+uid="uid://b886q4nmy3ci2"
+path="res://.godot/imported/Round_lose.wav-142329e48dda9a6da24bfc0ba8c29146.sample"
 
 [deps]
 
-source_file="res://audio/sfx/Earth.wav"
-dest_files=["res://.godot/imported/Earth.wav-1285002e0322b7b494d8582b9334b153.sample"]
+source_file="res://audio/sfx/Round_lose.wav"
+dest_files=["res://.godot/imported/Round_lose.wav-142329e48dda9a6da24bfc0ba8c29146.sample"]
 
 [params]
 

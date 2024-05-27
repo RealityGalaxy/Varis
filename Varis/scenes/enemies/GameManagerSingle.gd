@@ -97,6 +97,7 @@ func start_round():
 	timer_round_start.start()
 	
 func show_cards():
+	Sfx.round_end()
 	GameStatus.pause_time = true
 	create_tween().tween_property(dim, "modulate", Color(0,0,0,0.7), 1.5)
 	timer_winner.start()
@@ -105,6 +106,7 @@ func show_player_win(loser_num):
 	if won:
 		return
 	won = true
+	Sfx.round_lose()
 	create_tween().tween_property(text, "modulate", Color(1,1,1), 1.5)
 	create_tween().tween_property(dim, "modulate", Color(0,0,0,0.7), 1.5)
 	text.text = "You have died.
@@ -143,6 +145,7 @@ func _on_display_winner_timeout():
 
 @rpc("any_peer", "call_local")
 func spawn_card(card, index: int):
+	Sfx.card_spawn()
 	card = dict_to_inst(card)
 	var card_scene = preload("res://scenes/menus/round_pick/card.tscn")
 	var card_obj = card_scene.instantiate()
@@ -163,6 +166,7 @@ func spawn_card(card, index: int):
   
 func on_card_click(input: InputEvent, card: Card, index):
 	if input is InputEventMouseButton and input.pressed and input.button_index == 1 and not selected and timer_movement.is_stopped():
+		Sfx.button_click()
 		$"../MultiplayerSpawner".get_children()[0].handle_card(card)
 		rpc("select_card", index)
 

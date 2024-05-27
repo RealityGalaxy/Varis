@@ -9,18 +9,25 @@ func _ready():
 func on_spell_fire(spell: String, player: int, pos: Vector2, mouse_position: Vector2, hash_id: int):
 	match spell:
 		'basic':
+			Sfx.spell_basic()
 			basic(pos, mouse_position, player, spell, hash_id)
 		'basic_fire':
+			Sfx.spell_fire()
 			fire_basic(pos, mouse_position, player, spell, hash_id)
 		'basic_air':
+			Sfx.spell_air()
 			air_basic(pos, mouse_position, player, spell, hash_id)
 		'basic_earth':
+			Sfx.spell_earth()
 			earth_basic(pos, mouse_position, player, spell, hash_id)
 		'basic_water':
+			Sfx.spell_water()
 			water_basic(pos, mouse_position, player, spell, hash_id)
 		'shield':
+			Sfx.spell_shield()
 			shield(player, spell)
 		"wind_wall":
+			Sfx.spell_windwall()
 			windwall(pos, mouse_position, player, spell, hash_id)
 		_:
 			print('weird shit happened : '+spell)

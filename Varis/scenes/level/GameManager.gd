@@ -75,12 +75,14 @@ func _on_timer_timeout():
 	text.visible = false
 
 func _on_display_winner_timeout():
+	Sfx.round_end()
 	GameStatus.pause_time = true
 	text.visible = false
 	var tween = create_tween()
 	tween.tween_property(dim, "modulate", Color(0,0,0,0.7), 1.5)
 	await tween.finished
 	if StatManager.get_player_stats(0).win_count >= 10 or StatManager.get_player_stats(1).win_count >= 10:
+		Sfx.round_lose()
 		text.visible = true
 		$TimerText/Button.visible = true
 		text.text = "Player %d wins the game!" % GameStatus.winner_num
@@ -92,6 +94,7 @@ func _on_display_winner_timeout():
 
 @rpc("any_peer", "call_local")
 func spawn_card(card, index: int):
+	Sfx.card_spawn()
 	card = dict_to_inst(card)
 	var card_scene = preload("res://scenes/menus/round_pick/card.tscn")
 	var card_obj = card_scene.instantiate()
@@ -112,6 +115,7 @@ func spawn_card(card, index: int):
   
 func on_card_click(input: InputEvent, card: Card, index):
 	if input is InputEventMouseButton and input.pressed and input.button_index == 1 and not selected and timer_movement.is_stopped():
+		Sfx.button_click()
 		print(GameStatus.loser_num-1)
 		$"../MultiplayerSpawner".get_children()[GameStatus.loser_num-1].handle_card(card)
 		rpc("select_card", index)
@@ -136,4 +140,5 @@ func select_card(index):
 
 
 func _on_button_pressed():
+	Sfx.button_click()
 	get_tree().change_scene_to_file("res://scenes/menus/main_menu/main_menu.tscn")
