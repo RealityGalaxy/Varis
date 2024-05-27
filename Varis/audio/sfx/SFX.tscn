@@ -1,10 +1,58 @@
-[gd_scene load_steps=3 format=3 uid="uid://bx2uoi25ju0r0"]
+[gd_scene load_steps=15 format=3 uid="uid://bx2uoi25ju0r0"]
 
 [ext_resource type="Script" path="res://audio/sfx/SFX.gd" id="1_qcdre"]
-[ext_resource type="AudioStream" uid="uid://6t8u1wvhtynr" path="res://audio/sfx/Click.wav" id="2_2qt7v"]
+[ext_resource type="AudioStream" uid="uid://7btkoisxbtq5" path="res://audio/sfx/Click.wav" id="2_2qt7v"]
+[ext_resource type="AudioStream" uid="uid://ds1t1rbjqg2gk" path="res://audio/sfx/Air.wav" id="3_7ng2x"]
+[ext_resource type="AudioStream" uid="uid://b55grb3lr65tl" path="res://audio/sfx/Basic.wav" id="4_mh2pt"]
+[ext_resource type="AudioStream" uid="uid://bfiutacrrmh1f" path="res://audio/sfx/Earth.wav" id="5_1pvih"]
+[ext_resource type="AudioStream" uid="uid://bdlt1ttimu326" path="res://audio/sfx/Fire.wav" id="6_oqlbq"]
+[ext_resource type="AudioStream" uid="uid://bfhp0fk1njwcs" path="res://audio/sfx/Shield.wav" id="7_vy6rs"]
+[ext_resource type="AudioStream" uid="uid://bye4752eu8ou6" path="res://audio/sfx/Water.wav" id="8_4oppg"]
+[ext_resource type="AudioStream" uid="uid://dhnyg8dojeckt" path="res://audio/sfx/Wind_wall.wav" id="9_p68w4"]
+[ext_resource type="AudioStream" uid="uid://dmrw37i5pook4" path="res://audio/sfx/Air_gate.wav" id="10_0oo5i"]
+[ext_resource type="AudioStream" uid="uid://dkr2cqqifjlpa" path="res://audio/sfx/Hit.wav" id="11_8tc3f"]
+[ext_resource type="AudioStream" uid="uid://ccf5ujep0xduw" path="res://audio/sfx/Round_end.wav" id="12_b7rf2"]
+[ext_resource type="AudioStream" uid="uid://cinpr82akbubi" path="res://audio/sfx/Card_summon.wav" id="13_vndtt"]
+[ext_resource type="AudioStream" uid="uid://b886q4nmy3ci2" path="res://audio/sfx/Round_lose.wav" id="14_gxreo"]
 
 [node name="Sfx" type="Node"]
 script = ExtResource("1_qcdre")
 
 [node name="ButtonClick" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("2_2qt7v")
+
+[node name="SpellAir" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_7ng2x")
+
+[node name="SpellBasic" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_mh2pt")
+
+[node name="SpellEarth" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_1pvih")
+
+[node name="SpellFire" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_oqlbq")
+
+[node name="SpellShield" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_vy6rs")
+
+[node name="SpellWater" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_4oppg")
+
+[node name="SpellWindWall" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_p68w4")
+
+[node name="SpellAirGate" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("10_0oo5i")
+
+[node name="Hit" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("11_8tc3f")
+
+[node name="RoundEnd" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("12_b7rf2")
+
+[node name="CardSpawn" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("13_vndtt")
+
+[node name="RoundLose" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("14_gxreo")

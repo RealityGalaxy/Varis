@@ -21,6 +21,7 @@ func _process(delta):
 	if GameStatus.players.size() == 2 and not started:
 		start_round()
 	if not timer_round_start.is_stopped():
+		Sfx.round_end()
 		var new_time = ceil(timer_round_start.time_left)
 		text.add_theme_font_size_override("font_size", 80)
 		text_size -= 20 * delta
@@ -92,6 +93,7 @@ func _on_display_winner_timeout():
 
 @rpc("any_peer", "call_local")
 func spawn_card(card, index: int):
+	Sfx.card_spawn()
 	card = dict_to_inst(card)
 	var card_scene = preload("res://scenes/menus/round_pick/card.tscn")
 	var card_obj = card_scene.instantiate()
@@ -112,6 +114,7 @@ func spawn_card(card, index: int):
   
 func on_card_click(input: InputEvent, card: Card, index):
 	if input is InputEventMouseButton and input.pressed and input.button_index == 1 and not selected and timer_movement.is_stopped():
+		Sfx.button_click()
 		print(GameStatus.loser_num-1)
 		$"../MultiplayerSpawner".get_children()[GameStatus.loser_num-1].handle_card(card)
 		rpc("select_card", index)
@@ -136,4 +139,5 @@ func select_card(index):
 
 
 func _on_button_pressed():
+	Sfx.button_click()
 	get_tree().change_scene_to_file("res://scenes/menus/main_menu/main_menu.tscn")

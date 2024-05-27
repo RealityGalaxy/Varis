@@ -8,8 +8,6 @@ var index: int
 func _on_mouse_entered():
 	if GameStatus.current_player != GameStatus.winner_num:
 		$CardUi.modulate = Color(0.8, 0.8, 0.8)
-		Sfx.button_click()
-
 
 func _on_mouse_exited():
 	if GameStatus.current_player != GameStatus.winner_num:
