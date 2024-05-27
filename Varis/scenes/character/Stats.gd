@@ -13,3 +13,4 @@ var cooldown_reduction : float = 1
 var spells = ["basic", null, null, null, null]
 var is_shielded : bool = false
 var win_count: int = 0
+var username: String = "Bot Borat"

@@ -1,7 +1,55 @@
-[gd_scene load_steps=3 format=3 uid="uid://be6txqjmunieg"]
+[gd_scene load_steps=7 format=3 uid="uid://be6txqjmunieg"]
 
 [ext_resource type="Script" path="res://scenes/multiplayer/multiplayerScreen.gd" id="1_raoo1"]
-[ext_resource type="Texture2D" uid="uid://crdip2y5gklpt" path="res://graphics/placeholder/tile_0014.png" id="2_brpcw"]
+[ext_resource type="Texture2D" uid="uid://dn1ok7hnfou7k" path="res://graphics/ui/multiplayer.png" id="2_pj4nr"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nt3ek"]
+bg_color = Color(0.360784, 0.560784, 0.364706, 0.666667)
+border_width_left = 20
+border_width_top = 20
+border_width_right = 20
+border_width_bottom = 20
+border_color = Color(0.321569, 0.666667, 0.337255, 1)
+border_blend = true
+corner_radius_top_left = 15
+corner_radius_top_right = 5
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mr4o6"]
+bg_color = Color(0.490196, 0.717647, 0.490196, 0.666667)
+border_width_left = 20
+border_width_top = 20
+border_width_right = 20
+border_width_bottom = 20
+border_color = Color(0.321569, 0.666667, 0.337255, 1)
+border_blend = true
+corner_radius_top_left = 5
+corner_radius_top_right = 15
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4l873"]
+bg_color = Color(0.568627, 0.796078, 0.568627, 0.666667)
+border_width_left = 20
+border_width_top = 20
+border_width_right = 20
+border_width_bottom = 20
+border_color = Color(0.321569, 0.666667, 0.337255, 1)
+border_blend = true
+corner_radius_top_left = 5
+corner_radius_top_right = 15
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lgqqg"]
+bg_color = Color(0.211765, 0.423529, 0.219608, 1)
+border_width_left = 7
+border_width_top = 7
+border_width_right = 7
+border_width_bottom = 7
+border_color = Color(0, 0.14902, 0.0156863, 1)
+border_blend = true
 
 [node name="multiplayerScreen" type="Node2D"]
 script = ExtResource("1_raoo1")
@@ -9,7 +57,7 @@ script = ExtResource("1_raoo1")
 [node name="Background" type="TextureRect" parent="."]
 offset_right = 1915.0
 offset_bottom = 1079.0
-texture = ExtResource("2_brpcw")
+texture = ExtResource("2_pj4nr")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchors_preset = 15
@@ -46,33 +94,56 @@ alignment = 1
 layout_mode = 2
 
 [node name="Host" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
-custom_minimum_size = Vector2(200, 70)
+custom_minimum_size = Vector2(230, 70)
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.34902, 0, 1)
+theme_override_colors/font_hover_color = Color(0.698039, 1, 0.670588, 1)
 theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_nt3ek")
+theme_override_styles/hover = SubResource("StyleBoxFlat_mr4o6")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_4l873")
+theme_override_styles/focus = SubResource("StyleBoxFlat_nt3ek")
+keep_pressed_outside = true
 text = "HOST"
 
 [node name="Join" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
-custom_minimum_size = Vector2(200, 70)
+custom_minimum_size = Vector2(230, 70)
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.34902, 0, 1)
+theme_override_colors/font_hover_color = Color(0.698039, 1, 0.670588, 1)
 theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_nt3ek")
+theme_override_styles/hover = SubResource("StyleBoxFlat_mr4o6")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_4l873")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_nt3ek")
+theme_override_styles/focus = SubResource("StyleBoxFlat_nt3ek")
 text = "JOIN"
 
 [node name="Back" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(200, 70)
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.34902, 0, 1)
+theme_override_colors/font_hover_color = Color(0.698039, 1, 0.670588, 1)
 theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_nt3ek")
+theme_override_styles/hover = SubResource("StyleBoxFlat_mr4o6")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_4l873")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_nt3ek")
+theme_override_styles/focus = SubResource("StyleBoxFlat_nt3ek")
 text = "BACK"
 
 [node name="PopupPanel" type="PopupPanel" parent="MarginContainer"]
-position = Vector2i(700, 100)
+title = "Lobby list"
+position = Vector2i(700, 300)
 size = Vector2i(500, 500)
 borderless = false
+theme_override_styles/panel = SubResource("StyleBoxFlat_lgqqg")
 
 [node name="LobbyScrollContainer" type="ScrollContainer" parent="MarginContainer/PopupPanel"]
-offset_left = 4.0
-offset_top = 4.0
-offset_right = 496.0
-offset_bottom = 496.0
+offset_left = 7.0
+offset_top = 7.0
+offset_right = 493.0
+offset_bottom = 493.0
 
 [node name="Lobbies" type="VBoxContainer" parent="MarginContainer/PopupPanel/LobbyScrollContainer"]
 layout_mode = 2

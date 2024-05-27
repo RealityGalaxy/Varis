@@ -17,7 +17,11 @@ func _ready():
 	GameStatus.reset()
 	text.text = "Waiting for player"
 	
+var map_loaded = false
 func _process(delta):
+	if not map_loaded and GlobalSteam.lobby_id != -1 and $"../MultiplayerSpawner".get_child_count() == 1:
+		$"../MultiplayerSpawner".update_player_spawn($"../MultiplayerSpawner".get_child(0))
+		map_loaded = true
 	if GameStatus.players.size() == 2 and not started:
 		start_round()
 	if not timer_round_start.is_stopped():
@@ -31,6 +35,8 @@ func _process(delta):
 		text.text = str(new_time)
 
 func start_round():
+	update_winner_text(0, 0)
+	update_winner_text(1, 0)
 	started = true
 	text.visible = true
 	timer_round_start.start()
@@ -45,15 +51,15 @@ func show_player_win(loser_num):
 	won = true
 	timer_winner.start()
 	var winner = GameStatus.winner(loser_num)
-	update_winner_text(winner-1)
+	update_winner_text(winner-1, 1)
 	text.text = "Player %d has won" % winner
 	text.visible = true
 	
-func update_winner_text(winner_num):
+func update_winner_text(winner_num, add):
 	var stats = StatManager.get_player_stats(winner_num)
-	stats.win_count += 1
+	stats.win_count += add
 	StatManager.set_player_stats(winner_num, stats)
-	$Wincounts.get_children()[winner_num].text = "Player %d wins: %d" % [winner_num+1, stats.win_count]
+	$Wincounts.get_children()[winner_num].text = "%s: %d" % [stats.username, stats.win_count]
 
 
 func restart_round():

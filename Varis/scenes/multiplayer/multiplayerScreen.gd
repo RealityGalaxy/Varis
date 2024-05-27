@@ -27,11 +27,15 @@ func _on_host_pressed():
 
 func _on_lobby_created(connect, id):
 	if connect:
+		print(id)
+		GlobalSteam.lobby_id = id
 		lobby_id = id
-		Steam.setLobbyData(lobby_id, "name", "godlobby | ")
+		Steam.setLobbyData(lobby_id, "name", "godlobby | %s | Versus" % Steam.getPersonaName())
 		Steam.setLobbyJoinable(lobby_id, true)
 
 func join_lobby(id):
+	print(id)
+	GlobalSteam.lobby_id = id
 	peer.connect_lobby(id)
 	multiplayer.multiplayer_peer = peer
 	lobby_id = id
@@ -54,7 +58,7 @@ func _on_lobby_match_list(lobbies):
 		
 		if lobby_name.begins_with("godlobby"):
 			var button = Button.new()
-			button.set_text(str(lobby_name.erase(0, 11), "| Players: ", player_count))
+			button.set_text(lobby_name.erase(0, 11))
 			button.set_size(Vector2(100, 5))
 			button.connect("pressed", Callable(self, "join_lobby").bind(lobby))
 			$MarginContainer/PopupPanel/LobbyScrollContainer/Lobbies.add_child(button)
@@ -78,4 +82,5 @@ func _input(event):
 
 func _on_back_pressed():
 	Sfx.button_click()
+	GlobalSteam.lobby_id = -1
 	get_tree().change_scene_to_file("res://scenes/menus/main_menu/main_menu.tscn")

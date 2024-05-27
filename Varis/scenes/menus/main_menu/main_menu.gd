@@ -1,5 +1,7 @@
 extends Control
 
+func _ready():
+	GlobalSteam.lobby_id = -1
 
 func _on_singleplayer_pressed():
 	Sfx.button_click()
