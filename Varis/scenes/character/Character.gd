@@ -246,8 +246,10 @@ func take_damage_rpc(damage: int, id):
 		emit_signal("health_changed", stats.current_health)
 		if stats.current_health <= 0:
 			stats.current_health = 0
-			$CPUParticles2D.emitting = true
-			visible = false
+			$GPUParticles2D.emitting = true
+			$AnimatedSprite2D.visible=false
+			$Manabar.visible=false
+			$Healthbar.visible=false
 			get_parent().get_parent().get_child(0).show_player_win(player_num)
 	set_stats(player_num, inst_to_dict(stats))
 
