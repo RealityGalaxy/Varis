@@ -48,7 +48,7 @@ func _process(delta):
 func send_name(username, player_num):
 	var stats = StatManager.get_player_stats(player_num)
 	stats.username = username
-	StatManager.set_player_stats(stats, player_num)
+	StatManager.set_player_stats(player_num, stats)
 
 var applied_multipliers = false
 func start_round():
