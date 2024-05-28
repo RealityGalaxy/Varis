@@ -21,6 +21,7 @@ var map_loaded = false
 var name_sent = false
 func _process(delta):
 	if not name_sent:
+		send_name(Steam.getPersonaName(), GameStatus.current_player)
 		rpc("send_name", Steam.getPersonaName(), GameStatus.current_player)
 		name_sent = true
 	if not applied_multipliers and GameStatus.current_player == 1 and $"../MultiplayerSpawner".get_child_count() == 2:
@@ -43,7 +44,7 @@ func _process(delta):
 		text.add_theme_font_size_override("font_size", ceil(text_size))
 		text.text = str(new_time)
 
-@rpc("call_remote")
+@rpc("any_peer", "call_remote")
 func send_name(username, player_num):
 	var stats = StatManager.get_player_stats(player_num)
 	stats.username = username

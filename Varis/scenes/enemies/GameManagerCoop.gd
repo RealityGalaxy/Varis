@@ -21,7 +21,7 @@ var max_enemies = 2
 func add_score(add: int):
 	score += add * (1 + (floor(time / 30)) * 0.1)
 	enemies-=1
-	if(enemies < max_enemies):
+	if(enemies < max_enemies and GameStatus.current_player == 1):
 		spawn_enemy(2 if enemies + 2 <= max_enemies else 1)
 	if score >= next_card:
 		next_card += 50
@@ -35,13 +35,14 @@ func spawn_enemy(amount = 1):
 		enemies += 1
 		var spawnpoint = spawnpoints.pick_random()
 		spawnpoints.remove_at(spawnpoints.find(spawnpoint))
-		var enemy = load("res://scenes/enemies/eye_drone.tscn").instantiate()
-		call_deferred("add_enemy", enemy)
-		enemy.max_health *= (1 + (floor(time / 30)) * 0.1)
-		rpc("set_enemy_position", spawnpoint.position)
-		
-func set_enemy_position(pos):
-	$"../Enemies".get_child($"../Enemies".get_child_count()-1).position = pos
+		rpc("spawn_enemy_rpc", spawnpoint.position)
+
+@rpc("any_peer", "call_local")
+func spawn_enemy_rpc(spawnpoint):
+	var enemy = load("res://scenes/enemies/eye_drone.tscn").instantiate()
+	call_deferred("add_enemy", enemy)
+	enemy.position = spawnpoint
+	enemy.max_health *= (1 + (floor(time / 30)) * 0.1)
 
 func add_enemy(enemy):
 	$Enemies.add_child(enemy)

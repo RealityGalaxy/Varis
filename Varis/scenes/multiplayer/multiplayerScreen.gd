@@ -37,7 +37,7 @@ func _on_start_versus_pressed():
 	peer.create_lobby(SteamMultiplayerPeer.LOBBY_TYPE_PUBLIC)
 	multiplayer.multiplayer_peer = peer
 	mode = "Versus"
-	multiplayerSpawner.spawn("res://scenes/level/coop_level.tscn")
+	multiplayerSpawner.spawn("res://scenes/level/level.tscn")
 	$Background.queue_free()
 	$MarginContainer2.queue_free()
 

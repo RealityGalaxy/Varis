@@ -66,7 +66,6 @@ offset_bottom = 1079.0
 texture = ExtResource("2_pj4nr")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
-visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -156,6 +155,7 @@ offset_bottom = 493.0
 layout_mode = 2
 
 [node name="MarginContainer2" type="MarginContainer" parent="."]
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
