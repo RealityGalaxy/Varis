@@ -7,7 +7,7 @@ var Spells = {
 	"basic_fire":new_spell("basic_fire", 1, "res://scenes/projectiles/projectile.tscn", 30, 40, "res://graphics/projectiles/basic_fire.png"),
 	"basic_water":new_spell("basic_water", 0.5, "res://scenes/projectiles/projectile.tscn", 15, 20, "res://scenes/projectiles/basic_water/water_arrow.png"),
 	"air_gate":new_spell("air_gate", 5, "res://scenes/spells/air_gate/air_gate.tscn", 0, 50, "res://scenes/spells/air_gate/Circle_(transparent).png"),
-	"shield":new_spell("shield", 7, "res://scenes/spells/shield/shield.tscn", 0, 50, "res://scenes/spells/shield/Ski_trail_rating_symbol_black_circle.png"),
+	"shield":new_spell("shield", 7, "res://scenes/spells/shield/shield.tscn", 0, 50, "res://graphics/projectiles/Shield_2.png"),
 	"wind_wall":new_spell("wind_wall", 5, "res://scenes/spells/wall/wall.tscn", 0, 50, "res://graphics/projectiles/Wind_wall.png"),
 }
 

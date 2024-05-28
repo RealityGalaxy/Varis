@@ -7,7 +7,7 @@ func _ready():
 	spawn_function = spawnPlayer
 	if is_multiplayer_authority():
 		spawn(1)
-		#spawn(2)
+		spawn(2)
 		
 		multiplayer.peer_connected.connect(spawn)
 		multiplayer.peer_disconnected.connect(removePlayer)
