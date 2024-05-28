@@ -47,8 +47,8 @@ var save_path = "user://score.save"
 
 var score_save = ["0", "0", "0", "0", "0"]
 
-func sort_desc(a, b):
-	if a > b:
+func sort_desc(a: String, b: String):
+	if int(a.get_slice(' ', 0)) > int(b.get_slice(' ', 0)):
 		return true
 	return false 
 
@@ -116,6 +116,7 @@ func show_player_win(loser_num):
 	button.visible = true
 	save_score(score)
 	$Leaderboard.text = generate_leaderboard(score_save)
+	create_tween().tween_property($Leaderboard, "modulate", Color(1,1,1,1), 1.5)
 	$Leaderboard.visible = true
 	
 func generate_leaderboard(array):

@@ -5,8 +5,9 @@ var players = []
 func restart():
 	players = []
 
-func add_player(_num: int):
+func add_player(_num: int, username: String):
 	var stats: Stats = Stats.new()
+	stats.username = username
 	players.push_back(stats)
 	
 func get_player_stats(player_num: int) -> Stats: 

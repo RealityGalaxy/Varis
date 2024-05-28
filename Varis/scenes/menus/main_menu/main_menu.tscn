@@ -1,7 +1,46 @@
-[gd_scene load_steps=3 format=3 uid="uid://crdel4dbytuuo"]
+[gd_scene load_steps=6 format=3 uid="uid://crdel4dbytuuo"]
 
 [ext_resource type="Script" path="res://scenes/menus/main_menu/main_menu.gd" id="1_ae0lv"]
-[ext_resource type="Texture2D" uid="uid://crdip2y5gklpt" path="res://graphics/placeholder/tile_0014.png" id="2_v05f5"]
+[ext_resource type="Texture2D" uid="uid://ornnfxcs0rra" path="res://graphics/ui/main2.png" id="2_vjskp"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wfstp"]
+bg_color = Color(0.360784, 0.560784, 0.364706, 0.666667)
+border_width_left = 20
+border_width_top = 20
+border_width_right = 20
+border_width_bottom = 20
+border_color = Color(0.321569, 0.666667, 0.337255, 1)
+border_blend = true
+corner_radius_top_left = 15
+corner_radius_top_right = 5
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xg6ms"]
+bg_color = Color(0.490196, 0.717647, 0.490196, 0.666667)
+border_width_left = 20
+border_width_top = 20
+border_width_right = 20
+border_width_bottom = 20
+border_color = Color(0.321569, 0.666667, 0.337255, 1)
+border_blend = true
+corner_radius_top_left = 5
+corner_radius_top_right = 15
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 15
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3vlcf"]
+bg_color = Color(0.568627, 0.796078, 0.568627, 0.666667)
+border_width_left = 20
+border_width_top = 20
+border_width_right = 20
+border_width_bottom = 20
+border_color = Color(0.321569, 0.666667, 0.337255, 1)
+border_blend = true
+corner_radius_top_left = 5
+corner_radius_top_right = 15
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 15
 
 [node name="Main_Menu" type="Control"]
 layout_mode = 3
@@ -19,7 +58,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_v05f5")
+texture = ExtResource("2_vjskp")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -40,47 +79,70 @@ theme_override_constants/separation = 180
 [node name="Separator" type="Control" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Title" type="Label" parent="MarginContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 64
-text = "GAME TITLE"
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
 layout_mode = 2
 alignment = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(330, 0)
 layout_mode = 2
 theme_override_constants/separation = 39
 alignment = 1
 
-[node name="Separator2" type="Control" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+[node name="Control" type="Control" parent="MarginContainer/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 200)
 layout_mode = 2
 
 [node name="Singleplayer" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(230, 70)
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.34902, 0, 1)
+theme_override_colors/font_hover_color = Color(0.698039, 1, 0.670588, 1)
 theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_wfstp")
+theme_override_styles/hover = SubResource("StyleBoxFlat_xg6ms")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_3vlcf")
+theme_override_styles/focus = SubResource("StyleBoxFlat_wfstp")
+keep_pressed_outside = true
 text = "SINGLEPLAYER"
 
 [node name="Multiplayer" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(230, 70)
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.34902, 0, 1)
+theme_override_colors/font_hover_color = Color(0.698039, 1, 0.670588, 1)
 theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_wfstp")
+theme_override_styles/hover = SubResource("StyleBoxFlat_xg6ms")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_3vlcf")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_wfstp")
+theme_override_styles/focus = SubResource("StyleBoxFlat_wfstp")
 text = "MULTIPLAYER"
 
 [node name="Settings" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(200, 70)
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.34902, 0, 1)
+theme_override_colors/font_hover_color = Color(0.698039, 1, 0.670588, 1)
 theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_wfstp")
+theme_override_styles/hover = SubResource("StyleBoxFlat_xg6ms")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_3vlcf")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_wfstp")
+theme_override_styles/focus = SubResource("StyleBoxFlat_wfstp")
 text = "SETTINGS"
 
 [node name="Exit" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(200, 70)
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.34902, 0, 1)
+theme_override_colors/font_hover_color = Color(0.698039, 1, 0.670588, 1)
 theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_wfstp")
+theme_override_styles/hover = SubResource("StyleBoxFlat_xg6ms")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_3vlcf")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_wfstp")
+theme_override_styles/focus = SubResource("StyleBoxFlat_wfstp")
 text = "EXIT"
 
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/Singleplayer" to="." method="_on_singleplayer_pressed"]

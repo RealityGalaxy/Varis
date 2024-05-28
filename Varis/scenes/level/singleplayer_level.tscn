@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cyvijepe2gh34"]
+[gd_scene load_steps=17 format=3 uid="uid://cyvijepe2gh34"]
 
 [ext_resource type="Script" path="res://scenes/enemies/GameManagerSingle.gd" id="1_vbknj"]
 [ext_resource type="PackedScene" uid="uid://b45ydlouck4io" path="res://scenes/menus/spell_list/spell_list.tscn" id="2_eeija"]
@@ -11,6 +11,20 @@
 [ext_resource type="PackedScene" uid="uid://cubitxapsm3h1" path="res://scenes/character/char.tscn" id="9_i2jjy"]
 [ext_resource type="Texture2D" uid="uid://7k62fx517vut" path="res://graphics/terrain/Platform_1.png" id="11_qg25i"]
 [ext_resource type="Texture2D" uid="uid://b8dd43oomoe5s" path="res://graphics/terrain/Platform_2.png" id="12_5xhvs"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u5r1q"]
+bg_color = Color(0.054902, 0.054902, 0.054902, 0.47451)
+border_width_left = 13
+border_width_top = 13
+border_width_right = 13
+border_width_bottom = 13
+border_color = Color(0.0352941, 0.0352941, 0.0352941, 0.803922)
+border_blend = true
+corner_radius_top_left = 19
+corner_radius_top_right = 19
+corner_radius_bottom_right = 19
+corner_radius_bottom_left = 19
+corner_detail = 12
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_a7tux"]
 
@@ -134,15 +148,16 @@ text = "Score: 0 / 100"
 vertical_alignment = 1
 
 [node name="Leaderboard" type="Label" parent="GameManager"]
-visible = false
+modulate = Color(1, 1, 1, 0)
 z_index = 1
 offset_left = 1332.0
-offset_top = 225.0
+offset_top = 280.0
 offset_right = 1917.0
-offset_bottom = 863.0
+offset_bottom = 808.0
 size_flags_horizontal = 6
 size_flags_vertical = 6
 theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxFlat_u5r1q")
 text = "High score:
 1. 15423
 2. 1544
@@ -268,6 +283,7 @@ script = ExtResource("8_68s7d")
 playerScene = ExtResource("9_i2jjy")
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+visible = false
 position = Vector2(5, -21)
 navigation_polygon = SubResource("NavigationPolygon_5irwh")
 
