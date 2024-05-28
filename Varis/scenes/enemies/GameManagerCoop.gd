@@ -35,10 +35,14 @@ func spawn_enemy(amount = 1):
 		enemies += 1
 		var spawnpoint = spawnpoints.pick_random()
 		spawnpoints.remove_at(spawnpoints.find(spawnpoint))
-		var enemy = load("res://scenes/enemies/eye_drone.tscn").instantiate()
-		call_deferred("add_enemy", enemy)
-		enemy.position = spawnpoint.position
-		enemy.max_health *= (1 + (floor(time / 30)) * 0.1)
+		rpc("spawn_enemy_rpc", spawnpoint)
+
+@rpc("call_local")
+func spawn_enemy_rpc(spawnpoint):
+	var enemy = load("res://scenes/enemies/eye_drone.tscn").instantiate()
+	call_deferred("add_enemy", enemy)
+	enemy.position = spawnpoint.position
+	enemy.max_health *= (1 + (floor(time / 30)) * 0.1)
 
 func add_enemy(enemy):
 	$Enemies.add_child(enemy)
@@ -73,6 +77,9 @@ func _ready():
 func _process(delta):
 	if GameStatus.players.size() == 2 and not started:
 		start_round()
+		for child in $"../MultiplayerSpawner".get_children():
+			child.set_collision_layer_value(child.player_num, false)
+			child.set_collision_layer_value(5, true)
 	if not timer_round_start.is_stopped():
 		var new_time = ceil(timer_round_start.time_left)
 		text.add_theme_font_size_override("font_size", 80)
@@ -102,8 +109,14 @@ func show_cards():
 	create_tween().tween_property(dim, "modulate", Color(0,0,0,0.7), 1.5)
 	timer_winner.start()
 
+func check_alive():
+	for i in range(2):
+		if StatManager.get_player_stats(i+1).current_health > 0:
+			return true
+	return false
+
 func show_player_win(loser_num):
-	if won:
+	if won or not check_alive():
 		return
 	won = true
 	Sfx.round_lose()

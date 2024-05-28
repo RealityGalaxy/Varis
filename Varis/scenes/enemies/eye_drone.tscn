@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://dm0fup1at8e7n"]
+[gd_scene load_steps=6 format=3 uid="uid://dm0fup1at8e7n"]
 
 [ext_resource type="Script" path="res://scenes/enemies/eye_drone.gd" id="1_6yc5o"]
 [ext_resource type="Texture2D" uid="uid://c03ngxyuuretw" path="res://graphics/placeholder/enemi.png" id="2_i5m1u"]
@@ -8,6 +8,14 @@ radius = 32.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_afwkn"]
 radius = 39.0128
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_g3cjq"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
 
 [node name="Eye Drone" type="CharacterBody2D"]
 collision_layer = 15
@@ -37,10 +45,15 @@ wait_time = 0.1
 autostart = true
 
 [node name="Area2D" type="Area2D" parent="."]
+collision_layer = 23
+collision_mask = 23
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(16, 3)
 shape = SubResource("CircleShape2D_afwkn")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_g3cjq")
 
 [connection signal="path_changed" from="NavigationAgent2D" to="." method="_on_navigation_agent_2d_path_changed"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
