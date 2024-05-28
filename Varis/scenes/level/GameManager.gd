@@ -44,7 +44,7 @@ func _process(delta):
 		text.add_theme_font_size_override("font_size", ceil(text_size))
 		text.text = str(new_time)
 
-@rpc("any_peer", "call_remote")
+@rpc("any_peer", "call_local")
 func send_name(username, player_num):
 	var stats = StatManager.get_player_stats(player_num)
 	stats.username = username
@@ -55,8 +55,8 @@ func start_round():
 	#get_tree().root.find_child("Loading2").queue_free()
 	
 	
-	update_winner_text(0, 0)
-	update_winner_text(1, 0)
+	call_deferred("update_winner_text", 1, 0)
+	call_deferred("update_winner_text", 2, 0)
 	started = true
 	text.visible = true
 	timer_round_start.start()
@@ -95,7 +95,7 @@ func update_winner_text(winner_num, add):
 	var stats = StatManager.get_player_stats(winner_num)
 	stats.win_count += add
 	StatManager.set_player_stats(winner_num, stats)
-	$Wincounts.get_children()[winner_num].text = "%s: %d" % [stats.username, stats.win_count]
+	$Wincounts.get_children()[winner_num-1].text = "%s: %d" % [stats.username, stats.win_count]
 
 
 func restart_round():
