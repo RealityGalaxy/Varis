@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://cubitxapsm3h1"]
+[gd_scene load_steps=25 format=3 uid="uid://cubitxapsm3h1"]
 
 [ext_resource type="Texture2D" uid="uid://c380wvdmmtcf2" path="res://icon.svg" id="2_fjpeu"]
 [ext_resource type="Script" path="res://scenes/character/Character.gd" id="2_iyq3v"]
@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://dcp1scfnwnqhy" path="res://scenes/character/manabar.tscn" id="3_k7jh3"]
 [ext_resource type="Texture2D" uid="uid://gxjpjhp53d4j" path="res://graphics/placeholder/Player_Anim_Paper.png" id="4_msris"]
 [ext_resource type="Texture2D" uid="uid://kuskljjt2his" path="res://graphics/placeholder/BrownmanSprite.png" id="5_yru0s"]
+[ext_resource type="Texture2D" uid="uid://dfwpy06ntffys" path="res://graphics/sprites/Player_2_Jump_2.png" id="7_mcuxt"]
+[ext_resource type="Texture2D" uid="uid://pkeapayn3kb7" path="res://graphics/sprites/Player_1_Jump_2.png" id="7_u0tkb"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_13t0l"]
 atlas = ExtResource("4_msris")
@@ -72,6 +74,68 @@ size = Vector2(70, 271.667)
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.296703), 0.0, 0.0, 0, 0]
 point_count = 2
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_qts76"]
+atlas = ExtResource("7_u0tkb")
+region = Rect2(0, 0, 901, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oa4mw"]
+atlas = ExtResource("7_u0tkb")
+region = Rect2(904, 0, 901, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_densx"]
+atlas = ExtResource("7_u0tkb")
+region = Rect2(1808, 0, 901, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1jcmb"]
+atlas = ExtResource("7_mcuxt")
+region = Rect2(0, 0, 903, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gfp7x"]
+atlas = ExtResource("7_mcuxt")
+region = Rect2(907, 0, 903, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xw73k"]
+atlas = ExtResource("7_mcuxt")
+region = Rect2(1814, 0, 903, 1080)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_53478"]
+atlas = ExtResource("7_mcuxt")
+region = Rect2(2721, 0, 903, 1080)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_oryk0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qts76")
+}, {
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_oa4mw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_densx")
+}],
+"loop": true,
+"name": &"Player1_Jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1jcmb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gfp7x")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xw73k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_53478")
+}],
+"loop": true,
+"name": &"Player2_Jump",
+"speed": 5.0
+}]
+
 [node name="CharacterBody2D" type="CharacterBody2D"]
 position = Vector2(100, 100)
 scale = Vector2(0.6, 0.6)
@@ -96,7 +160,7 @@ metadata/_edit_use_anchors_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 6
-position = Vector2(20, 65)
+position = Vector2(25, 61.6667)
 scale = Vector2(0.360294, 0.360294)
 sprite_frames = SubResource("SpriteFrames_jwmfe")
 animation = &"player2"
@@ -150,6 +214,14 @@ initial_velocity_max = 200.0
 scale_amount_min = 3.0
 scale_amount_max = 6.0
 scale_amount_curve = SubResource("Curve_xgln0")
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
+visible = false
+position = Vector2(20, 65)
+scale = Vector2(0.36, 0.36)
+sprite_frames = SubResource("SpriteFrames_oryk0")
+animation = &"Player2_Jump"
+frame_progress = 0.418142
 
 [connection signal="health_changed" from="." to="Healthbar" method="_set_health"]
 [connection signal="mana_changed" from="." to="Manabar" method="_set_health"]

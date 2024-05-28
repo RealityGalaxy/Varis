@@ -26,6 +26,7 @@ var extra_vel: Vector2 = Vector2.ZERO
 @onready var healthbar = $Healthbar
 @onready var manabar = $Manabar
 @onready var anim = $AnimatedSprite2D
+@onready var jumpAnim = $AnimatedSprite2D2
 var speedmult = 1
 
 func _ready():
@@ -46,10 +47,14 @@ func get_input():
 		direction = -1
 		anim.flip_h = true
 		anim.offset.x = 75 if player_num == 1 else 0
+		jumpAnim.flip_h = true
+		jumpAnim.offset.x = 75 if player_num == 1 else 0
 	if Input.is_action_pressed("right"):
 		direction = 1
 		anim.flip_h = false
 		anim.offset.x = 0 if player_num == 1 else 75
+		jumpAnim.flip_h = false
+		jumpAnim.offset.x = 0 if player_num == 1 else 75
 	if Input.is_action_pressed("spell1"):
 		rpc("UseProjectile1", get_global_mouse_position(), hash(Time.get_unix_time_from_system()))
 	if Input.is_action_pressed("spell2"):
@@ -152,7 +157,8 @@ func UseProjectile5(mouse_pos: Vector2, hash_id: int):
 func _physics_process(delta):
 	if !is_multiplayer_authority() or GameStatus.pause_time or StatManager.get_player_stats(player_num).current_health <= 0:
 		return
-		
+	
+	jumpAnim.visible = false
 	GameStatus.set_player(player_num)
 	
 	rpc("regen_mana", delta)
@@ -169,15 +175,17 @@ func _physics_process(delta):
 		if is_on_floor():
 			jumps_left -= 1
 			vel.y = jump_speed * speedmult
+			
 		elif jumps_left > 0:
 			jumps_left -= 2
-			
+			jumpAnim.stop()
 			if vel.y < double_jump_speed * speedmult:
 				vel.y -= abs(double_jump_speed * speedmult) / (abs(vel.y)+(4000 * speedmult)) * abs(double_jump_speed * speedmult)
 			else:
 				vel.y += double_jump_speed * speedmult
 				vel.y = clamp(vel.y, jump_speed * speedmult, double_jump_speed * speedmult)
-	
+
+
 	if direction != 0:
 		vel.x = lerp(vel.x, direction * speed * speedmult * StatManager.get_player_stats(player_num).speed_multiplier, acceleration)
 	else:
@@ -187,6 +195,17 @@ func _physics_process(delta):
 		extra_vel = lerp(extra_vel, Vector2(0,0), 0.1)
 	
 	velocity = vel + extra_vel
+	
+	if(vel.y < 0):
+		jumpAnim.visible = true
+		jumpAnim.play("Player1_Jump" if player_num == 1 else "Player2_Jump")
+		anim.visible = false
+	else:
+		jumpAnim.stop()
+		jumpAnim.visible = false
+		anim.visible = true
+	
+	
 	move_and_slide()
 
 func flash_red():
