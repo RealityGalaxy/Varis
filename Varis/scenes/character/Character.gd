@@ -80,8 +80,8 @@ func UseProjectile1(mouse_pos: Vector2, hash_id: int):
 	var mana_cost = SpellData.Spells[spells[0]].mana_cost
 	var current_mana = StatManager.get_player_stats(player_num).current_mana
 	if($Cooldowns/CD1.is_stopped() && current_mana >= mana_cost):
-			$Cooldowns/CD1.start(SpellData.Spells[spells[0]].cooldown)
-			$Cooldowns/Common.start(min(0.5, SpellData.Spells[spells[0]].cooldown/2))
+			$Cooldowns/CD1.start(SpellData.Spells[spells[0]].cooldown * StatManager.get_player_stats(player_num).cooldown_reduction)
+			$Cooldowns/Common.start(min(0.5, SpellData.Spells[spells[0]].cooldown * StatManager.get_player_stats(player_num).cooldown_reduction/2))
 			use_mana(SpellData.Spells[spells[0]].mana_cost)
 			use_spell.emit(spells[0], player_num, position, mouse_pos, hash_id)
 
@@ -96,8 +96,8 @@ func UseProjectile2(mouse_pos: Vector2, hash_id: int):
 	var mana_cost = SpellData.Spells[spells[1]].mana_cost
 	var current_mana = StatManager.get_player_stats(player_num).current_mana
 	if($Cooldowns/CD2.is_stopped() && current_mana >= mana_cost):
-			$Cooldowns/CD2.start(SpellData.Spells[spells[1]].cooldown)
-			$Cooldowns/Common.start(min(0.5, SpellData.Spells[spells[1]].cooldown/2))
+			$Cooldowns/CD2.start(SpellData.Spells[spells[1]].cooldown * StatManager.get_player_stats(player_num).cooldown_reduction)
+			$Cooldowns/Common.start(min(0.5, SpellData.Spells[spells[1]].cooldown * StatManager.get_player_stats(player_num).cooldown_reduction/2))
 			use_mana(SpellData.Spells[spells[1]].mana_cost)
 			use_spell.emit(spells[1], player_num, position, mouse_pos, hash_id)
 			
@@ -112,8 +112,8 @@ func UseProjectile3(mouse_pos: Vector2, hash_id: int):
 	var mana_cost = SpellData.Spells[spells[2]].mana_cost
 	var current_mana = StatManager.get_player_stats(player_num).current_mana
 	if($Cooldowns/CD3.is_stopped() && current_mana >= mana_cost):
-			$Cooldowns/CD3.start(SpellData.Spells[spells[2]].cooldown)
-			$Cooldowns/Common.start(min(0.5, SpellData.Spells[spells[2]].cooldown/2))
+			$Cooldowns/CD3.start(SpellData.Spells[spells[2]].cooldown * StatManager.get_player_stats(player_num).cooldown_reduction)
+			$Cooldowns/Common.start(min(0.5, SpellData.Spells[spells[2]].cooldown * StatManager.get_player_stats(player_num).cooldown_reduction/2))
 			use_mana(SpellData.Spells[spells[2]].mana_cost)
 			use_spell.emit(spells[2], player_num, position, mouse_pos, hash_id)
 		
@@ -128,8 +128,8 @@ func UseProjectile4(mouse_pos: Vector2, hash_id: int):
 	var mana_cost = SpellData.Spells[spells[3]].mana_cost
 	var current_mana = StatManager.get_player_stats(player_num).current_mana
 	if($Cooldowns/CD4.is_stopped() && current_mana >= mana_cost):
-			$Cooldowns/CD4.start(SpellData.Spells[spells[3]].cooldown)
-			$Cooldowns/Common.start(min(0.5, SpellData.Spells[spells[3]].cooldown/2))
+			$Cooldowns/CD4.start(SpellData.Spells[spells[3]].cooldown * StatManager.get_player_stats(player_num).cooldown_reduction)
+			$Cooldowns/Common.start(min(0.5, SpellData.Spells[spells[3]].cooldown * StatManager.get_player_stats(player_num).cooldown_reduction/2))
 			use_mana(SpellData.Spells[spells[3]].mana_cost)
 			use_spell.emit(spells[3], player_num, position, mouse_pos, hash_id)
 			
@@ -144,8 +144,8 @@ func UseProjectile5(mouse_pos: Vector2, hash_id: int):
 	var mana_cost = SpellData.Spells[spells[4]].mana_cost
 	var current_mana = StatManager.get_player_stats(player_num).current_mana
 	if($Cooldowns/CD5.is_stopped() && current_mana >= mana_cost):
-			$Cooldowns/CD5.start(SpellData.Spells[spells[4]].cooldown)
-			$Cooldowns/Common.start(min(0.5, SpellData.Spells[spells[4]].cooldown/2))
+			$Cooldowns/CD5.start(SpellData.Spells[spells[4]].cooldown * StatManager.get_player_stats(player_num).cooldown_reduction)
+			$Cooldowns/Common.start(min(0.5, SpellData.Spells[spells[4]].cooldown * StatManager.get_player_stats(player_num).cooldown_reduction/2))
 			use_mana(SpellData.Spells[spells[4]].mana_cost)
 			use_spell.emit(spells[4], player_num, position, mouse_pos, hash_id)
 

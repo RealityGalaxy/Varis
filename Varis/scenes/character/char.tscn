@@ -100,7 +100,6 @@ position = Vector2(20, 65)
 scale = Vector2(0.360294, 0.360294)
 sprite_frames = SubResource("SpriteFrames_jwmfe")
 animation = &"player2"
-frame_progress = 0.921891
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 visible = false

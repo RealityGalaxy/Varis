@@ -25,7 +25,7 @@ func _on_start_pressed():
 	Sfx.button_click()
 	peer.create_lobby(SteamMultiplayerPeer.LOBBY_TYPE_PUBLIC)
 	multiplayer.multiplayer_peer = peer
-	multiplayerSpawner.spawn("res://scenes/level/level.tscn")
+	multiplayerSpawner.spawn("res://scenes/level/coop_level.tscn")
 	$Background.queue_free()
 	$MarginContainer2.queue_free()
 

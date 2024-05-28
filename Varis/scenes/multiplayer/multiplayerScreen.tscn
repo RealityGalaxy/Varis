@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://be6txqjmunieg"]
+[gd_scene load_steps=10 format=3 uid="uid://be6txqjmunieg"]
 
 [ext_resource type="Script" path="res://scenes/multiplayer/multiplayerScreen.gd" id="1_raoo1"]
 [ext_resource type="Texture2D" uid="uid://dn1ok7hnfou7k" path="res://graphics/ui/multiplayer.png" id="2_pj4nr"]
@@ -52,6 +52,10 @@ border_width_right = 7
 border_width_bottom = 7
 border_color = Color(0, 0.14902, 0.0156863, 1)
 border_blend = true
+
+[sub_resource type="LabelSettings" id="LabelSettings_dedst"]
+font_size = 24
+font_color = Color(0.101961, 0.411765, 0.101961, 1)
 
 [node name="multiplayerScreen" type="Node2D"]
 script = ExtResource("1_raoo1")
@@ -178,7 +182,10 @@ layout_mode = 2
 alignment = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer2/HBoxContainer"]
+custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 theme_override_constants/separation = 39
 alignment = 1
 
@@ -188,6 +195,7 @@ layout_mode = 2
 [node name="Start" type="Button" parent="MarginContainer2/HBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(230, 70)
 layout_mode = 2
+size_flags_horizontal = 4
 theme_override_colors/font_color = Color(0, 0.34902, 0, 1)
 theme_override_colors/font_hover_color = Color(0.698039, 1, 0.670588, 1)
 theme_override_font_sizes/font_size = 32
@@ -201,6 +209,7 @@ text = "START"
 [node name="Back" type="Button" parent="MarginContainer2/HBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(200, 70)
 layout_mode = 2
+size_flags_horizontal = 4
 theme_override_colors/font_color = Color(0, 0.34902, 0, 1)
 theme_override_colors/font_hover_color = Color(0.698039, 1, 0.670588, 1)
 theme_override_font_sizes/font_size = 32
@@ -211,86 +220,137 @@ theme_override_styles/disabled = SubResource("StyleBoxFlat_nt3ek")
 theme_override_styles/focus = SubResource("StyleBoxFlat_nt3ek")
 text = "BACK"
 
-[node name="SliderManager" type="Control" parent="MarginContainer2/HBoxContainer/VBoxContainer"]
+[node name="SliderManager" type="VBoxContainer" parent="MarginContainer2/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
+alignment = 1
 script = ExtResource("3_dhjmq")
 
-[node name="MaxHealth" type="HSlider" parent="MarginContainer2/HBoxContainer/VBoxContainer/SliderManager"]
-layout_mode = 0
-offset_left = -1.00958
-offset_top = -9.22766
-offset_right = 228.99
-offset_bottom = 6.77234
-min_value = 0.1
-max_value = 5.0
-step = 0.1
-value = 1.0
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer2/HBoxContainer/SliderManager"]
+layout_mode = 2
 
-[node name="MaxMana" type="HSlider" parent="MarginContainer2/HBoxContainer/VBoxContainer/SliderManager"]
-layout_mode = 0
-offset_left = 4.03021
-offset_top = 46.2089
-offset_right = 234.03
-offset_bottom = 62.2089
-min_value = 0.1
-max_value = 5.0
-step = 0.1
-value = 1.0
+[node name="Label" type="Label" parent="MarginContainer2/HBoxContainer/SliderManager/VBoxContainer"]
+layout_mode = 2
+text = "Max Health - 1.0x"
+label_settings = SubResource("LabelSettings_dedst")
+horizontal_alignment = 1
 
-[node name="ManaRegen" type="HSlider" parent="MarginContainer2/HBoxContainer/VBoxContainer/SliderManager"]
-layout_mode = 0
-offset_left = 5.086
-offset_top = 75.6242
-offset_right = 235.086
-offset_bottom = 91.6242
+[node name="MaxHealth" type="HSlider" parent="MarginContainer2/HBoxContainer/SliderManager/VBoxContainer"]
+layout_mode = 2
 min_value = 0.1
 max_value = 5.0
 step = 0.1
 value = 1.0
+tick_count = 6
+ticks_on_borders = true
 
-[node name="DamageMultiplier" type="HSlider" parent="MarginContainer2/HBoxContainer/VBoxContainer/SliderManager"]
-layout_mode = 0
-offset_left = 5.086
-offset_top = 111.543
-offset_right = 235.086
-offset_bottom = 127.543
-min_value = 0.1
-max_value = 5.0
-step = 0.1
-value = 1.0
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer2/HBoxContainer/SliderManager"]
+layout_mode = 2
 
-[node name="DamageReduction" type="HSlider" parent="MarginContainer2/HBoxContainer/VBoxContainer/SliderManager"]
-layout_mode = 0
-offset_left = 5.086
-offset_top = 140.727
-offset_right = 235.086
-offset_bottom = 156.727
-min_value = 0.1
-max_value = 5.0
-step = 0.1
-value = 1.0
+[node name="Label2" type="Label" parent="MarginContainer2/HBoxContainer/SliderManager/VBoxContainer2"]
+layout_mode = 2
+text = "Cooldowns - 1.0x"
+label_settings = SubResource("LabelSettings_dedst")
+horizontal_alignment = 1
 
-[node name="SpeedMultiplier" type="HSlider" parent="MarginContainer2/HBoxContainer/VBoxContainer/SliderManager"]
-layout_mode = 0
-offset_left = 5.086
-offset_top = 181.136
-offset_right = 235.086
-offset_bottom = 197.136
+[node name="CooldownReduction" type="HSlider" parent="MarginContainer2/HBoxContainer/SliderManager/VBoxContainer2"]
+layout_mode = 2
 min_value = 0.1
 max_value = 5.0
 step = 0.1
 value = 1.0
+tick_count = 6
+ticks_on_borders = true
 
-[node name="CooldownReduction" type="HSlider" parent="MarginContainer2/HBoxContainer/VBoxContainer/SliderManager"]
-layout_mode = 0
-offset_left = 9.57587
-offset_top = 221.544
-offset_right = 239.576
-offset_bottom = 237.544
+[node name="VBoxContainer3" type="VBoxContainer" parent="MarginContainer2/HBoxContainer/SliderManager"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer2/HBoxContainer/SliderManager/VBoxContainer3"]
+layout_mode = 2
+text = "Max Mana - 1.0x"
+label_settings = SubResource("LabelSettings_dedst")
+horizontal_alignment = 1
+
+[node name="MaxMana" type="HSlider" parent="MarginContainer2/HBoxContainer/SliderManager/VBoxContainer3"]
+layout_mode = 2
 min_value = 0.1
 max_value = 5.0
 step = 0.1
 value = 1.0
+tick_count = 6
+ticks_on_borders = true
+
+[node name="HSlider" type="VBoxContainer" parent="MarginContainer2/HBoxContainer/SliderManager"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer2/HBoxContainer/SliderManager/HSlider"]
+layout_mode = 2
+text = "Mana Regen - 1.0x"
+label_settings = SubResource("LabelSettings_dedst")
+horizontal_alignment = 1
+
+[node name="ManaRegen" type="HSlider" parent="MarginContainer2/HBoxContainer/SliderManager/HSlider"]
+layout_mode = 2
+min_value = 0.1
+max_value = 5.0
+step = 0.1
+value = 1.0
+tick_count = 6
+ticks_on_borders = true
+
+[node name="HSlider2" type="VBoxContainer" parent="MarginContainer2/HBoxContainer/SliderManager"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer2/HBoxContainer/SliderManager/HSlider2"]
+layout_mode = 2
+text = "Damage - 1.0x"
+label_settings = SubResource("LabelSettings_dedst")
+horizontal_alignment = 1
+
+[node name="DamageMultiplier" type="HSlider" parent="MarginContainer2/HBoxContainer/SliderManager/HSlider2"]
+layout_mode = 2
+min_value = 0.1
+max_value = 5.0
+step = 0.1
+value = 1.0
+tick_count = 6
+ticks_on_borders = true
+
+[node name="HSlider3" type="VBoxContainer" parent="MarginContainer2/HBoxContainer/SliderManager"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer2/HBoxContainer/SliderManager/HSlider3"]
+layout_mode = 2
+text = "Defense - 1.0x"
+label_settings = SubResource("LabelSettings_dedst")
+horizontal_alignment = 1
+
+[node name="DamageReduction" type="HSlider" parent="MarginContainer2/HBoxContainer/SliderManager/HSlider3"]
+layout_mode = 2
+min_value = 0.1
+max_value = 5.0
+step = 0.1
+value = 1.0
+tick_count = 6
+ticks_on_borders = true
+
+[node name="HSlider4" type="VBoxContainer" parent="MarginContainer2/HBoxContainer/SliderManager"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer2/HBoxContainer/SliderManager/HSlider4"]
+layout_mode = 2
+text = "Health - 1.0x"
+label_settings = SubResource("LabelSettings_dedst")
+horizontal_alignment = 1
+
+[node name="SpeedMultiplier" type="HSlider" parent="MarginContainer2/HBoxContainer/SliderManager/HSlider4"]
+layout_mode = 2
+min_value = 0.1
+max_value = 5.0
+step = 0.1
+value = 1.0
+tick_count = 6
+ticks_on_borders = true
 
 [node name="PopupPanel" type="PopupPanel" parent="MarginContainer2"]
 title = "Lobby list"

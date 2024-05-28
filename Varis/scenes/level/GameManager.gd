@@ -61,7 +61,7 @@ func start_round():
 	timer_round_start.start()
 
 @rpc("call_local")
-func apply_buffs(max_health, damage_multiplier, speed_multiplier, max_mana, mana_regen, damage_reduction):
+func apply_buffs(max_health, damage_multiplier, speed_multiplier, max_mana, mana_regen, damage_reduction, cooldown_reduction):
 	for i in range(2):
 		var player_stats = StatManager.get_player_stats(i+1)
 		player_stats.max_health *= max_health
@@ -71,6 +71,7 @@ func apply_buffs(max_health, damage_multiplier, speed_multiplier, max_mana, mana
 		player_stats.max_mana *= max_mana
 		player_stats.mana_regen *= mana_regen
 		player_stats.damage_reduction *= damage_reduction
+		player_stats.cooldown_reduction *= cooldown_reduction
 		StatManager.set_player_stats(i+1, player_stats)
 		$"../MultiplayerSpawner".get_child(i).increase_max_health(0)
 		$"../MultiplayerSpawner".get_child(i).increase_max_mana(0)
