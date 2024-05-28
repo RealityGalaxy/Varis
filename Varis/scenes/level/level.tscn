@@ -495,7 +495,7 @@ position = Vector2(1666, 191)
 position = Vector2(313, 196)
 
 [node name="Sky" type="Sprite2D" parent="Maps/DesertMap"]
-modulate = Color(0.619608, 0.619608, 0.619608, 0.815686)
+modulate = Color(0.619608, 0.619608, 0.619608, 1)
 z_index = -1
 position = Vector2(1199.72, 677.5)
 scale = Vector2(1.2625, 1.26851)

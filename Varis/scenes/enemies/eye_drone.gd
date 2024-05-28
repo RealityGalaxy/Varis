@@ -55,14 +55,14 @@ func set_movement_target(movement_target: Vector2):
 var next_rotation = null
 
 func get_target():
-	var closest = -1
+	var closest = Vector2(0,0)
 	var dist = 1000000
 	for i in range($"../../../MultiplayerSpawner".get_child_count()):
 		var play = $"../../../MultiplayerSpawner".get_child(i)
 		if play.position.distance_to(position) < dist and StatManager.get_player_stats(i+1).current_health > 0:
 			dist = play.position.distance_to(position)
-			closest = play
-	return closest.position
+			closest = play.position
+	return closest
 
 func _physics_process(delta):
 	if player == null or GameStatus.pause_time or dead:

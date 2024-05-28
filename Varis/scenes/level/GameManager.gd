@@ -95,7 +95,7 @@ func update_winner_text(winner_num, add):
 	var stats = StatManager.get_player_stats(winner_num)
 	stats.win_count += add
 	StatManager.set_player_stats(winner_num, stats)
-	$Wincounts.get_children()[winner_num-1].text = "Player %s: %d" % [winner_num, stats.win_count]
+	$Wincounts.get_children()[winner_num].text = "Player %s wins: %d" % [winner_num+1, stats.win_count]
 
 
 func restart_round():
