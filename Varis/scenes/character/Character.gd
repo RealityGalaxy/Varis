@@ -29,6 +29,7 @@ var extra_vel: Vector2 = Vector2.ZERO
 var speedmult = 1
 
 func _ready():
+	GameStatus.current_player = player_num
 	id = Time.get_ticks_msec()
 	var stats = StatManager.get_player_stats(player_num)
 	healthbar._init_healthbar(stats.current_health, stats.max_health)

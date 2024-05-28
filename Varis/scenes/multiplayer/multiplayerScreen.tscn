@@ -62,7 +62,6 @@ offset_bottom = 1079.0
 texture = ExtResource("2_pj4nr")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
-visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -152,6 +151,7 @@ offset_bottom = 493.0
 layout_mode = 2
 
 [node name="MarginContainer2" type="MarginContainer" parent="."]
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -224,7 +224,7 @@ offset_bottom = 6.77234
 min_value = 0.1
 max_value = 5.0
 step = 0.1
-value = 0.1
+value = 1.0
 
 [node name="MaxMana" type="HSlider" parent="MarginContainer2/HBoxContainer/VBoxContainer/SliderManager"]
 layout_mode = 0
@@ -235,7 +235,7 @@ offset_bottom = 62.2089
 min_value = 0.1
 max_value = 5.0
 step = 0.1
-value = 0.1
+value = 1.0
 
 [node name="ManaRegen" type="HSlider" parent="MarginContainer2/HBoxContainer/VBoxContainer/SliderManager"]
 layout_mode = 0
@@ -246,7 +246,7 @@ offset_bottom = 91.6242
 min_value = 0.1
 max_value = 5.0
 step = 0.1
-value = 0.1
+value = 1.0
 
 [node name="DamageMultiplier" type="HSlider" parent="MarginContainer2/HBoxContainer/VBoxContainer/SliderManager"]
 layout_mode = 0
@@ -257,7 +257,7 @@ offset_bottom = 127.543
 min_value = 0.1
 max_value = 5.0
 step = 0.1
-value = 0.1
+value = 1.0
 
 [node name="DamageReduction" type="HSlider" parent="MarginContainer2/HBoxContainer/VBoxContainer/SliderManager"]
 layout_mode = 0
@@ -268,7 +268,7 @@ offset_bottom = 156.727
 min_value = 0.1
 max_value = 5.0
 step = 0.1
-value = 0.1
+value = 1.0
 
 [node name="SpeedMultiplier" type="HSlider" parent="MarginContainer2/HBoxContainer/VBoxContainer/SliderManager"]
 layout_mode = 0
@@ -279,7 +279,7 @@ offset_bottom = 197.136
 min_value = 0.1
 max_value = 5.0
 step = 0.1
-value = 0.1
+value = 1.0
 
 [node name="CooldownReduction" type="HSlider" parent="MarginContainer2/HBoxContainer/VBoxContainer/SliderManager"]
 layout_mode = 0
@@ -290,7 +290,7 @@ offset_bottom = 237.544
 min_value = 0.1
 max_value = 5.0
 step = 0.1
-value = 0.1
+value = 1.0
 
 [node name="PopupPanel" type="PopupPanel" parent="MarginContainer2"]
 title = "Lobby list"

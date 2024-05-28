@@ -19,6 +19,12 @@ func _ready():
 	
 var map_loaded = false
 func _process(delta):
+	
+	if not applied_multipliers and GameStatus.current_player == 1 and $"../MultiplayerSpawner".get_child_count() == 2:
+		print('sent')
+		rpc("apply_buffs", Settings.max_health, Settings.damage_multiplier, Settings.speed_multiplier, Settings.max_mana, Settings.mana_regen, Settings.damage_reduction)
+		applied_multipliers = true
+
 	if not map_loaded and GlobalSteam.lobby_id != -1 and $"../MultiplayerSpawner".get_child_count() == 1:
 		$"../MultiplayerSpawner".update_player_spawn($"../MultiplayerSpawner".get_child(0))
 		map_loaded = true
@@ -34,14 +40,32 @@ func _process(delta):
 		text.add_theme_font_size_override("font_size", ceil(text_size))
 		text.text = str(new_time)
 
+var applied_multipliers = false
 func start_round():
 	#get_tree().root.find_child("Loading2").queue_free()
+	
+	
 	update_winner_text(0, 0)
 	update_winner_text(1, 0)
 	started = true
 	text.visible = true
 	timer_round_start.start()
-	
+
+@rpc("call_local")
+func apply_buffs(max_health, damage_multiplier, speed_multiplier, max_mana, mana_regen, damage_reduction):
+	for i in range(2):
+		var player_stats = StatManager.get_player_stats(i+1)
+		player_stats.max_health *= max_health
+		player_stats.damage_multiplier *= damage_multiplier
+		player_stats.speed_multiplier *= speed_multiplier
+		player_stats.current_health *= max_health
+		player_stats.max_mana *= max_mana
+		player_stats.mana_regen *= mana_regen
+		player_stats.damage_reduction *= damage_reduction
+		StatManager.set_player_stats(i+1, player_stats)
+		$"../MultiplayerSpawner".get_child(i).increase_max_health(0)
+		$"../MultiplayerSpawner".get_child(i).increase_max_mana(0)
+		
 func show_cards():
 	pass
 	
@@ -78,6 +102,10 @@ func restart_round():
 	start_round()
 
 func _on_timer_timeout():
+	if not applied_multipliers and GameStatus.current_player == 1:
+		print('sent')
+		rpc("apply_buffs", Settings.max_health, Settings.damage_multiplier, Settings.speed_multiplier, Settings.max_mana, Settings.mana_regen, Settings.damage_reduction)
+		applied_multipliers = true
 	GameStatus.pause_time = false
 	text.visible = false
 

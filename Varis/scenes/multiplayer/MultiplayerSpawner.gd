@@ -47,17 +47,8 @@ func spawnPlayer(data):
 	StatManager.add_player(player.player_num, Steam.getPersonaName())
 
 
+	print(player.player_num)
 	
-	var player_stats = StatManager.get_player_stats(player.player_num)
-	player_stats.max_health = Settings.max_health
-	player_stats.damage_multiplier = Settings.damage_multiplier
-	player_stats.speed_multiplier = Settings.speed_multiplier
-	
-	player_stats.max_mana = Settings.max_mana
-	player_stats.mana_regen = Settings.mana_regen
-	player_stats.damage_reduction = Settings.damage_reduction
-
-	StatManager.set_player_stats(player.player_num, player_stats)
 	
 	return player
 
