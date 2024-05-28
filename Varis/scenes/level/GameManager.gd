@@ -18,12 +18,12 @@ func _ready():
 	text.text = "Waiting for player"
 	
 var map_loaded = false
-var name_sent = false
+#var name_sent = false
 func _process(delta):
-	if not name_sent:
-		send_name(Steam.getPersonaName(), GameStatus.current_player)
-		rpc("send_name", Steam.getPersonaName(), GameStatus.current_player)
-		name_sent = true
+	#if not name_sent:
+		#send_name(Steam.getPersonaName(), GameStatus.current_player)
+		#rpc("send_name", Steam.getPersonaName(), GameStatus.current_player)
+		#name_sent = true
 	if not applied_multipliers and GameStatus.current_player == 1 and $"../MultiplayerSpawner".get_child_count() == 2:
 		print('sent')
 		rpc("apply_buffs", Settings.max_health, Settings.damage_multiplier, Settings.speed_multiplier, Settings.max_mana, Settings.mana_regen, Settings.damage_reduction)
@@ -55,8 +55,8 @@ func start_round():
 	#get_tree().root.find_child("Loading2").queue_free()
 	
 	
-	call_deferred("update_winner_text", 1, 0)
-	call_deferred("update_winner_text", 2, 0)
+	#call_deferred("update_winner_text", 1, 0)
+	#call_deferred("update_winner_text", 2, 0)
 	started = true
 	text.visible = true
 	timer_round_start.start()
@@ -95,7 +95,7 @@ func update_winner_text(winner_num, add):
 	var stats = StatManager.get_player_stats(winner_num)
 	stats.win_count += add
 	StatManager.set_player_stats(winner_num, stats)
-	$Wincounts.get_children()[winner_num-1].text = "%s: %d" % [stats.username, stats.win_count]
+	$Wincounts.get_children()[winner_num-1].text = "Player %s: %d" % [winner_num, stats.win_count]
 
 
 func restart_round():
