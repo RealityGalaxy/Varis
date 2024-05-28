@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://b45ydlouck4io"]
 
 [ext_resource type="Script" path="res://scenes/menus/spell_list/spell_list.gd" id="1_htmkj"]
-[ext_resource type="Texture2D" uid="uid://vh2oxwyrlm3h" path="res://scenes/projectiles/basic.png" id="2_bm22w"]
+[ext_resource type="Texture2D" uid="uid://dbjpuo2nbrnyh" path="res://graphics/projectiles/basic.png" id="2_c0myf"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_plqaq"]
 
@@ -71,8 +71,8 @@ offset_left = 15.0
 offset_top = 15.0
 offset_right = 85.0
 offset_bottom = 85.0
-texture = ExtResource("2_bm22w")
-expand_mode = 1
+texture = ExtResource("2_c0myf")
+expand_mode = 2
 
 [node name="Image2" type="TextureRect" parent="Images"]
 visible = false

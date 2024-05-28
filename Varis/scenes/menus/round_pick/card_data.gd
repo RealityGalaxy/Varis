@@ -11,9 +11,9 @@ var Cards = [
 	new_card("Big brain", "Increase maximum mana by 30", "res://graphics/buffs/big_brain.png", "max_mana", 30),
 	new_card("Bloody heart", "Increase maximum health by 30", "res://graphics/buffs/bloody_heart.png", "max_health", 30),
 	new_card("Quickshot", "Decrease cooldowns by 15%", "res://graphics/buffs/quickshot.png", "cdr", -0.15),
-	new_card("Why?", "Decrease damage by 10%", "res://scenes/spells/why/Why.png", "damage", -0.1),
-	new_card("Wind wall", "Launch a wall that negates spells", "res://scenes/spells/wall/Wind_wall.png", "unlock_spell", "wind_wall"),
-	new_card("Forcefield", "Shield yourself from projectiles", "res://icon.svg", "unlock_spell", "shield"),
+	new_card("Why?", "Decrease damage by 10%", "res://graphics/buffs/Why.png", "damage", -0.1),
+	new_card("Wind wall", "Launch a wall that negates spells", "res://graphics/projectiles/Wind_wall.png", "unlock_spell", "wind_wall"),
+	new_card("Forcefield", "Shield yourself from projectiles", "res://graphics/projectiles/Shield_2.png", "unlock_spell", "shield"),
 ]
 
 func new_card(card_name: String, card_desc: String, card_image: String, unlock: String, value):
