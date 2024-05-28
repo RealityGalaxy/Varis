@@ -314,7 +314,7 @@ spawn_limit = 6
 
 [node name="Loading2" type="Sprite2D" parent="."]
 z_index = -4096
-position = Vector2(946, 546)
+position = Vector2(960, 540)
 texture = ExtResource("3_ogipk")
 
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/Host" to="." method="_on_host_pressed"]

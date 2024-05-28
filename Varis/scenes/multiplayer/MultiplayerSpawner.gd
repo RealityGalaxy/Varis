@@ -44,7 +44,7 @@ func spawnPlayer(data):
 
 	player.player_num = index;
 	GameStatus.players.push_back(player.player_num)
-	StatManager.add_player(player.player_num, Steam.getPersonaName())
+	StatManager.add_player(player.player_num)
 
 
 	print(player.player_num)

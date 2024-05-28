@@ -18,8 +18,11 @@ func _ready():
 	text.text = "Waiting for player"
 	
 var map_loaded = false
+var name_sent = false
 func _process(delta):
-	
+	if not name_sent:
+		rpc("send_name", Steam.getPersonaName(), GameStatus.current_player)
+		name_sent = true
 	if not applied_multipliers and GameStatus.current_player == 1 and $"../MultiplayerSpawner".get_child_count() == 2:
 		print('sent')
 		rpc("apply_buffs", Settings.max_health, Settings.damage_multiplier, Settings.speed_multiplier, Settings.max_mana, Settings.mana_regen, Settings.damage_reduction)
@@ -39,6 +42,12 @@ func _process(delta):
 			text_size = 80
 		text.add_theme_font_size_override("font_size", ceil(text_size))
 		text.text = str(new_time)
+
+@rpc("call_remote")
+func send_name(username, player_num):
+	var stats = StatManager.get_player_stats(player_num)
+	stats.username = username
+	StatManager.set_player_stats(stats, player_num)
 
 var applied_multipliers = false
 func start_round():
