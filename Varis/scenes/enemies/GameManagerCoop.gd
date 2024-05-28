@@ -30,19 +30,26 @@ func add_score(add: int):
 		show_cards()
 		
 func spawn_enemy(amount = 1):
-	var spawnpoints = $"../EnemySpawns".get_children()
+	
 	for i in range(amount):
 		enemies += 1
-		var spawnpoint = spawnpoints.pick_random()
-		spawnpoints.remove_at(spawnpoints.find(spawnpoint))
-		rpc("spawn_enemy_rpc", spawnpoint.position)
-
-@rpc("any_peer", "call_local")
-func spawn_enemy_rpc(spawnpoint):
-	var enemy = load("res://scenes/enemies/eye_drone.tscn").instantiate()
-	call_deferred("add_enemy", enemy)
-	enemy.position = spawnpoint
-	enemy.max_health *= (1 + (floor(time / 30)) * 0.1)
+		
+		
+		var enemy = load("res://scenes/enemies/eye_drone.tscn").instantiate()
+		rpc("choose_pos", enemy)
+		call_deferred("add_enemy", enemy)
+		
+		
+		enemy.max_health *= (1 + (floor(time / 30)) * 0.1)
+		
+	
+@rpc("call_local")
+func choose_pos(enemy):
+	var spawnpoints = $"../EnemySpawns".get_children()
+	
+	var pos = spawnpoints.pick_random()
+	spawnpoints.remove_at(spawnpoints.find(pos))
+	enemy.position = pos.position
 
 func add_enemy(enemy):
 	$Enemies.add_child(enemy)
