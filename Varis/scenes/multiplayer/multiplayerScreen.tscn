@@ -66,6 +66,7 @@ offset_bottom = 1079.0
 texture = ExtResource("2_pj4nr")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -155,7 +156,6 @@ offset_bottom = 493.0
 layout_mode = 2
 
 [node name="MarginContainer2" type="MarginContainer" parent="."]
-visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -192,8 +192,8 @@ alignment = 1
 [node name="Separator2" type="Control" parent="MarginContainer2/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="Start" type="Button" parent="MarginContainer2/HBoxContainer/VBoxContainer"]
-custom_minimum_size = Vector2(230, 70)
+[node name="Start Versus" type="Button" parent="MarginContainer2/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(260, 70)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_colors/font_color = Color(0, 0.34902, 0, 1)
@@ -204,7 +204,22 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_mr4o6")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_4l873")
 theme_override_styles/focus = SubResource("StyleBoxFlat_nt3ek")
 keep_pressed_outside = true
-text = "START"
+text = "START VERSUS"
+
+[node name="Start Coop" type="Button" parent="MarginContainer2/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(260, 70)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0, 0.34902, 0, 1)
+theme_override_colors/font_hover_color = Color(0.698039, 1, 0.670588, 1)
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_nt3ek")
+theme_override_styles/hover = SubResource("StyleBoxFlat_mr4o6")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_4l873")
+theme_override_styles/focus = SubResource("StyleBoxFlat_nt3ek")
+keep_pressed_outside = true
+text = "START COOP
+"
 
 [node name="Back" type="Button" parent="MarginContainer2/HBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(200, 70)
@@ -380,5 +395,6 @@ texture = ExtResource("3_ogipk")
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/Host" to="." method="_on_host_pressed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/Join" to="." method="_on_join_pressed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/Back" to="." method="_on_back_pressed"]
-[connection signal="pressed" from="MarginContainer2/HBoxContainer/VBoxContainer/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="MarginContainer2/HBoxContainer/VBoxContainer/Start Versus" to="." method="_on_start_versus_pressed"]
+[connection signal="pressed" from="MarginContainer2/HBoxContainer/VBoxContainer/Start Coop" to="." method="_on_start_coop_pressed"]
 [connection signal="pressed" from="MarginContainer2/HBoxContainer/VBoxContainer/Back" to="." method="_on_back_pressed"]

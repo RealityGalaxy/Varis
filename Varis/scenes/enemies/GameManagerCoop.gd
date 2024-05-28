@@ -35,14 +35,13 @@ func spawn_enemy(amount = 1):
 		enemies += 1
 		var spawnpoint = spawnpoints.pick_random()
 		spawnpoints.remove_at(spawnpoints.find(spawnpoint))
-		rpc("spawn_enemy_rpc", spawnpoint.position)
-
-@rpc("any_peer", "call_local")
-func spawn_enemy_rpc(spawnpoint):
-	var enemy = load("res://scenes/enemies/eye_drone.tscn").instantiate()
-	call_deferred("add_enemy", enemy)
-	enemy.position = spawnpoint
-	enemy.max_health *= (1 + (floor(time / 30)) * 0.1)
+		var enemy = load("res://scenes/enemies/eye_drone.tscn").instantiate()
+		call_deferred("add_enemy", enemy)
+		enemy.max_health *= (1 + (floor(time / 30)) * 0.1)
+		rpc("set_enemy_position", spawnpoint.position)
+		
+func set_enemy_position(pos):
+	$"../Enemies".get_child($"../Enemies".get_child_count()-1).position = pos
 
 func add_enemy(enemy):
 	$Enemies.add_child(enemy)
@@ -103,9 +102,13 @@ func start_round():
 	text.visible = true
 	timer_round_start.start()
 	
+@rpc("any_peer", "call_local")
+func set_pause_time(value):
+	GameStatus.pause_time = value
+	
 func show_cards():
 	Sfx.round_end()
-	GameStatus.pause_time = true
+	rpc("set_pause_time", true)
 	create_tween().tween_property(dim, "modulate", Color(0,0,0,0.7), 1.5)
 	timer_winner.start()
 
@@ -147,11 +150,11 @@ func restart_round():
 	_on_timer_timeout()
 
 func _on_timer_timeout():
-	GameStatus.pause_time = false
+	rpc("set_pause_time", false)
 	text.visible = false
 
 func _on_display_winner_timeout():
-	GameStatus.pause_time = true
+	rpc("set_pause_time", true)
 	text.visible = false
 	for i in 4:
 		rpc("spawn_card", inst_to_dict(CardData.Cards.pick_random()), i)

@@ -21,20 +21,34 @@ func _on_host_pressed():
 	$MarginContainer.queue_free()
 	$MarginContainer2.visible = true
 
-func _on_start_pressed():
+var mode = ''
+
+func _on_start_coop_pressed():
 	Sfx.button_click()
 	peer.create_lobby(SteamMultiplayerPeer.LOBBY_TYPE_PUBLIC)
 	multiplayer.multiplayer_peer = peer
+	mode = "Coop"
 	multiplayerSpawner.spawn("res://scenes/level/coop_level.tscn")
 	$Background.queue_free()
 	$MarginContainer2.queue_free()
+
+func _on_start_versus_pressed():
+	Sfx.button_click()
+	peer.create_lobby(SteamMultiplayerPeer.LOBBY_TYPE_PUBLIC)
+	multiplayer.multiplayer_peer = peer
+	mode = "Versus"
+	multiplayerSpawner.spawn("res://scenes/level/coop_level.tscn")
+	$Background.queue_free()
+	$MarginContainer2.queue_free()
+
+
 
 func _on_lobby_created(connect, id):
 	if connect:
 		print(id)
 		GlobalSteam.lobby_id = id
 		lobby_id = id
-		Steam.setLobbyData(lobby_id, "name", "godlobby | %s | Versus" % Steam.getPersonaName())
+		Steam.setLobbyData(lobby_id, "name", "godlobby | %s | %s" % [Steam.getPersonaName(), mode])
 		Steam.setLobbyJoinable(lobby_id, true)
 
 func join_lobby(id):

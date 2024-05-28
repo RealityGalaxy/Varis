@@ -57,10 +57,10 @@ var next_rotation = null
 func get_target():
 	var closest = -1
 	var dist = 1000000
-	for i in range(2):
+	for i in range($"../../../MultiplayerSpawner".get_child_count()):
 		var play = $"../../../MultiplayerSpawner".get_child(i)
-		if (play.position - position).distance() < dist:
-			dist = (play.position - position).distance()
+		if play.position.distance_to(position) < dist and StatManager.get_player_stats(i+1).current_health > 0:
+			dist = play.position.distance_to(position)
 			closest = play
 	return closest.position
 
