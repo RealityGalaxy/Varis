@@ -35,13 +35,13 @@ func spawn_enemy(amount = 1):
 		enemies += 1
 		var spawnpoint = spawnpoints.pick_random()
 		spawnpoints.remove_at(spawnpoints.find(spawnpoint))
-		rpc("spawn_enemy_rpc", spawnpoint)
+		rpc("spawn_enemy_rpc", spawnpoint.position)
 
-@rpc("call_local")
+@rpc("any_peer", "call_local")
 func spawn_enemy_rpc(spawnpoint):
 	var enemy = load("res://scenes/enemies/eye_drone.tscn").instantiate()
 	call_deferred("add_enemy", enemy)
-	enemy.position = spawnpoint.position
+	enemy.position = spawnpoint
 	enemy.max_health *= (1 + (floor(time / 30)) * 0.1)
 
 func add_enemy(enemy):
@@ -72,11 +72,11 @@ func _ready():
 	StatManager.restart()
 	GameStatus.reset()
 	text.text = "Waiting for player"
-	spawn_enemy()
 	
 func _process(delta):
 	if GameStatus.players.size() == 2 and not started:
 		start_round()
+		spawn_enemy()
 		for child in $"../MultiplayerSpawner".get_children():
 			child.set_collision_layer_value(child.player_num, false)
 			child.set_collision_layer_value(5, true)
@@ -116,7 +116,7 @@ func check_alive():
 	return false
 
 func show_player_win(loser_num):
-	if won or not check_alive():
+	if won or check_alive():
 		return
 	won = true
 	Sfx.round_lose()

@@ -54,11 +54,21 @@ func set_movement_target(movement_target: Vector2):
 
 var next_rotation = null
 
+func get_target():
+	var closest = -1
+	var dist = 1000000
+	for i in range(2):
+		var play = $"../../../MultiplayerSpawner".get_child(i)
+		if (play.position - position).distance() < dist:
+			dist = (play.position - position).distance()
+			closest = play
+	return closest.position
+
 func _physics_process(delta):
 	if player == null or GameStatus.pause_time or dead:
 		return
 
-	set_movement_target(player.position)
+	set_movement_target(get_target())
 	var current_agent_position: Vector2 = global_position
 	var next_path_position: Vector2 = navigation_agent.get_next_path_position()
 	

@@ -202,19 +202,19 @@ layer_0/tile_data = PackedInt32Array(851971, 0, 0, 851972, 0, 0, 851973, 0, 0, 8
 position = Vector2(921, 1286)
 scale = Vector2(130, 4)
 collision_layer = 7
-collision_mask = 7
+collision_mask = 23
 
 [node name="Deathzone2" parent="." instance=ExtResource("7_dxcn1")]
 position = Vector2(-477, 225)
 scale = Vector2(10, 110)
 collision_layer = 7
-collision_mask = 7
+collision_mask = 23
 
 [node name="Deathzone3" parent="." instance=ExtResource("7_dxcn1")]
 position = Vector2(2326, 225)
 scale = Vector2(10, 110)
 collision_layer = 7
-collision_mask = 7
+collision_mask = 23
 
 [node name="SpawnPoints" type="Node2D" parent="."]
 
