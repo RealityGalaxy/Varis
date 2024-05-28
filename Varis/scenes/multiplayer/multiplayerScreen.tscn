@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://be6txqjmunieg"]
+[gd_scene load_steps=9 format=3 uid="uid://be6txqjmunieg"]
 
 [ext_resource type="Script" path="res://scenes/multiplayer/multiplayerScreen.gd" id="1_raoo1"]
 [ext_resource type="Texture2D" uid="uid://dn1ok7hnfou7k" path="res://graphics/ui/multiplayer.png" id="2_pj4nr"]
+[ext_resource type="Script" path="res://scenes/multiplayer/SliderManager.gd" id="3_dhjmq"]
 [ext_resource type="Texture2D" uid="uid://dpbsyhwdyu057" path="res://graphics/ui/loading_2.png" id="3_ogipk"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nt3ek"]
@@ -149,15 +150,175 @@ offset_bottom = 493.0
 [node name="Lobbies" type="VBoxContainer" parent="MarginContainer/PopupPanel/LobbyScrollContainer"]
 layout_mode = 2
 
+[node name="MarginContainer2" type="MarginContainer" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 678.0
+offset_top = 262.0
+offset_right = 1249.0
+offset_bottom = 837.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 180
+
+[node name="Separator" type="Control" parent="MarginContainer2/VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer2"]
+layout_mode = 2
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer2/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 39
+alignment = 1
+
+[node name="Separator2" type="Control" parent="MarginContainer2/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Start" type="Button" parent="MarginContainer2/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(230, 70)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.34902, 0, 1)
+theme_override_colors/font_hover_color = Color(0.698039, 1, 0.670588, 1)
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_nt3ek")
+theme_override_styles/hover = SubResource("StyleBoxFlat_mr4o6")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_4l873")
+theme_override_styles/focus = SubResource("StyleBoxFlat_nt3ek")
+keep_pressed_outside = true
+text = "START"
+
+[node name="Back" type="Button" parent="MarginContainer2/HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(200, 70)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.34902, 0, 1)
+theme_override_colors/font_hover_color = Color(0.698039, 1, 0.670588, 1)
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_nt3ek")
+theme_override_styles/hover = SubResource("StyleBoxFlat_mr4o6")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_4l873")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_nt3ek")
+theme_override_styles/focus = SubResource("StyleBoxFlat_nt3ek")
+text = "BACK"
+
+[node name="SliderManager" type="Control" parent="MarginContainer2/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+script = ExtResource("3_dhjmq")
+
+[node name="MaxHealth" type="HSlider" parent="MarginContainer2/HBoxContainer/VBoxContainer/SliderManager"]
+layout_mode = 0
+offset_left = -1.00958
+offset_top = -9.22766
+offset_right = 228.99
+offset_bottom = 6.77234
+min_value = 0.1
+max_value = 5.0
+step = 0.1
+value = 1.0
+
+[node name="MaxMana" type="HSlider" parent="MarginContainer2/HBoxContainer/VBoxContainer/SliderManager"]
+layout_mode = 0
+offset_left = 4.03021
+offset_top = 46.2089
+offset_right = 234.03
+offset_bottom = 62.2089
+min_value = 0.1
+max_value = 5.0
+step = 0.1
+value = 1.0
+
+[node name="ManaRegen" type="HSlider" parent="MarginContainer2/HBoxContainer/VBoxContainer/SliderManager"]
+layout_mode = 0
+offset_left = 5.086
+offset_top = 75.6242
+offset_right = 235.086
+offset_bottom = 91.6242
+min_value = 0.1
+max_value = 5.0
+step = 0.1
+value = 1.0
+
+[node name="DamageMultiplier" type="HSlider" parent="MarginContainer2/HBoxContainer/VBoxContainer/SliderManager"]
+layout_mode = 0
+offset_left = 5.086
+offset_top = 111.543
+offset_right = 235.086
+offset_bottom = 127.543
+min_value = 0.1
+max_value = 5.0
+step = 0.1
+value = 1.0
+
+[node name="DamageReduction" type="HSlider" parent="MarginContainer2/HBoxContainer/VBoxContainer/SliderManager"]
+layout_mode = 0
+offset_left = 5.086
+offset_top = 140.727
+offset_right = 235.086
+offset_bottom = 156.727
+min_value = 0.1
+max_value = 5.0
+step = 0.1
+value = 1.0
+
+[node name="SpeedMultiplier" type="HSlider" parent="MarginContainer2/HBoxContainer/VBoxContainer/SliderManager"]
+layout_mode = 0
+offset_left = 5.086
+offset_top = 181.136
+offset_right = 235.086
+offset_bottom = 197.136
+min_value = 0.1
+max_value = 5.0
+step = 0.1
+value = 1.0
+
+[node name="CooldownReduction" type="HSlider" parent="MarginContainer2/HBoxContainer/VBoxContainer/SliderManager"]
+layout_mode = 0
+offset_left = 9.57587
+offset_top = 221.544
+offset_right = 239.576
+offset_bottom = 237.544
+min_value = 0.1
+max_value = 5.0
+step = 0.1
+value = 1.0
+
+[node name="PopupPanel" type="PopupPanel" parent="MarginContainer2"]
+title = "Lobby list"
+position = Vector2i(700, 300)
+size = Vector2i(500, 500)
+borderless = false
+theme_override_styles/panel = SubResource("StyleBoxFlat_lgqqg")
+
+[node name="LobbyScrollContainer" type="ScrollContainer" parent="MarginContainer2/PopupPanel"]
+offset_left = 7.0
+offset_top = 7.0
+offset_right = 493.0
+offset_bottom = 493.0
+
+[node name="Lobbies" type="VBoxContainer" parent="MarginContainer2/PopupPanel/LobbyScrollContainer"]
+layout_mode = 2
+
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
 spawn_path = NodePath("..")
 spawn_limit = 6
 
 [node name="Loading2" type="Sprite2D" parent="."]
 z_index = -4096
-position = Vector2(960, 540)
+position = Vector2(946, 546)
 texture = ExtResource("3_ogipk")
 
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/Host" to="." method="_on_host_pressed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/Join" to="." method="_on_join_pressed"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/Back" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="MarginContainer2/HBoxContainer/VBoxContainer/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="MarginContainer2/HBoxContainer/VBoxContainer/Back" to="." method="_on_back_pressed"]
